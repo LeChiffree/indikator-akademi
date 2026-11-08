@@ -4,8 +4,8 @@
 import { fundingCost } from './io.mjs';
 import { GRID } from './agg.mjs';
 
-export const FEE = 0.0004;  // %0,04 taker
-export const SLIP = 0.0001; // 1 bp kayma
+export const FEE = Number(process.env.IA_FEE ?? 0.0004);  // %0,04 taker
+export const SLIP = Number(process.env.IA_SLIP ?? 0.0001); // 1 bp kayma
 export const SIDE = FEE + SLIP;
 
 export function simulate(spec, ctx, rec) {
