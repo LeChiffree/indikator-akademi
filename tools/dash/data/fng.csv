@@ -1,0 +1,3193 @@
+day,value,classification
+17563,30,Fear
+17564,15,Extreme Fear
+17565,40,Fear
+17566,24,Extreme Fear
+17567,11,Extreme Fear
+17568,8,Extreme Fear
+17569,36,Fear
+17570,30,Fear
+17571,44,Fear
+17572,54,Neutral
+17573,31,Fear
+17574,42,Fear
+17575,35,Fear
+17576,55,Greed
+17577,71,Greed
+17578,67,Greed
+17579,74,Greed
+17580,63,Greed
+17581,67,Greed
+17582,74,Greed
+17583,54,Neutral
+17584,44,Fear
+17585,39,Fear
+17586,31,Fear
+17587,33,Fear
+17588,37,Fear
+17589,44,Fear
+17590,41,Fear
+17591,38,Fear
+17592,47,Neutral
+17593,56,Greed
+17594,44,Fear
+17595,55,Greed
+17596,59,Greed
+17597,37,Fear
+17598,39,Fear
+17599,37,Fear
+17600,39,Fear
+17601,40,Fear
+17602,41,Fear
+17603,41,Fear
+17604,40,Fear
+17605,32,Fear
+17606,33,Fear
+17607,31,Fear
+17608,29,Fear
+17609,29,Fear
+17610,37,Fear
+17611,36,Fear
+17612,36,Fear
+17613,28,Fear
+17614,32,Fear
+17615,30,Fear
+17616,31,Fear
+17617,24,Extreme Fear
+17618,24,Extreme Fear
+17619,18,Extreme Fear
+17620,12,Extreme Fear
+17621,16,Extreme Fear
+17622,16,Extreme Fear
+17623,11,Extreme Fear
+17624,22,Extreme Fear
+17625,22,Extreme Fear
+17626,17,Extreme Fear
+17627,19,Extreme Fear
+17628,20,Extreme Fear
+17629,17,Extreme Fear
+17630,21,Extreme Fear
+17631,18,Extreme Fear
+17632,20,Extreme Fear
+17633,18,Extreme Fear
+17634,23,Extreme Fear
+17638,26,Fear
+17639,24,Extreme Fear
+17640,25,Extreme Fear
+17641,26,Fear
+17642,32,Fear
+17643,31,Fear
+17644,28,Fear
+17645,29,Fear
+17646,64,Greed
+17647,47,Neutral
+17648,55,Greed
+17649,54,Neutral
+17650,61,Greed
+17651,59,Greed
+17652,56,Greed
+17653,52,Neutral
+17654,55,Greed
+17655,56,Greed
+17656,63,Greed
+17657,67,Greed
+17658,56,Greed
+17659,62,Greed
+17660,53,Neutral
+17661,63,Greed
+17662,41,Fear
+17663,44,Fear
+17664,40,Fear
+17665,40,Fear
+17666,40,Fear
+17667,32,Fear
+17668,31,Fear
+17669,37,Fear
+17670,31,Fear
+17671,32,Fear
+17672,41,Fear
+17673,30,Fear
+17674,26,Fear
+17675,27,Fear
+17676,25,Extreme Fear
+17677,23,Extreme Fear
+17678,19,Extreme Fear
+17679,22,Extreme Fear
+17680,16,Extreme Fear
+17681,38,Fear
+17682,25,Extreme Fear
+17683,24,Extreme Fear
+17684,27,Fear
+17685,40,Fear
+17686,41,Fear
+17687,26,Fear
+17688,42,Fear
+17689,38,Fear
+17690,40,Fear
+17691,39,Fear
+17692,24,Extreme Fear
+17693,15,Extreme Fear
+17694,19,Extreme Fear
+17695,19,Extreme Fear
+17696,17,Extreme Fear
+17697,26,Fear
+17698,22,Extreme Fear
+17699,23,Extreme Fear
+17700,27,Fear
+17701,32,Fear
+17702,34,Fear
+17703,37,Fear
+17704,28,Fear
+17705,17,Extreme Fear
+17706,15,Extreme Fear
+17707,16,Extreme Fear
+17708,21,Extreme Fear
+17709,18,Extreme Fear
+17710,20,Extreme Fear
+17711,16,Extreme Fear
+17712,22,Extreme Fear
+17713,27,Fear
+17714,27,Fear
+17715,31,Fear
+17716,33,Fear
+17717,37,Fear
+17718,34,Fear
+17719,34,Fear
+17720,38,Fear
+17721,39,Fear
+17722,37,Fear
+17723,29,Fear
+17724,33,Fear
+17725,29,Fear
+17726,29,Fear
+17727,32,Fear
+17728,36,Fear
+17729,39,Fear
+17730,42,Fear
+17731,44,Fear
+17732,47,Neutral
+17733,43,Fear
+17734,46,Fear
+17735,44,Fear
+17736,49,Neutral
+17737,54,Neutral
+17738,53,Neutral
+17739,47,Neutral
+17740,54,Neutral
+17741,54,Neutral
+17742,53,Neutral
+17743,48,Neutral
+17744,39,Fear
+17745,39,Fear
+17746,36,Fear
+17747,31,Fear
+17748,23,Extreme Fear
+17749,25,Extreme Fear
+17750,25,Extreme Fear
+17751,23,Extreme Fear
+17752,19,Extreme Fear
+17753,21,Extreme Fear
+17754,18,Extreme Fear
+17755,18,Extreme Fear
+17756,21,Extreme Fear
+17757,16,Extreme Fear
+17758,18,Extreme Fear
+17759,21,Extreme Fear
+17760,19,Extreme Fear
+17761,24,Extreme Fear
+17762,27,Fear
+17763,26,Fear
+17764,19,Extreme Fear
+17765,21,Extreme Fear
+17766,18,Extreme Fear
+17767,19,Extreme Fear
+17768,22,Extreme Fear
+17769,19,Extreme Fear
+17770,18,Extreme Fear
+17771,19,Extreme Fear
+17772,19,Extreme Fear
+17773,22,Extreme Fear
+17774,17,Extreme Fear
+17775,21,Extreme Fear
+17776,18,Extreme Fear
+17777,19,Extreme Fear
+17778,26,Fear
+17779,17,Extreme Fear
+17780,14,Extreme Fear
+17781,17,Extreme Fear
+17782,18,Extreme Fear
+17783,13,Extreme Fear
+17784,15,Extreme Fear
+17785,18,Extreme Fear
+17786,14,Extreme Fear
+17787,20,Extreme Fear
+17788,23,Extreme Fear
+17789,24,Extreme Fear
+17790,28,Fear
+17791,25,Extreme Fear
+17792,21,Extreme Fear
+17793,24,Extreme Fear
+17794,24,Extreme Fear
+17795,31,Fear
+17796,35,Fear
+17797,38,Fear
+17798,43,Fear
+17799,37,Fear
+17800,37,Fear
+17801,42,Fear
+17802,42,Fear
+17803,37,Fear
+17804,34,Fear
+17805,35,Fear
+17806,33,Fear
+17807,36,Fear
+17808,29,Fear
+17809,37,Fear
+17810,34,Fear
+17811,29,Fear
+17812,26,Fear
+17813,31,Fear
+17814,28,Fear
+17815,19,Extreme Fear
+17816,13,Extreme Fear
+17817,15,Extreme Fear
+17818,18,Extreme Fear
+17819,20,Extreme Fear
+17820,24,Extreme Fear
+17821,23,Extreme Fear
+17822,26,Fear
+17823,24,Extreme Fear
+17824,21,Extreme Fear
+17825,21,Extreme Fear
+17826,27,Fear
+17827,24,Extreme Fear
+17828,23,Extreme Fear
+17829,25,Extreme Fear
+17830,29,Fear
+17831,33,Fear
+17832,35,Fear
+17833,34,Fear
+17834,31,Fear
+17835,32,Fear
+17836,29,Fear
+17837,36,Fear
+17838,36,Fear
+17839,41,Fear
+17840,42,Fear
+17841,42,Fear
+17842,48,Neutral
+17843,51,Neutral
+17844,47,Neutral
+17845,52,Neutral
+17846,54,Neutral
+17847,52,Neutral
+17848,56,Greed
+17849,49,Neutral
+17850,28,Fear
+17851,23,Extreme Fear
+17852,24,Extreme Fear
+17853,26,Fear
+17854,28,Fear
+17855,21,Extreme Fear
+17856,15,Extreme Fear
+17857,14,Extreme Fear
+17858,12,Extreme Fear
+17859,15,Extreme Fear
+17860,9,Extreme Fear
+17861,17,Extreme Fear
+17862,11,Extreme Fear
+17863,14,Extreme Fear
+17864,18,Extreme Fear
+17865,19,Extreme Fear
+17866,13,Extreme Fear
+17867,15,Extreme Fear
+17868,17,Extreme Fear
+17869,12,Extreme Fear
+17870,19,Extreme Fear
+17871,13,Extreme Fear
+17872,11,Extreme Fear
+17873,11,Extreme Fear
+17874,14,Extreme Fear
+17875,19,Extreme Fear
+17876,15,Extreme Fear
+17877,14,Extreme Fear
+17878,14,Extreme Fear
+17879,10,Extreme Fear
+17880,11,Extreme Fear
+17881,13,Extreme Fear
+17882,17,Extreme Fear
+17883,23,Extreme Fear
+17884,21,Extreme Fear
+17885,27,Fear
+17886,35,Fear
+17887,28,Fear
+17888,31,Fear
+17889,25,Extreme Fear
+17890,33,Fear
+17891,26,Fear
+17892,29,Fear
+17893,21,Extreme Fear
+17894,24,Extreme Fear
+17895,23,Extreme Fear
+17896,26,Fear
+17897,24,Extreme Fear
+17898,30,Fear
+17899,33,Fear
+17900,48,Neutral
+17901,36,Fear
+17902,31,Fear
+17903,39,Fear
+17904,39,Fear
+17905,42,Fear
+17906,37,Fear
+17907,19,Extreme Fear
+17908,22,Extreme Fear
+17909,21,Extreme Fear
+17910,16,Extreme Fear
+17911,27,Fear
+17912,24,Extreme Fear
+17913,28,Fear
+17914,29,Fear
+17915,31,Fear
+17916,35,Fear
+17917,30,Fear
+17918,27,Fear
+17919,33,Fear
+17920,37,Fear
+17921,35,Fear
+17922,41,Fear
+17923,39,Fear
+17924,35,Fear
+17925,21,Extreme Fear
+17926,22,Extreme Fear
+17927,17,Extreme Fear
+17928,23,Extreme Fear
+17929,22,Extreme Fear
+17930,19,Extreme Fear
+17931,27,Fear
+17932,21,Extreme Fear
+17933,14,Extreme Fear
+17934,18,Extreme Fear
+17935,37,Fear
+17936,42,Fear
+17937,40,Fear
+17938,46,Fear
+17939,38,Fear
+17940,48,Neutral
+17941,48,Neutral
+17942,43,Fear
+17943,43,Fear
+17944,38,Fear
+17945,63,Greed
+17946,65,Greed
+17947,59,Greed
+17948,59,Greed
+17949,61,Greed
+17950,63,Greed
+17951,69,Greed
+17952,47,Neutral
+17953,40,Fear
+17954,39,Fear
+17955,39,Fear
+17956,42,Fear
+17957,41,Fear
+17958,44,Fear
+17959,36,Fear
+17960,35,Fear
+17961,42,Fear
+17962,56,Greed
+17963,54,Neutral
+17964,55,Greed
+17965,55,Greed
+17966,56,Greed
+17967,56,Greed
+17968,54,Neutral
+17969,55,Greed
+17970,55,Greed
+17971,54,Neutral
+17972,58,Greed
+17973,56,Greed
+17974,56,Greed
+17975,55,Greed
+17976,62,Greed
+17977,56,Greed
+17978,50,Neutral
+17979,44,Fear
+17980,46,Fear
+17981,43,Fear
+17982,44,Fear
+17983,49,Neutral
+17984,50,Neutral
+17985,57,Greed
+17986,56,Greed
+17987,62,Greed
+17988,60,Greed
+17989,71,Greed
+17990,61,Greed
+17991,59,Greed
+17992,65,Greed
+17993,69,Greed
+17994,65,Greed
+17995,64,Greed
+17996,62,Greed
+17997,65,Greed
+17998,42,Fear
+17999,62,Greed
+18000,51,Neutral
+18001,60,Greed
+18002,50,Neutral
+18003,61,Greed
+18004,64,Greed
+18005,61,Greed
+18006,62,Greed
+18007,62,Greed
+18008,61,Greed
+18009,68,Greed
+18010,65,Greed
+18011,58,Greed
+18012,41,Fear
+18013,42,Fear
+18014,40,Fear
+18015,42,Fear
+18016,42,Fear
+18017,51,Neutral
+18018,50,Neutral
+18019,63,Greed
+18020,66,Greed
+18021,67,Greed
+18022,57,Greed
+18023,69,Greed
+18024,63,Greed
+18025,69,Greed
+18026,71,Greed
+18027,76,Extreme Greed
+18028,75,Greed
+18029,78,Extreme Greed
+18030,78,Extreme Greed
+18031,77,Extreme Greed
+18032,75,Greed
+18033,65,Greed
+18034,67,Greed
+18035,70,Greed
+18036,73,Greed
+18037,68,Greed
+18038,69,Greed
+18039,65,Greed
+18040,64,Greed
+18041,69,Greed
+18042,67,Greed
+18043,70,Greed
+18044,71,Greed
+18045,71,Greed
+18046,73,Greed
+18047,61,Greed
+18048,62,Greed
+18049,63,Greed
+18050,66,Greed
+18051,42,Fear
+18052,27,Fear
+18053,34,Fear
+18054,27,Fear
+18055,62,Greed
+18056,62,Greed
+18057,46,Fear
+18058,61,Greed
+18059,60,Greed
+18060,63,Greed
+18061,67,Greed
+18062,75,Greed
+18063,80,Extreme Greed
+18064,84,Extreme Greed
+18065,83,Extreme Greed
+18066,82,Extreme Greed
+18067,81,Extreme Greed
+18068,84,Extreme Greed
+18069,83,Extreme Greed
+18070,84,Extreme Greed
+18071,80,Extreme Greed
+18072,87,Extreme Greed
+18073,95,Extreme Greed
+18074,92,Extreme Greed
+18075,62,Greed
+18076,74,Greed
+18077,78,Extreme Greed
+18078,65,Greed
+18079,63,Greed
+18080,79,Extreme Greed
+18081,76,Extreme Greed
+18082,67,Greed
+18083,72,Greed
+18084,67,Greed
+18085,74,Greed
+18086,84,Extreme Greed
+18087,83,Extreme Greed
+18088,62,Greed
+18089,33,Fear
+18090,65,Greed
+18091,61,Greed
+18092,16,Extreme Fear
+18093,34,Fear
+18094,19,Extreme Fear
+18095,40,Fear
+18096,42,Fear
+18097,34,Fear
+18098,42,Fear
+18099,42,Fear
+18100,40,Fear
+18101,20,Extreme Fear
+18102,42,Fear
+18103,24,Extreme Fear
+18104,47,Neutral
+18105,16,Extreme Fear
+18106,19,Extreme Fear
+18107,22,Extreme Fear
+18108,31,Fear
+18109,57,Greed
+18110,61,Greed
+18111,61,Greed
+18112,62,Greed
+18113,64,Greed
+18114,66,Greed
+18115,45,Fear
+18116,61,Greed
+18117,60,Greed
+18118,59,Greed
+18119,45,Fear
+18120,48,Neutral
+18121,45,Fear
+18122,11,Extreme Fear
+18123,13,Extreme Fear
+18124,31,Fear
+18125,20,Extreme Fear
+18126,14,Extreme Fear
+18127,30,Fear
+18128,39,Fear
+18129,11,Extreme Fear
+18130,5,Extreme Fear
+18131,33,Fear
+18132,39,Fear
+18133,33,Fear
+18134,41,Fear
+18135,30,Fear
+18136,32,Fear
+18137,20,Extreme Fear
+18138,24,Extreme Fear
+18139,20,Extreme Fear
+18140,24,Extreme Fear
+18141,28,Fear
+18142,41,Fear
+18143,43,Fear
+18144,41,Fear
+18145,43,Fear
+18146,39,Fear
+18147,43,Fear
+18148,41,Fear
+18149,41,Fear
+18150,38,Fear
+18151,39,Fear
+18152,38,Fear
+18153,39,Fear
+18154,38,Fear
+18155,38,Fear
+18156,41,Fear
+18157,38,Fear
+18158,31,Fear
+18159,41,Fear
+18160,37,Fear
+18161,37,Fear
+18162,41,Fear
+18163,39,Fear
+18164,15,Extreme Fear
+18165,12,Extreme Fear
+18166,24,Extreme Fear
+18167,32,Fear
+18168,33,Fear
+18169,27,Fear
+18170,38,Fear
+18171,39,Fear
+18172,37,Fear
+18173,30,Fear
+18174,31,Fear
+18175,32,Fear
+18176,27,Fear
+18177,39,Fear
+18178,37,Fear
+18179,41,Fear
+18180,39,Fear
+18181,38,Fear
+18182,38,Fear
+18183,37,Fear
+18184,39,Fear
+18185,40,Fear
+18186,40,Fear
+18187,40,Fear
+18188,41,Fear
+18189,37,Fear
+18190,37,Fear
+18191,39,Fear
+18192,33,Fear
+18193,20,Extreme Fear
+18194,24,Extreme Fear
+18195,53,Neutral
+18196,50,Neutral
+18197,52,Neutral
+18198,54,Neutral
+18199,53,Neutral
+18200,50,Neutral
+18201,49,Neutral
+18202,51,Neutral
+18203,56,Greed
+18204,49,Neutral
+18205,54,Neutral
+18206,53,Neutral
+18207,54,Neutral
+18208,42,Fear
+18209,38,Fear
+18210,39,Fear
+18211,40,Fear
+18212,39,Fear
+18213,38,Fear
+18214,41,Fear
+18215,38,Fear
+18216,41,Fear
+18217,38,Fear
+18218,38,Fear
+18219,32,Fear
+18220,32,Fear
+18221,30,Fear
+18222,20,Extreme Fear
+18223,23,Extreme Fear
+18224,21,Extreme Fear
+18225,17,Extreme Fear
+18226,21,Extreme Fear
+18227,20,Extreme Fear
+18228,32,Fear
+18229,31,Fear
+18230,38,Fear
+18231,25,Extreme Fear
+18232,28,Fear
+18233,28,Fear
+18234,24,Extreme Fear
+18235,21,Extreme Fear
+18236,29,Fear
+18237,32,Fear
+18238,28,Fear
+18239,32,Fear
+18240,26,Fear
+18241,20,Extreme Fear
+18242,23,Extreme Fear
+18243,22,Extreme Fear
+18244,27,Fear
+18245,21,Extreme Fear
+18246,24,Extreme Fear
+18247,23,Extreme Fear
+18248,15,Extreme Fear
+18249,21,Extreme Fear
+18250,23,Extreme Fear
+18251,23,Extreme Fear
+18252,20,Extreme Fear
+18253,33,Fear
+18254,25,Extreme Fear
+18255,22,Extreme Fear
+18256,39,Fear
+18257,38,Fear
+18258,37,Fear
+18259,37,Fear
+18260,40,Fear
+18261,38,Fear
+18262,37,Fear
+18263,39,Fear
+18264,38,Fear
+18265,38,Fear
+18266,39,Fear
+18267,41,Fear
+18268,40,Fear
+18269,51,Neutral
+18270,44,Fear
+18271,41,Fear
+18272,50,Neutral
+18273,45,Fear
+18274,49,Neutral
+18275,56,Greed
+18276,54,Neutral
+18277,55,Greed
+18278,54,Neutral
+18279,51,Neutral
+18280,53,Neutral
+18281,48,Neutral
+18282,49,Neutral
+18283,52,Neutral
+18284,49,Neutral
+18285,40,Fear
+18286,41,Fear
+18287,42,Fear
+18288,50,Neutral
+18289,54,Neutral
+18290,57,Greed
+18291,57,Greed
+18292,55,Greed
+18293,57,Greed
+18294,57,Greed
+18295,59,Greed
+18296,56,Greed
+18297,53,Neutral
+18298,61,Greed
+18299,56,Greed
+18300,56,Greed
+18301,56,Greed
+18302,57,Greed
+18303,52,Neutral
+18304,61,Greed
+18305,65,Greed
+18306,63,Greed
+18307,64,Greed
+18308,59,Greed
+18309,49,Neutral
+18310,53,Neutral
+18311,50,Neutral
+18312,44,Fear
+18313,44,Fear
+18314,43,Fear
+18315,46,Fear
+18316,46,Fear
+18317,44,Fear
+18318,41,Fear
+18319,39,Fear
+18320,40,Fear
+18321,38,Fear
+18322,39,Fear
+18323,38,Fear
+18324,38,Fear
+18325,40,Fear
+18326,41,Fear
+18327,39,Fear
+18328,38,Fear
+18329,33,Fear
+18330,17,Extreme Fear
+18331,16,Extreme Fear
+18332,17,Extreme Fear
+18333,14,Extreme Fear
+18334,10,Extreme Fear
+18335,8,Extreme Fear
+18336,12,Extreme Fear
+18337,9,Extreme Fear
+18338,8,Extreme Fear
+18339,11,Extreme Fear
+18340,12,Extreme Fear
+18341,9,Extreme Fear
+18342,9,Extreme Fear
+18343,11,Extreme Fear
+18344,10,Extreme Fear
+18345,12,Extreme Fear
+18346,13,Extreme Fear
+18347,14,Extreme Fear
+18348,12,Extreme Fear
+18349,8,Extreme Fear
+18350,12,Extreme Fear
+18351,10,Extreme Fear
+18352,12,Extreme Fear
+18353,12,Extreme Fear
+18354,14,Extreme Fear
+18355,14,Extreme Fear
+18356,12,Extreme Fear
+18357,12,Extreme Fear
+18358,12,Extreme Fear
+18359,20,Extreme Fear
+18360,21,Extreme Fear
+18361,22,Extreme Fear
+18362,15,Extreme Fear
+18363,15,Extreme Fear
+18364,10,Extreme Fear
+18365,11,Extreme Fear
+18366,15,Extreme Fear
+18367,18,Extreme Fear
+18368,13,Extreme Fear
+18369,15,Extreme Fear
+18370,18,Extreme Fear
+18371,16,Extreme Fear
+18372,15,Extreme Fear
+18373,17,Extreme Fear
+18374,19,Extreme Fear
+18375,19,Extreme Fear
+18376,20,Extreme Fear
+18377,24,Extreme Fear
+18378,21,Extreme Fear
+18379,28,Fear
+18380,26,Fear
+18381,26,Fear
+18382,44,Fear
+18383,40,Fear
+18384,40,Fear
+18385,45,Fear
+18386,44,Fear
+18387,40,Fear
+18388,42,Fear
+18389,49,Neutral
+18390,55,Greed
+18391,56,Greed
+18392,48,Neutral
+18393,40,Fear
+18394,39,Fear
+18395,41,Fear
+18396,40,Fear
+18397,44,Fear
+18398,41,Fear
+18399,40,Fear
+18400,50,Neutral
+18401,50,Neutral
+18402,52,Neutral
+18403,49,Neutral
+18404,42,Fear
+18405,40,Fear
+18406,43,Fear
+18407,41,Fear
+18408,39,Fear
+18409,39,Fear
+18410,41,Fear
+18411,48,Neutral
+18412,48,Neutral
+18413,51,Neutral
+18414,50,Neutral
+18415,56,Greed
+18416,48,Neutral
+18417,54,Neutral
+18418,53,Neutral
+18419,54,Neutral
+18420,54,Neutral
+18421,53,Neutral
+18422,52,Neutral
+18423,54,Neutral
+18424,52,Neutral
+18425,38,Fear
+18426,38,Fear
+18427,40,Fear
+18428,37,Fear
+18429,39,Fear
+18430,38,Fear
+18431,40,Fear
+18432,39,Fear
+18433,38,Fear
+18434,37,Fear
+18435,38,Fear
+18436,41,Fear
+18437,50,Neutral
+18438,43,Fear
+18439,40,Fear
+18440,43,Fear
+18441,40,Fear
+18442,41,Fear
+18443,44,Fear
+18444,42,Fear
+18445,42,Fear
+18446,41,Fear
+18447,40,Fear
+18448,38,Fear
+18449,40,Fear
+18450,43,Fear
+18451,44,Fear
+18452,44,Fear
+18453,41,Fear
+18454,44,Fear
+18455,41,Fear
+18456,43,Fear
+18457,43,Fear
+18458,44,Fear
+18459,43,Fear
+18460,41,Fear
+18461,44,Fear
+18462,41,Fear
+18463,44,Fear
+18464,44,Fear
+18465,50,Neutral
+18466,55,Greed
+18467,53,Neutral
+18468,55,Greed
+18469,55,Greed
+18470,58,Greed
+18471,76,Extreme Greed
+18472,71,Greed
+18473,76,Extreme Greed
+18474,75,Greed
+18475,75,Greed
+18476,80,Extreme Greed
+18477,75,Greed
+18478,72,Greed
+18479,75,Greed
+18480,79,Extreme Greed
+18481,77,Extreme Greed
+18482,77,Extreme Greed
+18483,79,Extreme Greed
+18484,78,Extreme Greed
+18485,84,Extreme Greed
+18486,75,Greed
+18487,75,Greed
+18488,78,Extreme Greed
+18489,79,Extreme Greed
+18490,82,Extreme Greed
+18491,83,Extreme Greed
+18492,82,Extreme Greed
+18493,80,Extreme Greed
+18494,75,Greed
+18495,81,Extreme Greed
+18496,78,Extreme Greed
+18497,76,Extreme Greed
+18498,78,Extreme Greed
+18499,75,Greed
+18500,76,Extreme Greed
+18501,75,Greed
+18502,74,Greed
+18503,79,Extreme Greed
+18504,75,Greed
+18505,75,Greed
+18506,75,Greed
+18507,83,Extreme Greed
+18508,79,Extreme Greed
+18509,40,Fear
+18510,41,Fear
+18511,41,Fear
+18512,41,Fear
+18513,41,Fear
+18514,38,Fear
+18515,38,Fear
+18516,41,Fear
+18517,41,Fear
+18518,38,Fear
+18519,39,Fear
+18520,47,Neutral
+18521,43,Fear
+18522,48,Neutral
+18523,49,Neutral
+18524,48,Neutral
+18525,52,Neutral
+18526,48,Neutral
+18527,39,Fear
+18528,43,Fear
+18529,39,Fear
+18530,46,Fear
+18531,45,Fear
+18532,47,Neutral
+18533,43,Fear
+18534,45,Fear
+18535,49,Neutral
+18536,45,Fear
+18537,41,Fear
+18538,40,Fear
+18539,42,Fear
+18540,42,Fear
+18541,47,Neutral
+18542,43,Fear
+18543,46,Fear
+18544,48,Neutral
+18545,53,Neutral
+18546,55,Greed
+18547,52,Neutral
+18548,56,Greed
+18549,53,Neutral
+18550,56,Greed
+18551,52,Neutral
+18552,56,Greed
+18553,55,Greed
+18554,55,Greed
+18555,56,Greed
+18556,61,Greed
+18557,73,Greed
+18558,74,Greed
+18559,73,Greed
+18560,76,Extreme Greed
+18561,75,Greed
+18562,61,Greed
+18563,70,Greed
+18564,67,Greed
+18565,74,Greed
+18566,73,Greed
+18567,72,Greed
+18568,71,Greed
+18569,71,Greed
+18570,74,Greed
+18571,72,Greed
+18572,90,Extreme Greed
+18573,88,Extreme Greed
+18574,82,Extreme Greed
+18575,90,Extreme Greed
+18576,90,Extreme Greed
+18577,86,Extreme Greed
+18578,87,Extreme Greed
+18579,89,Extreme Greed
+18580,90,Extreme Greed
+18581,86,Extreme Greed
+18582,90,Extreme Greed
+18583,86,Extreme Greed
+18584,91,Extreme Greed
+18585,94,Extreme Greed
+18586,86,Extreme Greed
+18587,91,Extreme Greed
+18588,94,Extreme Greed
+18589,90,Extreme Greed
+18590,88,Extreme Greed
+18591,94,Extreme Greed
+18592,93,Extreme Greed
+18593,86,Extreme Greed
+18594,87,Extreme Greed
+18595,89,Extreme Greed
+18596,88,Extreme Greed
+18597,95,Extreme Greed
+18598,92,Extreme Greed
+18599,92,Extreme Greed
+18600,92,Extreme Greed
+18601,93,Extreme Greed
+18602,95,Extreme Greed
+18603,94,Extreme Greed
+18604,95,Extreme Greed
+18605,86,Extreme Greed
+18606,94,Extreme Greed
+18607,89,Extreme Greed
+18608,90,Extreme Greed
+18609,91,Extreme Greed
+18610,95,Extreme Greed
+18611,91,Extreme Greed
+18612,92,Extreme Greed
+18613,92,Extreme Greed
+18614,95,Extreme Greed
+18615,93,Extreme Greed
+18616,92,Extreme Greed
+18617,92,Extreme Greed
+18618,88,Extreme Greed
+18619,93,Extreme Greed
+18620,86,Extreme Greed
+18621,94,Extreme Greed
+18622,93,Extreme Greed
+18623,91,Extreme Greed
+18624,92,Extreme Greed
+18625,91,Extreme Greed
+18626,91,Extreme Greed
+18627,95,Extreme Greed
+18628,94,Extreme Greed
+18629,94,Extreme Greed
+18630,93,Extreme Greed
+18631,94,Extreme Greed
+18632,93,Extreme Greed
+18633,95,Extreme Greed
+18634,91,Extreme Greed
+18635,93,Extreme Greed
+18636,93,Extreme Greed
+18637,94,Extreme Greed
+18638,90,Extreme Greed
+18639,84,Extreme Greed
+18640,78,Extreme Greed
+18641,83,Extreme Greed
+18642,88,Extreme Greed
+18643,84,Extreme Greed
+18644,79,Extreme Greed
+18645,79,Extreme Greed
+18646,80,Extreme Greed
+18647,78,Extreme Greed
+18648,75,Greed
+18649,40,Fear
+18650,74,Greed
+18651,70,Greed
+18652,74,Greed
+18653,71,Greed
+18654,78,Extreme Greed
+18655,55,Greed
+18656,77,Extreme Greed
+18657,76,Extreme Greed
+18658,78,Extreme Greed
+18659,77,Extreme Greed
+18660,76,Extreme Greed
+18661,78,Extreme Greed
+18662,80,Extreme Greed
+18663,81,Extreme Greed
+18664,84,Extreme Greed
+18665,86,Extreme Greed
+18666,83,Extreme Greed
+18667,95,Extreme Greed
+18668,92,Extreme Greed
+18669,93,Extreme Greed
+18670,92,Extreme Greed
+18671,92,Extreme Greed
+18672,95,Extreme Greed
+18673,93,Extreme Greed
+18674,95,Extreme Greed
+18675,95,Extreme Greed
+18676,91,Extreme Greed
+18677,93,Extreme Greed
+18678,91,Extreme Greed
+18679,91,Extreme Greed
+18680,94,Extreme Greed
+18681,94,Extreme Greed
+18682,76,Extreme Greed
+18683,79,Extreme Greed
+18684,55,Greed
+18685,56,Greed
+18686,55,Greed
+18687,38,Fear
+18688,78,Extreme Greed
+18689,78,Extreme Greed
+18690,84,Extreme Greed
+18691,77,Extreme Greed
+18692,77,Extreme Greed
+18693,76,Extreme Greed
+18694,81,Extreme Greed
+18695,81,Extreme Greed
+18696,68,Greed
+18697,73,Greed
+18698,70,Greed
+18699,74,Greed
+18700,78,Extreme Greed
+18701,76,Extreme Greed
+18702,71,Greed
+18703,71,Greed
+18704,72,Greed
+18705,71,Greed
+18706,75,Greed
+18707,73,Greed
+18708,70,Greed
+18709,66,Greed
+18710,65,Greed
+18711,60,Greed
+18712,54,Neutral
+18713,65,Greed
+18714,74,Greed
+18715,72,Greed
+18716,72,Greed
+18717,76,Extreme Greed
+18718,74,Greed
+18719,74,Greed
+18720,73,Greed
+18721,74,Greed
+18722,71,Greed
+18723,75,Greed
+18724,72,Greed
+18725,73,Greed
+18726,70,Greed
+18727,70,Greed
+18728,76,Extreme Greed
+18729,74,Greed
+18730,74,Greed
+18731,75,Greed
+18732,79,Extreme Greed
+18733,78,Extreme Greed
+18734,76,Extreme Greed
+18735,79,Extreme Greed
+18736,74,Greed
+18737,73,Greed
+18738,73,Greed
+18739,65,Greed
+18740,55,Greed
+18741,37,Fear
+18742,31,Fear
+18743,27,Fear
+18744,50,Neutral
+18745,59,Greed
+18746,52,Neutral
+18747,51,Neutral
+18748,68,Greed
+18749,66,Greed
+18750,61,Greed
+18751,68,Greed
+18752,48,Neutral
+18753,65,Greed
+18754,64,Greed
+18755,67,Greed
+18756,73,Greed
+18757,72,Greed
+18758,61,Greed
+18759,68,Greed
+18760,31,Fear
+18761,26,Fear
+18762,27,Fear
+18763,20,Extreme Fear
+18764,27,Fear
+18765,21,Extreme Fear
+18766,23,Extreme Fear
+18767,11,Extreme Fear
+18768,19,Extreme Fear
+18769,12,Extreme Fear
+18770,14,Extreme Fear
+18771,10,Extreme Fear
+18772,22,Extreme Fear
+18773,22,Extreme Fear
+18774,27,Fear
+18775,21,Extreme Fear
+18776,18,Extreme Fear
+18777,10,Extreme Fear
+18778,18,Extreme Fear
+18779,20,Extreme Fear
+18780,23,Extreme Fear
+18781,24,Extreme Fear
+18782,27,Fear
+18783,24,Extreme Fear
+18784,17,Extreme Fear
+18785,15,Extreme Fear
+18786,13,Extreme Fear
+18787,14,Extreme Fear
+18788,21,Extreme Fear
+18789,21,Extreme Fear
+18790,28,Fear
+18791,23,Extreme Fear
+18792,28,Fear
+18793,38,Fear
+18794,33,Fear
+18795,26,Fear
+18796,25,Extreme Fear
+18797,23,Extreme Fear
+18798,21,Extreme Fear
+18799,23,Extreme Fear
+18800,10,Extreme Fear
+18801,14,Extreme Fear
+18802,22,Extreme Fear
+18803,27,Fear
+18804,20,Extreme Fear
+18805,22,Extreme Fear
+18806,25,Extreme Fear
+18807,25,Extreme Fear
+18808,28,Fear
+18809,28,Fear
+18810,21,Extreme Fear
+18811,24,Extreme Fear
+18812,27,Fear
+18813,29,Fear
+18814,20,Extreme Fear
+18815,28,Fear
+18816,20,Extreme Fear
+18817,20,Extreme Fear
+18818,20,Extreme Fear
+18819,20,Extreme Fear
+18820,25,Extreme Fear
+18821,20,Extreme Fear
+18822,21,Extreme Fear
+18823,20,Extreme Fear
+18824,22,Extreme Fear
+18825,15,Extreme Fear
+18826,19,Extreme Fear
+18827,24,Extreme Fear
+18828,19,Extreme Fear
+18829,10,Extreme Fear
+18830,21,Extreme Fear
+18831,23,Extreme Fear
+18832,22,Extreme Fear
+18833,27,Fear
+18834,26,Fear
+18835,32,Fear
+18836,50,Neutral
+18837,50,Neutral
+18838,53,Neutral
+18839,60,Greed
+18840,60,Greed
+18841,48,Neutral
+18842,48,Neutral
+18843,42,Fear
+18844,50,Neutral
+18845,52,Neutral
+18846,69,Greed
+18847,74,Greed
+18848,65,Greed
+18849,71,Greed
+18850,70,Greed
+18851,70,Greed
+18852,70,Greed
+18853,76,Extreme Greed
+18854,71,Greed
+18855,72,Greed
+18856,72,Greed
+18857,73,Greed
+18858,70,Greed
+18859,70,Greed
+18860,78,Extreme Greed
+18861,76,Extreme Greed
+18862,79,Extreme Greed
+18863,79,Extreme Greed
+18864,73,Greed
+18865,75,Greed
+18866,71,Greed
+18867,78,Extreme Greed
+18868,72,Greed
+18869,73,Greed
+18870,73,Greed
+18871,71,Greed
+18872,74,Greed
+18873,74,Greed
+18874,72,Greed
+18875,73,Greed
+18876,79,Extreme Greed
+18877,79,Extreme Greed
+18878,47,Neutral
+18879,45,Fear
+18880,46,Fear
+18881,31,Fear
+18882,32,Fear
+18883,44,Fear
+18884,30,Fear
+18885,49,Neutral
+18886,53,Neutral
+18887,48,Neutral
+18888,50,Neutral
+18889,53,Neutral
+18890,50,Neutral
+18891,27,Fear
+18892,21,Extreme Fear
+18893,27,Fear
+18894,33,Fear
+18895,28,Fear
+18896,27,Fear
+18897,26,Fear
+18898,25,Extreme Fear
+18899,24,Extreme Fear
+18900,20,Extreme Fear
+18901,27,Fear
+18902,54,Neutral
+18903,49,Neutral
+18904,54,Neutral
+18905,59,Greed
+18906,68,Greed
+18907,76,Extreme Greed
+18908,74,Greed
+18909,72,Greed
+18910,71,Greed
+18911,71,Greed
+18912,78,Extreme Greed
+18913,70,Greed
+18914,70,Greed
+18915,71,Greed
+18916,78,Extreme Greed
+18917,79,Extreme Greed
+18918,78,Extreme Greed
+18919,75,Greed
+18920,82,Extreme Greed
+18921,84,Extreme Greed
+18922,75,Greed
+18923,74,Greed
+18924,73,Greed
+18925,72,Greed
+18926,76,Extreme Greed
+18927,73,Greed
+18928,66,Greed
+18929,70,Greed
+18930,73,Greed
+18931,74,Greed
+18932,74,Greed
+18933,73,Greed
+18934,76,Extreme Greed
+18935,73,Greed
+18936,73,Greed
+18937,71,Greed
+18938,73,Greed
+18939,75,Greed
+18940,84,Extreme Greed
+18941,75,Greed
+18942,77,Extreme Greed
+18943,74,Greed
+18944,72,Greed
+18945,74,Greed
+18946,72,Greed
+18947,71,Greed
+18948,52,Neutral
+18949,54,Neutral
+18950,34,Fear
+18951,43,Fear
+18952,49,Neutral
+18953,50,Neutral
+18954,33,Fear
+18955,42,Fear
+18956,32,Fear
+18957,47,Neutral
+18958,21,Extreme Fear
+18959,27,Fear
+18960,33,Fear
+18961,40,Fear
+18962,34,Fear
+18963,32,Fear
+18964,31,Fear
+18965,25,Extreme Fear
+18966,18,Extreme Fear
+18967,16,Extreme Fear
+18968,25,Extreme Fear
+18969,28,Fear
+18970,29,Fear
+18971,24,Extreme Fear
+18972,16,Extreme Fear
+18973,27,Fear
+18974,28,Fear
+18975,21,Extreme Fear
+18976,28,Fear
+18977,29,Fear
+18978,23,Extreme Fear
+18979,24,Extreme Fear
+18980,29,Fear
+18981,25,Extreme Fear
+18982,27,Fear
+18983,45,Fear
+18984,34,Fear
+18985,41,Fear
+18986,39,Fear
+18987,37,Fear
+18988,40,Fear
+18989,41,Fear
+18990,27,Fear
+18991,22,Extreme Fear
+18992,28,Fear
+18993,21,Extreme Fear
+18994,29,Fear
+18995,29,Fear
+18996,23,Extreme Fear
+18997,24,Extreme Fear
+18998,15,Extreme Fear
+18999,18,Extreme Fear
+19000,10,Extreme Fear
+19001,23,Extreme Fear
+19002,23,Extreme Fear
+19003,21,Extreme Fear
+19004,22,Extreme Fear
+19005,21,Extreme Fear
+19006,21,Extreme Fear
+19007,23,Extreme Fear
+19008,21,Extreme Fear
+19009,22,Extreme Fear
+19010,24,Extreme Fear
+19011,24,Extreme Fear
+19012,24,Extreme Fear
+19013,19,Extreme Fear
+19014,13,Extreme Fear
+19015,11,Extreme Fear
+19016,13,Extreme Fear
+19017,12,Extreme Fear
+19018,23,Extreme Fear
+19019,20,Extreme Fear
+19020,24,Extreme Fear
+19021,24,Extreme Fear
+19022,29,Fear
+19023,20,Extreme Fear
+19024,26,Fear
+19025,28,Fear
+19026,20,Extreme Fear
+19027,20,Extreme Fear
+19028,33,Fear
+19029,37,Fear
+19030,45,Fear
+19031,48,Neutral
+19032,54,Neutral
+19033,50,Neutral
+19034,50,Neutral
+19035,44,Fear
+19036,44,Fear
+19037,46,Fear
+19038,46,Fear
+19039,51,Neutral
+19040,52,Neutral
+19041,30,Fear
+19042,25,Extreme Fear
+19043,27,Fear
+19044,25,Extreme Fear
+19045,20,Extreme Fear
+19046,25,Extreme Fear
+19047,23,Extreme Fear
+19048,27,Fear
+19049,26,Fear
+19050,26,Fear
+19051,20,Extreme Fear
+19052,51,Neutral
+19053,52,Neutral
+19054,39,Fear
+19055,33,Fear
+19056,22,Extreme Fear
+19057,22,Extreme Fear
+19058,23,Extreme Fear
+19059,21,Extreme Fear
+19060,22,Extreme Fear
+19061,28,Fear
+19062,22,Extreme Fear
+19063,22,Extreme Fear
+19064,21,Extreme Fear
+19065,23,Extreme Fear
+19066,21,Extreme Fear
+19067,24,Extreme Fear
+19068,27,Fear
+19069,25,Extreme Fear
+19070,28,Fear
+19071,31,Fear
+19072,30,Fear
+19073,26,Fear
+19074,31,Fear
+19075,40,Fear
+19076,47,Neutral
+19077,51,Neutral
+19078,49,Neutral
+19079,60,Greed
+19080,56,Greed
+19081,55,Greed
+19082,52,Neutral
+19083,50,Neutral
+19084,52,Neutral
+19085,48,Neutral
+19086,52,Neutral
+19087,53,Neutral
+19088,48,Neutral
+19089,34,Fear
+19090,37,Fear
+19091,30,Fear
+19092,34,Fear
+19093,32,Fear
+19094,20,Extreme Fear
+19095,25,Extreme Fear
+19096,28,Fear
+19097,22,Extreme Fear
+19098,28,Fear
+19099,28,Fear
+19100,24,Extreme Fear
+19101,27,Fear
+19102,27,Fear
+19103,27,Fear
+19104,26,Fear
+19105,24,Extreme Fear
+19106,24,Extreme Fear
+19107,23,Extreme Fear
+19108,27,Fear
+19109,21,Extreme Fear
+19110,24,Extreme Fear
+19111,23,Extreme Fear
+19112,20,Extreme Fear
+19113,22,Extreme Fear
+19114,28,Fear
+19115,27,Fear
+19116,21,Extreme Fear
+19117,27,Fear
+19118,22,Extreme Fear
+19119,23,Extreme Fear
+19120,18,Extreme Fear
+19121,11,Extreme Fear
+19122,10,Extreme Fear
+19123,12,Extreme Fear
+19124,12,Extreme Fear
+19125,10,Extreme Fear
+19126,9,Extreme Fear
+19127,10,Extreme Fear
+19128,14,Extreme Fear
+19129,8,Extreme Fear
+19130,12,Extreme Fear
+19131,13,Extreme Fear
+19132,13,Extreme Fear
+19133,13,Extreme Fear
+19134,14,Extreme Fear
+19135,10,Extreme Fear
+19136,12,Extreme Fear
+19137,11,Extreme Fear
+19138,12,Extreme Fear
+19139,12,Extreme Fear
+19140,13,Extreme Fear
+19141,14,Extreme Fear
+19142,10,Extreme Fear
+19143,16,Extreme Fear
+19144,17,Extreme Fear
+19145,13,Extreme Fear
+19146,10,Extreme Fear
+19147,14,Extreme Fear
+19148,10,Extreme Fear
+19149,13,Extreme Fear
+19150,15,Extreme Fear
+19151,17,Extreme Fear
+19152,11,Extreme Fear
+19153,13,Extreme Fear
+19154,12,Extreme Fear
+19155,14,Extreme Fear
+19156,11,Extreme Fear
+19157,8,Extreme Fear
+19158,7,Extreme Fear
+19159,7,Extreme Fear
+19160,9,Extreme Fear
+19161,6,Extreme Fear
+19162,6,Extreme Fear
+19163,9,Extreme Fear
+19164,9,Extreme Fear
+19165,11,Extreme Fear
+19166,11,Extreme Fear
+19167,11,Extreme Fear
+19168,14,Extreme Fear
+19169,14,Extreme Fear
+19170,12,Extreme Fear
+19171,10,Extreme Fear
+19172,13,Extreme Fear
+19173,11,Extreme Fear
+19174,11,Extreme Fear
+19175,14,Extreme Fear
+19176,11,Extreme Fear
+19177,14,Extreme Fear
+19178,19,Extreme Fear
+19179,18,Extreme Fear
+19180,18,Extreme Fear
+19181,20,Extreme Fear
+19182,24,Extreme Fear
+19183,24,Extreme Fear
+19184,22,Extreme Fear
+19185,16,Extreme Fear
+19186,15,Extreme Fear
+19187,18,Extreme Fear
+19188,15,Extreme Fear
+19189,21,Extreme Fear
+19190,24,Extreme Fear
+19191,20,Extreme Fear
+19192,30,Fear
+19193,31,Fear
+19194,34,Fear
+19195,33,Fear
+19196,31,Fear
+19197,30,Fear
+19198,30,Fear
+19199,26,Fear
+19200,28,Fear
+19201,32,Fear
+19202,39,Fear
+19203,42,Fear
+19204,39,Fear
+19205,33,Fear
+19206,31,Fear
+19207,34,Fear
+19208,30,Fear
+19209,31,Fear
+19210,31,Fear
+19211,30,Fear
+19212,30,Fear
+19213,42,Fear
+19214,31,Fear
+19215,41,Fear
+19216,42,Fear
+19217,46,Fear
+19218,47,Neutral
+19219,45,Fear
+19220,44,Fear
+19221,41,Fear
+19222,30,Fear
+19223,33,Fear
+19224,29,Fear
+19225,27,Fear
+19226,29,Fear
+19227,28,Fear
+19228,25,Extreme Fear
+19229,25,Extreme Fear
+19230,27,Fear
+19231,28,Fear
+19232,28,Fear
+19233,24,Extreme Fear
+19234,27,Fear
+19235,23,Extreme Fear
+19236,20,Extreme Fear
+19237,25,Extreme Fear
+19238,21,Extreme Fear
+19239,20,Extreme Fear
+19240,23,Extreme Fear
+19241,22,Extreme Fear
+19242,24,Extreme Fear
+19243,20,Extreme Fear
+19244,22,Extreme Fear
+19245,28,Fear
+19246,26,Fear
+19247,25,Extreme Fear
+19248,34,Fear
+19249,27,Fear
+19250,28,Fear
+19251,20,Extreme Fear
+19252,22,Extreme Fear
+19253,27,Fear
+19254,21,Extreme Fear
+19255,23,Extreme Fear
+19256,23,Extreme Fear
+19257,22,Extreme Fear
+19258,20,Extreme Fear
+19259,24,Extreme Fear
+19260,24,Extreme Fear
+19261,21,Extreme Fear
+19262,20,Extreme Fear
+19263,20,Extreme Fear
+19264,22,Extreme Fear
+19265,21,Extreme Fear
+19266,20,Extreme Fear
+19267,24,Extreme Fear
+19268,24,Extreme Fear
+19269,20,Extreme Fear
+19270,25,Extreme Fear
+19271,26,Fear
+19272,23,Extreme Fear
+19273,24,Extreme Fear
+19274,22,Extreme Fear
+19275,22,Extreme Fear
+19276,24,Extreme Fear
+19277,20,Extreme Fear
+19278,20,Extreme Fear
+19279,24,Extreme Fear
+19280,24,Extreme Fear
+19281,24,Extreme Fear
+19282,20,Extreme Fear
+19283,22,Extreme Fear
+19284,23,Extreme Fear
+19285,23,Extreme Fear
+19286,23,Extreme Fear
+19287,20,Extreme Fear
+19288,23,Extreme Fear
+19289,22,Extreme Fear
+19290,20,Extreme Fear
+19291,33,Fear
+19292,32,Fear
+19293,30,Fear
+19294,34,Fear
+19295,34,Fear
+19296,31,Fear
+19297,30,Fear
+19298,30,Fear
+19299,30,Fear
+19300,30,Fear
+19301,38,Fear
+19302,40,Fear
+19303,33,Fear
+19304,31,Fear
+19305,29,Fear
+19306,22,Extreme Fear
+19307,25,Extreme Fear
+19308,21,Extreme Fear
+19309,22,Extreme Fear
+19310,24,Extreme Fear
+19311,22,Extreme Fear
+19312,23,Extreme Fear
+19313,20,Extreme Fear
+19314,23,Extreme Fear
+19315,23,Extreme Fear
+19316,24,Extreme Fear
+19317,21,Extreme Fear
+19318,22,Extreme Fear
+19319,22,Extreme Fear
+19320,20,Extreme Fear
+19321,20,Extreme Fear
+19322,22,Extreme Fear
+19323,26,Fear
+19324,28,Fear
+19325,26,Fear
+19326,29,Fear
+19327,27,Fear
+19328,27,Fear
+19329,27,Fear
+19330,26,Fear
+19331,26,Fear
+19332,25,Extreme Fear
+19333,29,Fear
+19334,25,Extreme Fear
+19335,26,Fear
+19336,27,Fear
+19337,26,Fear
+19338,27,Fear
+19339,27,Fear
+19340,30,Fear
+19341,31,Fear
+19342,29,Fear
+19343,28,Fear
+19344,26,Fear
+19345,29,Fear
+19346,29,Fear
+19347,26,Fear
+19348,28,Fear
+19349,27,Fear
+19350,29,Fear
+19351,29,Fear
+19352,28,Fear
+19353,27,Fear
+19354,28,Fear
+19355,28,Fear
+19356,28,Fear
+19357,25,Extreme Fear
+19358,26,Fear
+19359,27,Fear
+19360,26,Fear
+19361,29,Fear
+19362,29,Fear
+19363,26,Fear
+19364,25,Extreme Fear
+19365,25,Extreme Fear
+19366,25,Extreme Fear
+19367,26,Fear
+19368,26,Fear
+19369,30,Fear
+19370,31,Fear
+19371,46,Fear
+19372,52,Neutral
+19373,45,Fear
+19374,51,Neutral
+19375,52,Neutral
+19376,45,Fear
+19377,51,Neutral
+19378,53,Neutral
+19379,53,Neutral
+19380,50,Neutral
+19381,52,Neutral
+19382,51,Neutral
+19383,54,Neutral
+19384,55,Greed
+19385,52,Neutral
+19386,55,Greed
+19387,61,Greed
+19388,51,Neutral
+19389,56,Greed
+19390,60,Greed
+19391,60,Greed
+19392,58,Greed
+19393,58,Greed
+19394,56,Greed
+19395,54,Neutral
+19396,58,Greed
+19397,55,Greed
+19398,48,Neutral
+19399,49,Neutral
+19400,50,Neutral
+19401,48,Neutral
+19402,50,Neutral
+19403,53,Neutral
+19404,62,Greed
+19405,61,Greed
+19406,60,Greed
+19407,60,Greed
+19408,58,Greed
+19409,60,Greed
+19410,59,Greed
+19411,56,Greed
+19412,53,Neutral
+19413,52,Neutral
+19414,51,Neutral
+19415,50,Neutral
+19416,53,Neutral
+19417,50,Neutral
+19418,51,Neutral
+19419,50,Neutral
+19420,50,Neutral
+19421,47,Neutral
+19422,48,Neutral
+19423,49,Neutral
+19424,50,Neutral
+19425,44,Fear
+19426,34,Fear
+19427,33,Fear
+19428,33,Fear
+19429,49,Neutral
+19430,56,Greed
+19431,50,Neutral
+19432,52,Neutral
+19433,51,Neutral
+19434,64,Greed
+19435,63,Greed
+19436,66,Greed
+19437,68,Greed
+19438,62,Greed
+19439,57,Greed
+19440,61,Greed
+19441,64,Greed
+19442,64,Greed
+19443,64,Greed
+19444,59,Greed
+19445,57,Greed
+19446,60,Greed
+19447,63,Greed
+19448,61,Greed
+19449,63,Greed
+19450,63,Greed
+19451,62,Greed
+19452,62,Greed
+19453,63,Greed
+19454,64,Greed
+19455,61,Greed
+19456,61,Greed
+19457,62,Greed
+19458,68,Greed
+19459,65,Greed
+19460,61,Greed
+19461,68,Greed
+19462,68,Greed
+19463,68,Greed
+19464,69,Greed
+19465,58,Greed
+19466,63,Greed
+19467,52,Neutral
+19468,50,Neutral
+19469,53,Neutral
+19470,56,Greed
+19471,53,Neutral
+19472,53,Neutral
+19473,56,Greed
+19474,59,Greed
+19475,64,Greed
+19476,64,Greed
+19477,60,Greed
+19478,63,Greed
+19479,55,Greed
+19480,64,Greed
+19481,64,Greed
+19482,61,Greed
+19483,60,Greed
+19484,64,Greed
+19485,60,Greed
+19486,51,Neutral
+19487,52,Neutral
+19488,52,Neutral
+19489,49,Neutral
+19490,48,Neutral
+19491,48,Neutral
+19492,50,Neutral
+19493,54,Neutral
+19494,50,Neutral
+19495,51,Neutral
+19496,48,Neutral
+19497,48,Neutral
+19498,52,Neutral
+19499,49,Neutral
+19500,50,Neutral
+19501,50,Neutral
+19502,51,Neutral
+19503,49,Neutral
+19504,48,Neutral
+19505,50,Neutral
+19506,52,Neutral
+19507,51,Neutral
+19508,51,Neutral
+19509,52,Neutral
+19510,50,Neutral
+19511,53,Neutral
+19512,52,Neutral
+19513,53,Neutral
+19514,44,Fear
+19515,53,Neutral
+19516,50,Neutral
+19517,50,Neutral
+19518,49,Neutral
+19519,47,Neutral
+19520,47,Neutral
+19521,45,Fear
+19522,46,Fear
+19523,41,Fear
+19524,47,Neutral
+19525,47,Neutral
+19526,49,Neutral
+19527,47,Neutral
+19528,49,Neutral
+19529,59,Greed
+19530,65,Greed
+19531,65,Greed
+19532,62,Greed
+19533,64,Greed
+19534,55,Greed
+19535,59,Greed
+19536,62,Greed
+19537,54,Neutral
+19538,56,Greed
+19539,59,Greed
+19540,63,Greed
+19541,62,Greed
+19542,64,Greed
+19543,61,Greed
+19544,56,Greed
+19545,55,Greed
+19546,58,Greed
+19547,55,Greed
+19548,56,Greed
+19549,57,Greed
+19550,64,Greed
+19551,57,Greed
+19552,60,Greed
+19553,56,Greed
+19554,57,Greed
+19555,54,Neutral
+19556,56,Greed
+19557,50,Neutral
+19558,56,Greed
+19559,50,Neutral
+19560,52,Neutral
+19561,54,Neutral
+19562,55,Greed
+19563,50,Neutral
+19564,51,Neutral
+19565,51,Neutral
+19566,52,Neutral
+19567,52,Neutral
+19568,52,Neutral
+19569,50,Neutral
+19570,53,Neutral
+19571,53,Neutral
+19572,52,Neutral
+19573,54,Neutral
+19574,50,Neutral
+19575,49,Neutral
+19576,49,Neutral
+19577,54,Neutral
+19578,50,Neutral
+19579,53,Neutral
+19580,51,Neutral
+19581,54,Neutral
+19582,54,Neutral
+19583,50,Neutral
+19584,53,Neutral
+19585,52,Neutral
+19586,50,Neutral
+19587,37,Fear
+19588,39,Fear
+19589,37,Fear
+19590,38,Fear
+19591,37,Fear
+19592,37,Fear
+19593,41,Fear
+19594,39,Fear
+19595,38,Fear
+19596,38,Fear
+19597,39,Fear
+19598,39,Fear
+19599,49,Neutral
+19600,52,Neutral
+19601,40,Fear
+19602,39,Fear
+19603,40,Fear
+19604,40,Fear
+19605,40,Fear
+19606,42,Fear
+19607,41,Fear
+19608,46,Fear
+19609,41,Fear
+19610,40,Fear
+19611,40,Fear
+19612,30,Fear
+19613,41,Fear
+19614,45,Fear
+19615,45,Fear
+19616,43,Fear
+19617,46,Fear
+19618,46,Fear
+19619,46,Fear
+19620,47,Neutral
+19621,47,Neutral
+19622,43,Fear
+19623,47,Neutral
+19624,44,Fear
+19625,47,Neutral
+19626,46,Fear
+19627,44,Fear
+19628,46,Fear
+19629,48,Neutral
+19630,47,Neutral
+19631,48,Neutral
+19632,50,Neutral
+19633,50,Neutral
+19634,49,Neutral
+19635,48,Neutral
+19636,50,Neutral
+19637,49,Neutral
+19638,50,Neutral
+19639,50,Neutral
+19640,50,Neutral
+19641,47,Neutral
+19642,45,Fear
+19643,44,Fear
+19644,47,Neutral
+19645,45,Fear
+19646,47,Neutral
+19647,52,Neutral
+19648,50,Neutral
+19649,52,Neutral
+19650,53,Neutral
+19651,63,Greed
+19652,53,Neutral
+19653,53,Neutral
+19654,66,Greed
+19655,72,Greed
+19656,71,Greed
+19657,70,Greed
+19658,65,Greed
+19659,72,Greed
+19660,68,Greed
+19661,66,Greed
+19662,66,Greed
+19663,72,Greed
+19664,65,Greed
+19665,68,Greed
+19666,70,Greed
+19667,74,Greed
+19668,68,Greed
+19669,66,Greed
+19670,69,Greed
+19671,70,Greed
+19672,70,Greed
+19673,73,Greed
+19674,72,Greed
+19675,69,Greed
+19676,60,Greed
+19677,70,Greed
+19678,63,Greed
+19679,69,Greed
+19680,66,Greed
+19681,69,Greed
+19682,71,Greed
+19683,62,Greed
+19684,66,Greed
+19685,66,Greed
+19686,73,Greed
+19687,73,Greed
+19688,66,Greed
+19689,68,Greed
+19690,72,Greed
+19691,74,Greed
+19692,71,Greed
+19693,74,Greed
+19694,73,Greed
+19695,74,Greed
+19696,75,Greed
+19697,72,Greed
+19698,72,Greed
+19699,72,Greed
+19700,73,Greed
+19701,74,Greed
+19702,74,Greed
+19703,67,Greed
+19704,65,Greed
+19705,72,Greed
+19706,70,Greed
+19707,67,Greed
+19708,73,Greed
+19709,65,Greed
+19710,73,Greed
+19711,74,Greed
+19712,70,Greed
+19713,74,Greed
+19714,70,Greed
+19715,71,Greed
+19716,73,Greed
+19717,71,Greed
+19718,73,Greed
+19719,73,Greed
+19720,65,Greed
+19721,68,Greed
+19722,67,Greed
+19723,65,Greed
+19724,71,Greed
+19725,70,Greed
+19726,68,Greed
+19727,72,Greed
+19728,70,Greed
+19729,71,Greed
+19730,71,Greed
+19731,76,Extreme Greed
+19732,73,Greed
+19733,76,Extreme Greed
+19734,71,Greed
+19735,64,Greed
+19736,60,Greed
+19737,52,Neutral
+19738,64,Greed
+19739,60,Greed
+19740,63,Greed
+19741,51,Neutral
+19742,52,Neutral
+19743,56,Greed
+19744,55,Greed
+19745,50,Neutral
+19746,48,Neutral
+19747,52,Neutral
+19748,49,Neutral
+19749,55,Greed
+19750,54,Neutral
+19751,55,Greed
+19752,61,Greed
+19753,60,Greed
+19754,63,Greed
+19755,63,Greed
+19756,60,Greed
+19757,60,Greed
+19758,60,Greed
+19759,64,Greed
+19760,62,Greed
+19761,66,Greed
+19762,72,Greed
+19763,74,Greed
+19764,71,Greed
+19765,70,Greed
+19766,79,Extreme Greed
+19767,74,Greed
+19768,72,Greed
+19769,72,Greed
+19770,76,Extreme Greed
+19771,72,Greed
+19772,75,Greed
+19773,72,Greed
+19774,78,Extreme Greed
+19775,74,Greed
+19776,76,Extreme Greed
+19777,72,Greed
+19778,74,Greed
+19779,72,Greed
+19780,79,Extreme Greed
+19781,82,Extreme Greed
+19782,80,Extreme Greed
+19783,80,Extreme Greed
+19784,80,Extreme Greed
+19785,83,Extreme Greed
+19786,82,Extreme Greed
+19787,90,Extreme Greed
+19788,75,Greed
+19789,82,Extreme Greed
+19790,81,Extreme Greed
+19791,84,Extreme Greed
+19792,79,Extreme Greed
+19793,82,Extreme Greed
+19794,81,Extreme Greed
+19795,81,Extreme Greed
+19796,88,Extreme Greed
+19797,83,Extreme Greed
+19798,81,Extreme Greed
+19799,79,Extreme Greed
+19800,77,Extreme Greed
+19801,79,Extreme Greed
+19802,74,Greed
+19803,78,Extreme Greed
+19804,75,Greed
+19805,73,Greed
+19806,74,Greed
+19807,75,Greed
+19808,81,Extreme Greed
+19809,83,Extreme Greed
+19810,80,Extreme Greed
+19811,79,Extreme Greed
+19812,75,Greed
+19813,75,Greed
+19814,79,Extreme Greed
+19815,79,Extreme Greed
+19816,71,Greed
+19817,70,Greed
+19818,79,Extreme Greed
+19819,75,Greed
+19820,78,Extreme Greed
+19821,76,Extreme Greed
+19822,80,Extreme Greed
+19823,78,Extreme Greed
+19824,76,Extreme Greed
+19825,79,Extreme Greed
+19826,72,Greed
+19827,72,Greed
+19828,74,Greed
+19829,65,Greed
+19830,67,Greed
+19831,57,Greed
+19832,66,Greed
+19833,66,Greed
+19834,72,Greed
+19835,73,Greed
+19836,71,Greed
+19837,72,Greed
+19838,72,Greed
+19839,70,Greed
+19840,67,Greed
+19841,65,Greed
+19842,67,Greed
+19843,67,Greed
+19844,54,Neutral
+19845,43,Fear
+19846,48,Neutral
+19847,67,Greed
+19848,69,Greed
+19849,71,Greed
+19850,68,Greed
+19851,64,Greed
+19852,55,Greed
+19853,66,Greed
+19854,53,Neutral
+19855,56,Greed
+19856,57,Greed
+19857,66,Greed
+19858,64,Greed
+19859,70,Greed
+19860,74,Greed
+19861,73,Greed
+19862,72,Greed
+19863,70,Greed
+19864,76,Extreme Greed
+19865,76,Extreme Greed
+19866,76,Extreme Greed
+19867,74,Greed
+19868,76,Extreme Greed
+19869,75,Greed
+19870,74,Greed
+19871,72,Greed
+19872,72,Greed
+19873,73,Greed
+19874,73,Greed
+19875,72,Greed
+19876,73,Greed
+19877,73,Greed
+19878,73,Greed
+19879,75,Greed
+19880,78,Extreme Greed
+19881,77,Extreme Greed
+19882,72,Greed
+19883,75,Greed
+19884,72,Greed
+19885,74,Greed
+19886,72,Greed
+19887,70,Greed
+19888,74,Greed
+19889,74,Greed
+19890,71,Greed
+19891,71,Greed
+19892,74,Greed
+19893,64,Greed
+19894,60,Greed
+19895,63,Greed
+19896,53,Neutral
+19897,55,Greed
+19898,51,Neutral
+19899,30,Fear
+19900,46,Fear
+19901,40,Fear
+19902,47,Neutral
+19903,30,Fear
+19904,47,Neutral
+19905,53,Neutral
+19906,51,Neutral
+19907,50,Neutral
+19908,44,Fear
+19909,29,Fear
+19910,26,Fear
+19911,29,Fear
+19912,28,Fear
+19913,27,Fear
+19914,28,Fear
+19915,29,Fear
+19916,25,Extreme Fear
+19917,25,Extreme Fear
+19918,33,Fear
+19919,52,Neutral
+19920,65,Greed
+19921,69,Greed
+19922,61,Greed
+19923,60,Greed
+19924,74,Greed
+19925,74,Greed
+19926,70,Greed
+19927,71,Greed
+19928,69,Greed
+19929,68,Greed
+19930,68,Greed
+19931,72,Greed
+19932,71,Greed
+19933,74,Greed
+19934,67,Greed
+19935,61,Greed
+19936,52,Neutral
+19937,57,Greed
+19938,37,Fear
+19939,34,Fear
+19940,26,Fear
+19941,17,Extreme Fear
+19942,29,Fear
+19943,20,Extreme Fear
+19944,48,Neutral
+19945,40,Fear
+19946,39,Fear
+19947,25,Extreme Fear
+19948,31,Fear
+19949,30,Fear
+19950,29,Fear
+19951,27,Fear
+19952,25,Extreme Fear
+19953,31,Fear
+19954,28,Fear
+19955,30,Fear
+19956,26,Fear
+19957,39,Fear
+19958,34,Fear
+19959,56,Greed
+19960,54,Neutral
+19961,55,Greed
+19962,48,Neutral
+19963,30,Fear
+19964,29,Fear
+19965,34,Fear
+19966,29,Fear
+19967,26,Fear
+19968,26,Fear
+19969,26,Fear
+19970,27,Fear
+19971,29,Fear
+19972,22,Extreme Fear
+19973,23,Extreme Fear
+19974,29,Fear
+19975,26,Fear
+19976,33,Fear
+19977,37,Fear
+19978,31,Fear
+19979,32,Fear
+19980,50,Neutral
+19981,51,Neutral
+19982,39,Fear
+19983,33,Fear
+19984,45,Fear
+19985,49,Neutral
+19986,54,Neutral
+19987,54,Neutral
+19988,52,Neutral
+19989,50,Neutral
+19990,54,Neutral
+19991,59,Greed
+19992,50,Neutral
+19993,61,Greed
+19994,64,Greed
+19995,63,Greed
+19996,61,Greed
+19997,50,Neutral
+19998,42,Fear
+19999,37,Fear
+20000,41,Fear
+20001,49,Neutral
+20002,50,Neutral
+20003,50,Neutral
+20004,49,Neutral
+20005,49,Neutral
+20006,39,Fear
+20007,32,Fear
+20008,49,Neutral
+20009,50,Neutral
+20010,48,Neutral
+20011,65,Greed
+20012,73,Greed
+20013,71,Greed
+20014,73,Greed
+20015,72,Greed
+20016,73,Greed
+20017,72,Greed
+20018,70,Greed
+20019,71,Greed
+20020,69,Greed
+20021,72,Greed
+20023,74,Greed
+20024,72,Greed
+20025,72,Greed
+20026,77,Extreme Greed
+20027,77,Extreme Greed
+20028,75,Greed
+20029,72,Greed
+20030,74,Greed
+20031,70,Greed
+20032,70,Greed
+20033,70,Greed
+20034,77,Extreme Greed
+20035,75,Greed
+20036,75,Greed
+20037,78,Extreme Greed
+20038,76,Extreme Greed
+20039,80,Extreme Greed
+20040,84,Extreme Greed
+20041,88,Extreme Greed
+20042,80,Extreme Greed
+20043,86,Extreme Greed
+20044,90,Extreme Greed
+20045,83,Extreme Greed
+20046,90,Extreme Greed
+20047,83,Extreme Greed
+20048,82,Extreme Greed
+20049,94,Extreme Greed
+20050,93,Extreme Greed
+20051,80,Extreme Greed
+20052,82,Extreme Greed
+20053,79,Extreme Greed
+20054,75,Greed
+20055,77,Extreme Greed
+20056,78,Extreme Greed
+20057,84,Extreme Greed
+20058,81,Extreme Greed
+20059,80,Extreme Greed
+20060,76,Extreme Greed
+20061,78,Extreme Greed
+20062,84,Extreme Greed
+20063,72,Greed
+20064,75,Greed
+20065,79,Extreme Greed
+20066,78,Extreme Greed
+20067,78,Extreme Greed
+20068,74,Greed
+20069,83,Extreme Greed
+20070,76,Extreme Greed
+20071,83,Extreme Greed
+20072,80,Extreme Greed
+20073,83,Extreme Greed
+20074,87,Extreme Greed
+20075,81,Extreme Greed
+20076,75,Greed
+20077,74,Greed
+20078,73,Greed
+20079,73,Greed
+20080,70,Greed
+20081,73,Greed
+20082,73,Greed
+20083,79,Extreme Greed
+20084,74,Greed
+20085,72,Greed
+20086,73,Greed
+20087,65,Greed
+20088,64,Greed
+20089,66,Greed
+20090,70,Greed
+20091,74,Greed
+20092,73,Greed
+20093,72,Greed
+20094,76,Extreme Greed
+20095,78,Extreme Greed
+20096,70,Greed
+20097,69,Greed
+20098,50,Neutral
+20099,69,Greed
+20100,62,Greed
+20101,61,Greed
+20102,63,Greed
+20103,70,Greed
+20104,75,Greed
+20105,75,Greed
+20106,77,Extreme Greed
+20107,77,Extreme Greed
+20108,76,Extreme Greed
+20109,76,Extreme Greed
+20110,84,Extreme Greed
+20111,75,Greed
+20112,75,Greed
+20113,75,Greed
+20114,73,Greed
+20115,71,Greed
+20116,72,Greed
+20117,72,Greed
+20118,70,Greed
+20119,76,Extreme Greed
+20120,68,Greed
+20121,60,Greed
+20122,44,Fear
+20123,72,Greed
+20124,54,Neutral
+20125,49,Neutral
+20126,44,Fear
+20127,44,Fear
+20128,46,Fear
+20129,43,Fear
+20130,47,Neutral
+20131,46,Fear
+20132,50,Neutral
+20133,48,Neutral
+20134,50,Neutral
+20135,54,Neutral
+20136,51,Neutral
+20137,47,Neutral
+20138,44,Fear
+20139,49,Neutral
+20140,55,Greed
+20141,49,Neutral
+20142,50,Neutral
+20143,49,Neutral
+20144,25,Extreme Fear
+20145,21,Extreme Fear
+20146,10,Extreme Fear
+20147,16,Extreme Fear
+20148,20,Extreme Fear
+20149,26,Fear
+20150,33,Fear
+20151,15,Extreme Fear
+20152,20,Extreme Fear
+20153,25,Extreme Fear
+20154,34,Fear
+20155,28,Fear
+20156,27,Fear
+20157,20,Extreme Fear
+20158,24,Extreme Fear
+20159,34,Fear
+20160,45,Fear
+20161,27,Fear
+20162,46,Fear
+20163,30,Fear
+20164,32,Fear
+20165,34,Fear
+20166,32,Fear
+20167,49,Neutral
+20168,31,Fear
+20169,32,Fear
+20170,30,Fear
+20171,45,Fear
+20172,46,Fear
+20173,47,Neutral
+20174,40,Fear
+20175,44,Fear
+20176,26,Fear
+20177,32,Fear
+20178,34,Fear
+20179,34,Fear
+20180,44,Fear
+20181,25,Extreme Fear
+20182,28,Fear
+20183,30,Fear
+20184,34,Fear
+20185,23,Extreme Fear
+20186,24,Extreme Fear
+20187,18,Extreme Fear
+20188,39,Fear
+20189,25,Extreme Fear
+20190,43,Fear
+20191,45,Fear
+20192,31,Fear
+20193,38,Fear
+20194,29,Fear
+20195,30,Fear
+20196,33,Fear
+20197,32,Fear
+20198,37,Fear
+20199,39,Fear
+20200,47,Neutral
+20201,72,Greed
+20202,63,Greed
+20203,60,Greed
+20204,65,Greed
+20205,61,Greed
+20206,54,Neutral
+20207,60,Greed
+20208,56,Greed
+20209,53,Neutral
+20210,67,Greed
+20211,65,Greed
+20212,64,Greed
+20213,52,Neutral
+20214,59,Greed
+20215,67,Greed
+20216,65,Greed
+20217,73,Greed
+20218,70,Greed
+20219,70,Greed
+20220,70,Greed
+20221,70,Greed
+20222,73,Greed
+20223,70,Greed
+20224,71,Greed
+20225,74,Greed
+20226,74,Greed
+20227,74,Greed
+20228,71,Greed
+20229,70,Greed
+20230,72,Greed
+20231,78,Extreme Greed
+20232,66,Greed
+20233,74,Greed
+20234,73,Greed
+20235,74,Greed
+20236,71,Greed
+20237,74,Greed
+20238,60,Greed
+20239,50,Neutral
+20240,56,Greed
+20241,64,Greed
+20242,64,Greed
+20243,62,Greed
+20244,57,Greed
+20245,45,Fear
+20246,52,Neutral
+20247,62,Greed
+20248,62,Greed
+20249,71,Greed
+20250,72,Greed
+20251,71,Greed
+20252,61,Greed
+20253,63,Greed
+20254,60,Greed
+20255,61,Greed
+20256,68,Greed
+20257,52,Neutral
+20258,57,Greed
+20259,54,Neutral
+20260,49,Neutral
+20261,42,Fear
+20262,47,Neutral
+20263,65,Greed
+20264,66,Greed
+20265,74,Greed
+20266,65,Greed
+20267,65,Greed
+20268,68,Greed
+20269,66,Greed
+20270,64,Greed
+20271,63,Greed
+20272,73,Greed
+20273,73,Greed
+20274,67,Greed
+20275,66,Greed
+20276,73,Greed
+20277,65,Greed
+20278,66,Greed
+20279,71,Greed
+20280,71,Greed
+20281,79,Extreme Greed
+20282,74,Greed
+20283,74,Greed
+20284,73,Greed
+20285,70,Greed
+20286,74,Greed
+20287,73,Greed
+20288,74,Greed
+20289,72,Greed
+20290,71,Greed
+20291,72,Greed
+20292,74,Greed
+20293,71,Greed
+20294,70,Greed
+20295,72,Greed
+20296,73,Greed
+20297,75,Greed
+20298,73,Greed
+20299,74,Greed
+20300,72,Greed
+20301,65,Greed
+20302,55,Greed
+20303,53,Neutral
+20304,64,Greed
+20305,60,Greed
+20306,54,Neutral
+20307,62,Greed
+20308,74,Greed
+20309,67,Greed
+20310,69,Greed
+20311,70,Greed
+20312,68,Greed
+20313,73,Greed
+20314,75,Greed
+20315,60,Greed
+20316,56,Greed
+20317,64,Greed
+20318,60,Greed
+20319,56,Greed
+20320,44,Fear
+20321,50,Neutral
+20322,50,Neutral
+20323,60,Greed
+20324,53,Neutral
+20325,47,Neutral
+20326,48,Neutral
+20327,51,Neutral
+20328,48,Neutral
+20329,50,Neutral
+20330,39,Fear
+20331,48,Neutral
+20332,46,Fear
+20333,49,Neutral
+20334,55,Greed
+20335,51,Neutral
+20336,48,Neutral
+20337,48,Neutral
+20338,44,Fear
+20339,51,Neutral
+20340,48,Neutral
+20341,49,Neutral
+20342,54,Neutral
+20343,57,Greed
+20344,52,Neutral
+20345,55,Greed
+20346,53,Neutral
+20347,52,Neutral
+20348,53,Neutral
+20349,52,Neutral
+20350,53,Neutral
+20351,48,Neutral
+20352,49,Neutral
+20353,45,Fear
+20354,43,Fear
+20355,44,Fear
+20356,44,Fear
+20357,28,Fear
+20358,33,Fear
+20359,37,Fear
+20360,50,Neutral
+20361,50,Neutral
+20362,49,Neutral
+20363,64,Greed
+20364,63,Greed
+20365,71,Greed
+20366,74,Greed
+20367,71,Greed
+20368,70,Greed
+20369,60,Greed
+20370,70,Greed
+20371,64,Greed
+20372,27,Fear
+20373,24,Extreme Fear
+20374,38,Fear
+20375,38,Fear
+20376,34,Fear
+20377,28,Fear
+20378,22,Extreme Fear
+20379,23,Extreme Fear
+20380,29,Fear
+20381,29,Fear
+20382,34,Fear
+20383,25,Extreme Fear
+20384,27,Fear
+20385,30,Fear
+20386,37,Fear
+20387,40,Fear
+20388,51,Neutral
+20389,50,Neutral
+20390,51,Neutral
+20391,34,Fear
+20392,29,Fear
+20393,33,Fear
+20394,37,Fear
+20395,42,Fear
+20396,21,Extreme Fear
+20397,23,Extreme Fear
+20398,27,Fear
+20399,24,Extreme Fear
+20400,20,Extreme Fear
+20401,22,Extreme Fear
+20402,29,Fear
+20403,26,Fear
+20404,24,Extreme Fear
+20405,15,Extreme Fear
+20406,16,Extreme Fear
+20407,10,Extreme Fear
+20408,10,Extreme Fear
+20409,14,Extreme Fear
+20410,11,Extreme Fear
+20411,15,Extreme Fear
+20412,11,Extreme Fear
+20413,14,Extreme Fear
+20414,11,Extreme Fear
+20415,13,Extreme Fear
+20416,19,Extreme Fear
+20417,20,Extreme Fear
+20418,15,Extreme Fear
+20419,22,Extreme Fear
+20420,25,Extreme Fear
+20421,28,Fear
+20422,28,Fear
+20423,24,Extreme Fear
+20424,23,Extreme Fear
+20425,28,Fear
+20426,26,Fear
+20427,28,Fear
+20428,23,Extreme Fear
+20429,20,Extreme Fear
+20430,20,Extreme Fear
+20431,22,Extreme Fear
+20432,26,Fear
+20433,29,Fear
+20434,29,Fear
+20435,23,Extreme Fear
+20436,21,Extreme Fear
+20437,16,Extreme Fear
+20438,11,Extreme Fear
+20439,16,Extreme Fear
+20440,17,Extreme Fear
+20441,16,Extreme Fear
+20442,20,Extreme Fear
+20443,20,Extreme Fear
+20444,25,Extreme Fear
+20445,24,Extreme Fear
+20446,24,Extreme Fear
+20447,23,Extreme Fear
+20448,20,Extreme Fear
+20449,23,Extreme Fear
+20450,24,Extreme Fear
+20451,24,Extreme Fear
+20452,23,Extreme Fear
+20453,21,Extreme Fear
+20454,20,Extreme Fear
+20455,28,Fear
+20456,29,Fear
+20457,25,Extreme Fear
+20458,26,Fear
+20459,44,Fear
+20460,42,Fear
+20461,28,Fear
+20462,27,Fear
+20463,25,Extreme Fear
+20464,29,Fear
+20465,27,Fear
+20466,26,Fear
+20467,48,Neutral
+20468,61,Greed
+20469,49,Neutral
+20470,50,Neutral
+20471,49,Neutral
+20472,44,Fear
+20473,32,Fear
+20474,24,Extreme Fear
+20475,20,Extreme Fear
+20476,24,Extreme Fear
+20477,25,Extreme Fear
+20478,25,Extreme Fear
+20479,20,Extreme Fear
+20480,29,Fear
+20481,29,Fear
+20482,26,Fear
+20483,16,Extreme Fear
+20484,20,Extreme Fear
+20485,14,Extreme Fear
+20486,14,Extreme Fear
+20487,17,Extreme Fear
+20488,14,Extreme Fear
+20489,12,Extreme Fear
+20490,9,Extreme Fear
+20491,6,Extreme Fear
+20492,7,Extreme Fear
+20493,14,Extreme Fear
+20494,9,Extreme Fear
+20495,11,Extreme Fear
+20496,5,Extreme Fear
+20497,9,Extreme Fear
+20498,9,Extreme Fear
+20499,8,Extreme Fear
+20500,12,Extreme Fear
+20501,10,Extreme Fear
+20502,8,Extreme Fear
+20503,9,Extreme Fear
+20504,7,Extreme Fear
+20505,8,Extreme Fear
+20506,9,Extreme Fear
+20507,5,Extreme Fear
+20508,8,Extreme Fear
+20509,11,Extreme Fear
+20510,11,Extreme Fear
+20511,13,Extreme Fear
+20512,11,Extreme Fear
+20513,14,Extreme Fear
+20514,10,Extreme Fear
+20515,14,Extreme Fear
+20516,10,Extreme Fear
+20517,22,Extreme Fear
+20518,18,Extreme Fear
+20519,12,Extreme Fear
+20520,12,Extreme Fear
+20521,8,Extreme Fear
+20522,13,Extreme Fear
+20523,15,Extreme Fear
+20524,18,Extreme Fear
+20525,15,Extreme Fear
+20526,16,Extreme Fear
+20527,15,Extreme Fear
+20528,23,Extreme Fear
+20529,28,Fear
+20530,26,Fear
+20531,23,Extreme Fear
+20532,11,Extreme Fear
+20533,12,Extreme Fear
+20534,10,Extreme Fear
+20535,8,Extreme Fear
+20536,11,Extreme Fear
+20537,14,Extreme Fear
+20538,10,Extreme Fear
+20539,13,Extreme Fear
+20540,12,Extreme Fear
+20541,9,Extreme Fear
+20542,8,Extreme Fear
+20543,11,Extreme Fear
+20544,8,Extreme Fear
+20545,12,Extreme Fear
+20546,9,Extreme Fear
+20547,11,Extreme Fear
+20548,12,Extreme Fear
+20549,13,Extreme Fear
+20550,11,Extreme Fear
+20551,17,Extreme Fear
+20552,14,Extreme Fear
+20553,16,Extreme Fear
+20554,15,Extreme Fear
+20555,16,Extreme Fear
+20556,12,Extreme Fear
+20557,21,Extreme Fear
+20558,23,Extreme Fear
+20559,23,Extreme Fear
+20560,21,Extreme Fear
+20561,26,Fear
+20562,27,Fear
+20563,29,Fear
+20564,33,Fear
+20565,32,Fear
+20566,46,Fear
+20567,39,Fear
+20568,31,Fear
+20569,33,Fear
+20570,47,Neutral
+20571,33,Fear
+20572,26,Fear
+20573,29,Fear
+20574,26,Fear
+20575,39,Fear
+20576,47,Neutral
+20577,40,Fear
+20578,50,Neutral
+20579,46,Fear
+20580,47,Neutral
+20581,38,Fear
+20582,38,Fear
+20583,47,Neutral
+20584,48,Neutral
+20585,49,Neutral
+20586,42,Fear
+20587,34,Fear
+20588,43,Fear
+20589,31,Fear
+20590,27,Fear
+20591,28,Fear
+20592,25,Extreme Fear
+20593,27,Fear
+20594,29,Fear
+20595,28,Fear
+20596,28,Fear
+20597,25,Extreme Fear
+20598,30,Fear
+20599,34,Fear
+20600,25,Extreme Fear
+20601,22,Extreme Fear
+20602,23,Extreme Fear
+20603,23,Extreme Fear
+20604,28,Fear
+20605,29,Fear
+20606,23,Extreme Fear
+20607,11,Extreme Fear
+20608,12,Extreme Fear
+20609,12,Extreme Fear
+20610,12,Extreme Fear
+20611,12,Extreme Fear
+20612,8,Extreme Fear
+20613,10,Extreme Fear
+20614,9,Extreme Fear
+20615,12,Extreme Fear
+20616,12,Extreme Fear
+20617,13,Extreme Fear
+20618,18,Extreme Fear
+20619,20,Extreme Fear
+20620,23,Extreme Fear
+20621,22,Extreme Fear
+20622,15,Extreme Fear
+20623,14,Extreme Fear
+20624,23,Extreme Fear
+20625,23,Extreme Fear
+20626,20,Extreme Fear
+20627,23,Extreme Fear
+20628,17,Extreme Fear
+20629,12,Extreme Fear
+20630,13,Extreme Fear
+20631,15,Extreme Fear
+20632,18,Extreme Fear
+20633,12,Extreme Fear
+20634,15,Extreme Fear
+20635,11,Extreme Fear
+20636,19,Extreme Fear
+20637,21,Extreme Fear
+20638,22,Extreme Fear
+20639,23,Extreme Fear
+20640,24,Extreme Fear
+20641,27,Fear
+20642,20,Extreme Fear
+20643,22,Extreme Fear
+20644,23,Extreme Fear
+20645,26,Fear
+20646,26,Fear
+20647,28,Fear
+20648,22,Extreme Fear
+20649,25,Extreme Fear
+20650,25,Extreme Fear
+20651,27,Fear
+20652,25,Extreme Fear
+20653,28,Fear
+20654,29,Fear
+20655,25,Extreme Fear
+20656,33,Fear
+20657,31,Fear
+20658,28,Fear
+20659,27,Fear
+20660,26,Fear
+20661,30,Fear
+20662,29,Fear
+20663,29,Fear
+20664,28,Fear
+20665,25,Extreme Fear
+20666,27,Fear
+20667,27,Fear
+20668,28,Fear
+20669,25,Extreme Fear
+20670,27,Fear
+20671,25,Extreme Fear
+20672,29,Fear
+20673,30,Fear
+20674,31,Fear
+20675,30,Fear
+20676,29,Fear
+20677,27,Fear
+20678,29,Fear
+20679,29,Fear
+20680,34,Fear
+20681,34,Fear
+20682,31,Fear
+20683,41,Fear
+20684,46,Fear
+20685,62,Greed
+20686,72,Greed
+20687,71,Greed
+20688,66,Greed
+20689,73,Greed
+20690,74,Greed
+20691,65,Greed
+20692,71,Greed
+20693,73,Greed
+20694,68,Greed
+20695,69,Greed
+20696,62,Greed
+20697,69,Greed
+20698,63,Greed
+20699,65,Greed
+20700,74,Greed
+20701,73,Greed
+20702,73,Greed
+20703,71,Greed
+20704,69,Greed
+20705,66,Greed
+20706,69,Greed
+20707,56,Greed
+20708,63,Greed
+20709,61,Greed
+20710,57,Greed
+20711,69,Greed
+20712,51,Neutral
+20713,50,Neutral
+20714,56,Greed
+20715,71,Greed
+20716,71,Greed
+20717,70,Greed
+20718,78,Extreme Greed
+20719,71,Greed
+20720,71,Greed
+20721,71,Greed
+20722,74,Greed
+20723,70,Greed
+20724,74,Greed
+20725,73,Greed
+20726,71,Greed
+20727,74,Greed
+20728,72,Greed
+20729,67,Greed
+20730,65,Greed
+20731,70,Greed
+20732,73,Greed
+20733,71,Greed
+20734,64,Greed
+20735,59,Greed
+20736,64,Greed
+20737,61,Greed
+20738,69,Greed
+20739,57,Greed
+20740,62,Greed
+20741,53,Neutral
+20742,63,Greed
+20743,55,Greed
+20744,53,Neutral
+20745,59,Greed
+20746,55,Greed
+20747,63,Greed
+20748,68,Greed
+20749,50,Neutral
+20750,51,Neutral
+20751,54,Neutral
+20752,50,Neutral
+20753,48,Neutral
+20754,51,Neutral
+20755,51,Neutral
+20756,30,Fear
+20757,30,Fear
+20758,34,Fear

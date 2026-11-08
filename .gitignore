@@ -1,0 +1,26 @@
+# --- Yerel mum verisi ve türetilmiş ham kayıtlar (repoya girmez) ---
+tools/dash/data/raw/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Loglar
+*.log
+serve.log
+dash.log
+
+# Test çıktıları
+.bt-test*/
+.bt-test-rec/
+.bt-test525/
+
+# İşletim sistemi / editör
+Thumbs.db
+.DS_Store
+*.tmp
+*.swp
+.vscode/
+.idea/

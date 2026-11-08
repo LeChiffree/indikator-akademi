@@ -1,0 +1,17 @@
+{
+  "name": "İndikatör Akademi",
+  "short_name": "İndikatör",
+  "description": "100 indikatörü gerçek formüllerle, örnekli ve yorumsal öğren; her indikatörü gerçek piyasa verisiyle test edilmiş backtest sonuçlarıyla incele.",
+  "lang": "tr",
+  "dir": "ltr",
+  "start_url": ".",
+  "scope": ".",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#07070b",
+  "theme_color": "#0d0c13",
+  "icons": [
+    { "src": "assets/img/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
+    { "src": "assets/img/icon-maskable.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "maskable" }
+  ]
+}

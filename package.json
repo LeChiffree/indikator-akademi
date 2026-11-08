@@ -1,0 +1,17 @@
+{
+  "name": "indikator-akademi",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Mobil öncelikli, lüks görselli Türkçe indikatör eğitim uygulaması (statik site)",
+  "scripts": {
+    "start": "node tools/serve.mjs",
+    "validate": "node tools/validate.mjs",
+    "smoke": "node tools/smoke.mjs",
+    "fonts": "node tools/fetch-fonts.mjs",
+    "bt": "node tools/bt/run.mjs",
+    "bt:report": "node tools/bt/report.mjs",
+    "bt:qa": "node tools/bt/qa.mjs",
+    "bt:test": "node tools/bt/run.mjs --symbols=3 \"--tfs=4h,1d\" --workers=3 --out=\".bt-test\""
+  }
+}
