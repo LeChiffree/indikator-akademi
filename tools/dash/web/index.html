@@ -9,17 +9,12 @@
 @font-face{font-family:Manrope;font-style:normal;font-weight:300 800;font-display:swap;src:url(/static/fonts/font-02.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
 @font-face{font-family:Playfair;font-style:normal;font-weight:500 800;font-display:swap;src:url(/static/fonts/font-05.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF}
 @font-face{font-family:Playfair;font-style:normal;font-weight:500 800;font-display:swap;src:url(/static/fonts/font-06.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
-:root{
-  --bg:#0a0c0f; --panel:#11151a; --panel2:#0e1216; --line:rgba(255,255,255,.07);
-  --gold:#d9b45b; --gold2:#f0d492; --txt:#e9e7e0; --mut:#8f97a3; --dim:#6b737f;
-  --green:#63d6a0; --red:#e8707e; --blue:#7fa6d9;
-  --r:14px;
-}
+:root{--bg:#0a0c0f;--panel:#11151a;--panel2:#0e1216;--line:rgba(255,255,255,.07);--gold:#d9b45b;--gold2:#f0d492;--txt:#e9e7e0;--mut:#8f97a3;--dim:#6b737f;--green:#63d6a0;--red:#e8707e;--blue:#7fa6d9;--r:14px}
 *{box-sizing:border-box}
 html,body{margin:0;padding:0;background:var(--bg);color:var(--txt);font-family:Manrope,system-ui,Segoe UI,Roboto,sans-serif;font-size:14px;-webkit-font-smoothing:antialiased}
 body{min-height:100vh}
-.app{display:grid;grid-template-columns:334px minmax(0,1fr);min-height:100vh}
-/* ---------------- sidebar ---------------- */
+.app{display:grid;grid-template-columns:330px minmax(0,1fr);min-height:100vh}
+/* sidebar */
 .side{position:sticky;top:0;height:100vh;overflow:auto;background:linear-gradient(180deg,#0d1014,#0a0c0f);border-right:1px solid var(--line);padding:18px 16px 40px}
 .brand{display:flex;align-items:center;gap:10px;margin:2px 0 16px}
 .brand .dot{width:10px;height:10px;border-radius:50%;background:var(--gold);box-shadow:0 0 18px var(--gold)}
@@ -38,48 +33,55 @@ body{min-height:100vh}
 .tf{border:1px solid var(--line);background:#0b0f13;color:#b9c0ca;border-radius:8px;padding:6px 10px;font:inherit;font-size:12px;cursor:pointer}
 .tf:hover{border-color:rgba(255,255,255,.2)}
 .tf.on{background:var(--gold);color:#191307;border-color:var(--gold);font-weight:700}
-.tf.off{opacity:.28;pointer-events:none}
 .fgroup{margin:10px 0 3px;font-size:10px;color:#5d6672;letter-spacing:.08em;text-transform:uppercase}
 .fbtn{display:flex;align-items:center;gap:8px;width:100%;text-align:left;border:1px solid transparent;background:none;color:#c6ccd5;padding:6px 8px;border-radius:8px;font:inherit;font-size:12.5px;cursor:pointer}
 .fbtn:hover{background:rgba(255,255,255,.04)}
 .fbtn.on{background:rgba(99,214,160,.09);border-color:rgba(99,214,160,.35);color:#bff0d8}
 .fbtn .k{width:6px;height:6px;border-radius:50%;background:#39404a;flex:0 0 auto}
 .fbtn.on .k{background:var(--green);box-shadow:0 0 10px var(--green)}
-.fbtn .cnt{margin-left:auto;font-size:10.5px;color:var(--dim);font-variant-numeric:tabular-nums}
-/* ---------------- main ---------------- */
-.main{padding:22px 26px 60px;min-width:0}
-.top{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:14px;margin-bottom:16px}
+/* main */
+.main{padding:22px 24px 60px;min-width:0}
+.top{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:14px;margin-bottom:14px}
 .top h1{margin:0;font-family:Playfair,serif;font-size:26px;font-weight:800;letter-spacing:.2px}
-.top .sub{color:var(--mut);font-size:12.5px;margin-top:5px;max-width:640px}
+.top .sub{color:var(--mut);font-size:12.5px;margin-top:5px;max-width:720px}
 .badge{display:inline-block;background:rgba(217,180,91,.12);border:1px solid rgba(217,180,91,.35);color:var(--gold2);border-radius:999px;padding:3px 10px;font-size:11px;margin-left:8px;vertical-align:middle}
-.kpis{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;margin:14px 0 20px}
-.kpi{background:linear-gradient(180deg,#12171d,#0f1318);border:1px solid var(--line);border-radius:var(--r);padding:13px 14px;min-width:0}
-.kpi .l{font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);font-weight:700}
-.kpi .v{font-size:22px;font-weight:800;margin-top:6px;font-variant-numeric:tabular-nums;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.kpi .s{font-size:11px;color:var(--mut);margin-top:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.pos{color:var(--green)} .neg{color:var(--red)} .gld{color:var(--gold2)}
-.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
-.card{background:linear-gradient(180deg,#11151b,#0e1216);border:1px solid var(--line);border-radius:var(--r);padding:14px 14px 8px;min-width:0}
-.card h3{margin:0 0 2px;font-size:13.5px;font-weight:700;letter-spacing:.2px}
-.card .h{font-size:11px;color:var(--dim);margin-bottom:6px}
-.card.wide{grid-column:1/-1}
-.chart{width:100%;height:250px}
-.chart.tall{height:330px}
-.chart.xtall{height:380px}
-.chart.map{height:1500px}
-.filterbar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:0 0 6px}
 select.fsel{background:#0b0f13;border:1px solid rgba(217,180,91,.35);color:var(--gold2);border-radius:9px;padding:8px 10px;font:inherit;font-size:12.5px;max-width:320px}
-.legendline{display:flex;gap:14px;color:var(--dim);font-size:11px;margin-top:4px;flex-wrap:wrap}
-.legendline b{color:var(--txt);font-weight:600}
+.kpis{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:10px 0 14px}
+.kpi{background:linear-gradient(180deg,#12171d,#0f1318);border:1px solid var(--line);border-radius:12px;padding:11px 12px;min-width:0}
+.kpi .l{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);font-weight:700}
+.kpi .v{font-size:19px;font-weight:800;margin-top:5px;font-variant-numeric:tabular-nums;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.kpi .s{font-size:10.5px;color:var(--mut);margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pos{color:var(--green)}.neg{color:var(--red)}.gld{color:var(--gold2)}
+.split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px;align-items:start}
+.pane{min-width:0}
+.pane-head{display:flex;align-items:baseline;justify-content:space-between;gap:8px;border-bottom:1px solid var(--line);padding:2px 2px 8px;margin-bottom:10px}
+.pane-head h2{margin:0;font-family:Playfair,serif;font-size:19px;font-weight:800}
+.pane-head span{color:var(--dim);font-size:11.5px}
+.pane .grid{display:grid;grid-template-columns:1fr;gap:12px}
+.card{background:linear-gradient(180deg,#11151b,#0e1216);border:1px solid var(--line);border-radius:14px;padding:12px 12px 6px;min-width:0}
+.card h3{margin:0 0 2px;font-size:13px;font-weight:700;letter-spacing:.2px}
+.card .h{font-size:10.5px;color:var(--dim);margin-bottom:4px}
+.card.wide{grid-column:1/-1}
+.chart{width:100%;height:220px}
+.chart.tall{height:300px}
+.chart.map{height:1380px}
+.chart.xtall{height:360px}
+.ftable{max-height:360px;overflow:auto;border:1px solid var(--line);border-radius:10px;margin:4px 0 8px}
+.ftable table{width:100%;border-collapse:collapse;font-size:11.5px;font-variant-numeric:tabular-nums}
+.ftable th{position:sticky;top:0;background:#12171d;color:var(--dim);text-align:right;padding:7px 8px;font-weight:600;white-space:nowrap;border-bottom:1px solid var(--line)}
+.ftable td{padding:5px 8px;text-align:right;border-bottom:1px solid rgba(255,255,255,.035);white-space:nowrap}
+.ftable td:first-child,.ftable th:first-child{text-align:left;max-width:190px;overflow:hidden;text-overflow:ellipsis}
+.ftable tr.on td{background:rgba(217,180,91,.10);color:var(--gold2)}
+.legendline{display:flex;gap:14px;color:var(--dim);font-size:11px;margin-top:10px;flex-wrap:wrap}
 .legendline .sw{display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:4px;vertical-align:-1px}
-@media (max-width:1100px){.kpis{grid-template-columns:repeat(3,minmax(0,1fr))}.grid{grid-template-columns:1fr}}
-@media (max-width:760px){
+@media (max-width:1200px){.split{grid-template-columns:1fr}.app{grid-template-columns:300px minmax(0,1fr)}}
+@media (max-width:820px){
   .app{grid-template-columns:1fr}
-  .side{position:relative;height:auto;max-height:52vh;border-right:0;border-bottom:1px solid var(--line)}
-  .main{padding:16px 12px 50px}
-  .kpis{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .side{position:relative;height:auto;max-height:50vh;border-right:0;border-bottom:1px solid var(--line)}
+  .main{padding:14px 10px 40px}
   .top h1{font-size:21px}
-  .chart{height:240px}
+  .kpis{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .chart{height:210px}
 }
 </style>
 </head>
@@ -87,7 +89,6 @@ select.fsel{background:#0b0f13;border:1px solid rgba(217,180,91,.35);color:var(-
 <div class="app">
   <aside class="side">
     <div class="brand"><span class="dot"></span><div><b>İndikatör Akademi</b><small>Analiz Dashboard</small></div></div>
-    <div class="side h4" style="display:none"></div>
     <input id="q" class="search" placeholder="Strateji ara…" autocomplete="off">
     <h4><span>1</span>Strateji</h4>
     <div id="strats"></div>
@@ -101,47 +102,77 @@ select.fsel{background:#0b0f13;border:1px solid rgba(217,180,91,.35);color:var(-
     <div class="top">
       <div>
         <h1 id="title">Bir strateji seçin</h1>
-        <div class="sub" id="subtitle">Soldan strateji, zaman dilimi ve filtre seçerek 600 senaryoyu inceleyin.</div>
+        <div class="sub" id="subtitle">Soldan strateji, zaman dilimi ve filtre seçin. Sol panel tüm dönemi, sağ panel yalnızca 2026'yı gösterir.</div>
       </div>
-      <div class="filterbar">
+      <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
         <span style="font-size:11px;color:var(--dim);letter-spacing:.12em;text-transform:uppercase">Filtre</span>
         <select id="fsel" class="fsel"></select>
       </div>
     </div>
 
-    <div class="kpis" id="kpis"></div>
-
-    <div class="grid" id="grid">
-      <div class="card wide"><h3>600 Senaryo Haritası</h3><div class="h">100 indikatör × 6 dilim · işlem başına ortalama getiri (filtresiz) · hücreye tıklayın</div><div id="c_map" class="chart map"></div></div>
-      <div class="card"><h3>Kasa Eğrisi — 10$ / işlem</h3><div class="h">Tüm dönem · 0$ başlangıç</div><div id="c_cash" class="chart"></div></div>
-      <div class="card"><h3>Kasa Eğrisi — 2025–2026</h3><div class="h">Sadece son iki yıl · 0$ başlangıç</div><div id="c_cash25" class="chart"></div></div>
-      <div class="card"><h3>Günlük Kâr / Zarar</h3><div class="h">Yeşil yukarı kâr · kırmızı aşağı zarar</div><div id="c_daily" class="chart"></div></div>
-      <div class="card"><h3>Günlük Kâr / Zarar — 2025–2026</h3><div class="h">Son iki yıl</div><div id="c_daily25" class="chart"></div></div>
-      <div class="card"><h3>Yıllık Kâr / Zarar</h3><div class="h">Aynı barda kâr ve zarar</div><div id="c_year" class="chart"></div></div>
-      <div class="card"><h3>Kalma Süresi Dağılımı</h3><div class="h">İşlem sayısı · kova bazında</div><div id="c_dur" class="chart"></div></div>
-      <div class="card"><h3>Mevsimsel Kâr / Zarar</h3><div class="h">Kış / İlkbahar / Yaz / Sonbahar</div><div id="c_season" class="chart"></div></div>
-      <div class="card"><h3>Çeyreklik Kâr / Zarar</h3><div class="h">Q1–Q4</div><div id="c_quarter" class="chart"></div></div>
-      <div class="card wide"><h3>Takvim Isı Haritası</h3><div class="h">Ay × yıl net kâr/zarar</div><div id="c_cal" class="chart tall"></div></div>
-      <div class="card"><h3>Gün × Saat</h3><div class="h">Ortalama işlem getirisi (%)</div><div id="c_dow" class="chart tall"></div></div>
-      <div class="card"><h3>Sualtı (Drawdown)</h3><div class="h">Kasa eğrisinin zirveden uzaklığı ($)</div><div id="c_dd" class="chart"></div></div>
-      <div class="card wide"><h3>Filtre Etkisi</h3><div class="h">Seçili senaryoda 20 filtre + kombinasyonların işlem başına ortalama getirisi · seçili filtre vurgulu</div><div id="c_filter" class="chart xtall"></div></div>
-      <div class="card wide"><h3>Filtre Toplam Kârı</h3><div class="h">Aynı senaryoda her filtrenin 10$ kasa toplam kâr/zararı</div><div id="c_filter2" class="chart xtall"></div></div>
-      <div class="card wide"><h3>Sembol Katkısı</h3><div class="h">En iyi ve en kötü semboller (toplam işlem getirisi)</div><div id="c_sym" class="chart tall"></div></div>
+    <div class="card wide" style="margin-bottom:16px">
+      <h3>600 Senaryo Haritası</h3>
+      <div class="h">100 indikatör × 6 dilim · işlem başına ortalama getiri (filtresiz) · hücreye tıklayın</div>
+      <div id="c_map" class="chart map"></div>
     </div>
+
+    <div class="split">
+      <section class="pane">
+        <div class="pane-head"><h2>Tüm Yıllar</h2><span>2022-08 → 2026-09 · seçili filtre</span></div>
+        <div class="kpis" id="kpisAll"></div>
+        <div class="grid">
+          <div class="card"><h3>Kümülatif Net Özsermaye — 10$ / işlem</h3><div class="h">0$ başlangıç</div><div id="a_cash" class="chart"></div></div>
+          <div class="card"><h3>Drawdown</h3><div class="h">Zirveden uzaklık ($)</div><div id="a_dd" class="chart"></div></div>
+          <div class="card"><h3>Günlük Kâr / Zarar</h3><div class="h">Aynı günün kâr ve zarar barları</div><div id="a_daily" class="chart"></div></div>
+          <div class="card"><h3>Haftalık Kâr / Zarar</h3><div class="h">ISO haftası</div><div id="a_week" class="chart"></div></div>
+          <div class="card"><h3>Aylık Kâr / Zarar</h3><div class="h">Ay bazında</div><div id="a_month" class="chart"></div></div>
+          <div class="card"><h3>Yıllık Kâr / Zarar</h3><div class="h">Aynı barda kâr ve zarar</div><div id="a_year" class="chart"></div></div>
+          <div class="card"><h3>Mevsimlik Kâr / Zarar</h3><div class="h">Kış / İlkbahar / Yaz / Sonbahar</div><div id="a_season" class="chart"></div></div>
+          <div class="card"><h3>Çeyreklik Kâr / Zarar</h3><div class="h">Q1–Q4</div><div id="a_quarter" class="chart"></div></div>
+          <div class="card"><h3>Kalma Süresi Dağılımı</h3><div class="h">İşlem sayısı</div><div id="a_dur" class="chart"></div></div>
+          <div class="card"><h3>Kalma Süresine Göre Kâr / Zarar</h3><div class="h">Kova başına brüt kâr ve zarar</div><div id="a_durpnl" class="chart"></div></div>
+          <div class="card"><h3>Takvim Isı Haritası</h3><div class="h">Ay × yıl net</div><div id="a_cal" class="chart tall"></div></div>
+          <div class="card"><h3>Haftanın Günü</h3><div class="h">Net kâr / zarar</div><div id="a_dow" class="chart"></div></div>
+          <div class="card"><h3>Kayan Net Getiri</h3><div class="h">30 / 90 / 365 günlük pencere ($)</div><div id="a_roll" class="chart"></div></div>
+          <div class="card"><h3>Coin Bazında Kâr / Zarar</h3><div class="h">En aktif 40 coin</div><div id="a_sym" class="chart xtall"></div></div>
+          <div class="card"><h3>Filtre Etkisi</h3><div class="h">Ortalama işlem getirisi · seçili filtre vurgulu</div><div id="a_filter" class="chart xtall"></div></div>
+          <div class="card"><h3>Filtre Net Getiri Isı Haritası</h3><div class="h">31 filtre × yıl net $</div><div id="a_fheat" class="chart xtall"></div></div>
+          <div class="card"><h3>Filtre Tablosu</h3><div class="h">n · kazanma · ort. getiri · PF · net $</div><div id="a_ftable" class="ftable"></div></div>
+        </div>
+      </section>
+
+      <section class="pane">
+        <div class="pane-head"><h2>2026</h2><span>1 Ocak – son veri · seçili filtre</span></div>
+        <div class="kpis" id="kpis26"></div>
+        <div class="grid">
+          <div class="card"><h3>2026 Kümülatif Net Özsermaye</h3><div class="h">10$ / işlem · 0$ başlangıç</div><div id="b_cash" class="chart"></div></div>
+          <div class="card"><h3>2026 Drawdown</h3><div class="h">Zirveden uzaklık ($)</div><div id="b_dd" class="chart"></div></div>
+          <div class="card"><h3>2026 Günlük Kâr / Zarar</h3><div class="h">Aynı günün kâr ve zarar barları</div><div id="b_daily" class="chart"></div></div>
+          <div class="card"><h3>2026 Haftalık Kâr / Zarar</h3><div class="h">ISO haftası</div><div id="b_week" class="chart"></div></div>
+          <div class="card"><h3>2026 Aylık Kâr / Zarar</h3><div class="h">Ay bazında</div><div id="b_month" class="chart"></div></div>
+          <div class="card"><h3>2026 Mevsimlik Kâr / Zarar</h3><div class="h">Kış / İlkbahar / Yaz / Sonbahar</div><div id="b_season" class="chart"></div></div>
+          <div class="card"><h3>2026 Çeyreklik Kâr / Zarar</h3><div class="h">Q1–Q4</div><div id="b_quarter" class="chart"></div></div>
+          <div class="card"><h3>2026 Filtre Etkisi</h3><div class="h">Filtre başına ortalama işlem getirisi</div><div id="b_filter" class="chart xtall"></div></div>
+          <div class="card"><h3>2026 Filtre Net Getirisi</h3><div class="h">Filtre başına toplam net $</div><div id="b_filter2" class="chart xtall"></div></div>
+        </div>
+        <div class="legendline" style="margin-top:10px"><span>2026 kazanma/işlem sayısı için periyot bazlı kazanç sayacı yeniden koşuda eklenecek.</span></div>
+      </section>
+    </div>
+
     <div class="legendline" id="foot"></div>
   </main>
 </div>
 
 <script src="/static/plotly.min.js"></script>
 <script>
-const CFG = { displayModeBar: false, responsive: true, locale: 'tr' };
+const CFG = { displayModeBar: false, responsive: true };
 const FONT = 'Manrope, system-ui, sans-serif';
-const AX = { gridcolor: 'rgba(255,255,255,.06)', zerolinecolor: 'rgba(255,255,255,.14)', linecolor: 'rgba(255,255,255,.12)', tickfont: { size: 11.5 }, titlefont: { size: 11.5 } };
+const AX = { gridcolor: 'rgba(255,255,255,.06)', zerolinecolor: 'rgba(255,255,255,.14)', linecolor: 'rgba(255,255,255,.12)', tickfont: { size: 10.5 }, titlefont: { size: 10.5 } };
 function baseLayout(extra = {}) {
   return Object.assign({
     paper_bgcolor: 'rgba(0,0,0,0)', plot_bgcolor: 'rgba(0,0,0,0)',
-    font: { family: FONT, color: '#c9cfd8', size: 12 },
-    margin: { l: 52, r: 16, t: 8, b: 42 },
+    font: { family: FONT, color: '#c9cfd8', size: 11.5 },
+    margin: { l: 50, r: 14, t: 8, b: 38 },
     hoverlabel: { bgcolor: '#151b22', bordercolor: 'rgba(217,180,91,.4)', font: { family: FONT, color: '#e9e7e0' } },
     showlegend: false,
   }, extra);
@@ -163,14 +194,14 @@ function dateArray(startIso, n) {
 async function boot() {
   const r = await fetch('/api/meta');
   META = await r.json();
-  renderStrats();
   renderFilters();
+  renderStrats();
   renderMap();
   const params = new URLSearchParams(location.hash.slice(1));
   if (params.get('s')) {
     const si = Number(params.get('s'));
     const sc = META.scenarios[si];
-    if (sc) { selectStrategy(sc.id, sc.tf, Number(params.get('f') || 0)); }
+    if (sc) selectStrategy(sc.id, sc.tf, Number(params.get('f') || 0));
   }
 }
 
@@ -181,39 +212,23 @@ function usableScenarios() {
 function renderMap() {
   const tfs = ['5m', '15m', '1h', '4h', '1d', '1w'];
   const byKey = new Map(META.scenarios.map((s) => [s.id + '|' + s.tf, s]));
-  const order = [];
-  const seen = new Set();
+  const order = []; const seen = new Set();
   for (const s of META.scenarios) if (!seen.has(s.id)) { seen.add(s.id); order.push(s.id); }
   const names = new Map(META.scenarios.map((s) => [s.id, s.name]));
-  const z = order.map((id) => tfs.map((tf) => {
-    const s = byKey.get(id + '|' + tf);
-    return s && s.n > 0 ? s.avg * 100 : null;
-  }));
-  const cd = order.map((id) => tfs.map((tf) => {
-    const s = byKey.get(id + '|' + tf);
-    return s && s.n > 0 ? [s.i, fmtN(s.n), s.avg2026 * 100] : null;
-  }));
+  const z = order.map((id) => tfs.map((tf) => { const s = byKey.get(id + '|' + tf); return s && s.n > 0 ? s.avg * 100 : null; }));
+  const cd = order.map((id) => tfs.map((tf) => { const s = byKey.get(id + '|' + tf); return s && s.n > 0 ? [s.i, fmtN(s.n), s.avg2026 * 100] : null; }));
   const abs = z.flat().filter((v) => v != null).map(Math.abs).sort((a, b) => a - b);
   const lim = Math.max(0.5, abs[Math.floor(abs.length * 0.95)] || 1);
   Plotly.react('c_map', [{
-    z, x: tfs, y: order.map((id) => names.get(id)), type: 'heatmap',
-    customdata: cd,
+    z, x: tfs, y: order.map((id) => names.get(id)), type: 'heatmap', customdata: cd,
     hovertemplate: '%{y} · %{x}<br>ort <b>%{z:.2f}%</b><br>%{customdata[1]} işlem · 2026 ort %{customdata[2]:.2f}%<extra></extra>',
     colorscale: [[0, '#e8707e'], [0.45, '#2a1a1e'], [0.5, '#0e1216'], [0.55, '#142a20'], [1, '#63d6a0']],
     zmid: 0, zmin: -lim, zmax: lim,
     colorbar: { thickness: 8, tickfont: { size: 10, color: '#8f97a3' }, outlinewidth: 0, ticksuffix: '%' },
-  }], baseLayout({
-    yaxis: Object.assign({}, AX, { type: 'category', automargin: true, tickfont: { size: 9.5 } }),
-    xaxis: Object.assign({}, AX, { type: 'category', side: 'top' }),
-    margin: { l: 150, r: 20, t: 26, b: 10 },
-  }));
-  const el = document.getElementById('c_map');
-  el.on('plotly_click', (e) => {
-    const c = e.points[0] && e.points[0].customdata;
-    if (!c) return;
-    const sc = META.scenarios[c[0]];
-    if (!sc) return;
-    // dışlama kuralı: toplam ve 2026 ort. birlikte negatifse açma
+  }], baseLayout({ yaxis: Object.assign({}, AX, { type: 'category', automargin: true, tickfont: { size: 9.5 } }), xaxis: Object.assign({}, AX, { type: 'category', side: 'top' }), margin: { l: 150, r: 20, t: 26, b: 10 } }));
+  document.getElementById('c_map').on('plotly_click', (e) => {
+    const c = e.points[0] && e.points[0].customdata; if (!c) return;
+    const sc = META.scenarios[c[0]]; if (!sc) return;
     if (!(sc.n > 0 && !(sc.avg < 0 && sc.avg2026 < 0))) return;
     selectStrategy(sc.id, sc.tf, STATE.filter);
   });
@@ -221,27 +236,20 @@ function renderMap() {
 
 function renderStrats() {
   const q = (document.getElementById('q').value || '').toLowerCase();
-  const list = usableScenarios();
   const byId = new Map();
-  for (const s of list) {
-    if (!byId.has(s.id)) byId.set(s.id, { id: s.id, name: s.name, cat: s.cat, tfs: [], n: 0, avgs: [] });
-    const g = byId.get(s.id);
-    g.tfs.push(s.tf); g.n += s.n; g.avgs.push(s.avg);
+  for (const s of usableScenarios()) {
+    if (!byId.has(s.id)) byId.set(s.id, { id: s.id, name: s.name, cat: s.cat, tfs: [], n: 0 });
+    const g = byId.get(s.id); g.tfs.push(s.tf); g.n += s.n;
   }
   const groups = {};
-  for (const g of byId.values()) {
-    if (q && !(g.name + ' ' + g.id).toLowerCase().includes(q)) continue;
-    (groups[g.cat] ||= []).push(g);
-  }
+  for (const g of byId.values()) { if (q && !(g.name + ' ' + g.id).toLowerCase().includes(q)) continue; (groups[g.cat] ||= []).push(g); }
   const CAT = { trend: 'Trend', momentum: 'Hız (Momentum)', hacim: 'Hacim', volatilite: 'Volatilite', yapi: 'Piyasa Yapısı' };
   let html = '';
   for (const cat of Object.keys(CAT)) {
     if (!groups[cat]) continue;
     html += `<div class="cat">${CAT[cat]}</div>`;
     groups[cat].sort((a, b) => a.name.localeCompare(b.name, 'tr'));
-    for (const g of groups[cat]) {
-      html += `<div class="strat ${STATE.id === g.id ? 'on' : ''}" data-id="${g.id}"><span>${g.name}</span><span class="n">${fmtShort(g.n)}</span></div>`;
-    }
+    for (const g of groups[cat]) html += `<div class="strat ${STATE.id === g.id ? 'on' : ''}" data-id="${g.id}"><span>${g.name}</span><span class="n">${fmtShort(g.n)}</span></div>`;
   }
   document.getElementById('strats').innerHTML = html;
   document.querySelectorAll('.strat').forEach((el) => el.onclick = () => {
@@ -253,13 +261,11 @@ function renderStrats() {
 }
 
 function renderTfs() {
-  const box = document.getElementById('tfs');
   const scs = usableScenarios().filter((s) => s.id === STATE.id);
-  box.innerHTML = scs.map((s) => `<button class="tf ${s.tf === STATE.tf ? 'on' : ''}" data-tf="${s.tf}">${s.tf}</button>`).join('');
+  document.getElementById('tfs').innerHTML = scs.map((s) => `<button class="tf ${s.tf === STATE.tf ? 'on' : ''}" data-tf="${s.tf}">${s.tf}</button>`).join('');
   document.querySelectorAll('#tfs .tf').forEach((el) => el.onclick = () => selectScenario(el.dataset.tf));
-  const nm = document.getElementById('selname');
   const sc = scs.find((s) => s.tf === STATE.tf);
-  nm.textContent = sc ? ' · ' + sc.name : '';
+  document.getElementById('selname').textContent = sc ? ' · ' + sc.name : '';
 }
 
 function renderFilters() {
@@ -277,10 +283,8 @@ function renderFilters() {
 }
 
 function selectStrategy(id, tf, filter) {
-  STATE.id = id;
-  STATE.tf = tf;
-  renderStrats();
-  renderTfs();
+  STATE.id = id; STATE.tf = tf;
+  renderStrats(); renderTfs();
   if (tf) selectScenario(tf, filter);
 }
 
@@ -290,16 +294,11 @@ function selectScenario(tf, filter) {
   const sc = META.scenarios.find((s) => s.id === STATE.id && s.tf === tf);
   if (!sc) return;
   STATE.si = sc.i;
-  renderTfs();
-  renderFilters();
+  renderTfs(); renderFilters();
   load();
 }
 
-function setFilter(f) {
-  STATE.filter = f;
-  renderFilters();
-  if (STATE.si != null) load();
-}
+function setFilter(f) { STATE.filter = f; renderFilters(); if (STATE.si != null) load(); }
 
 async function load() {
   const sc = META.scenarios[STATE.si];
@@ -308,157 +307,142 @@ async function load() {
   const r = await fetch(`/api/scenario/${STATE.si}?filter=${STATE.filter}`);
   const D = await r.json();
   location.hash = `s=${STATE.si}&f=${STATE.filter}`;
-  renderKpis(D);
-  renderCharts(D);
+  renderKpis(D.kpi, 'kpisAll');
+  renderCharts(D, 'a_');
+  if (D.y2026) {
+    renderKpis26(D.y2026.kpi);
+    render2026(D.y2026, 'b_');
+  }
+  renderFilterTable(D.filterEffects);
 }
 
 function kpiCard(label, value, sub, cls = '') {
   return `<div class="kpi"><div class="l">${label}</div><div class="v ${cls}">${value}</div><div class="s">${sub}</div></div>`;
 }
 
-function renderKpis(D) {
-  const k = D.kpi;
-  const days = k.profitDays + k.lossDays;
+function renderKpis(k, id) {
+  const days = (k.profitDays || 0) + (k.lossDays || 0);
   const ratio = days ? (k.profitDays / days) * 100 : 0;
-  document.getElementById('kpis').innerHTML = [
+  document.getElementById(id).innerHTML = [
     kpiCard('Toplam İşlem', fmtN(k.n), `PF ${k.pf ? k.pf.toFixed(2) : '—'} · kazanma %${(k.wr * 100).toFixed(1)}`),
-    kpiCard('2026 İşlem', fmtN(k.n2026), `ort. ${fmtPct(k.avg2026)}`),
-    kpiCard('Ortalama Getiri', fmtPct(k.avg), `işlem başına · ort. süre ${k.avgDurDays.toFixed(2)} gün`, k.avg >= 0 ? 'pos' : 'neg'),
-    kpiCard('Maks. Düşüş', fmtUSD(k.maxDD), `10$ kasa eğrisinden`, 'neg'),
-    kpiCard('Kârlı / Zararlı Gün', `${fmtN(k.profitDays)} / ${fmtN(k.lossDays)}`, `kârlı gün oranı %${ratio.toFixed(1)}`, ratio >= 50 ? 'pos' : 'neg'),
+    kpiCard('Ort. Net Getiri', fmtPct(k.avg), `işlem başına`, k.avg >= 0 ? 'pos' : 'neg'),
+    kpiCard('Brüt Kâr', fmtUSD(k.grossW || 0), `${fmtN(k.wins || 0)} kârlı işlem`, 'pos'),
+    kpiCard('Brüt Zarar', fmtUSD(-(k.grossL || 0)), `${fmtN(k.losses || 0)} zararlı/başa baş`, 'neg'),
+    kpiCard('Net Sonuç', fmtUSD(k.totPnl || 0), `10$ pozisyon`, (k.totPnl || 0) >= 0 ? 'pos' : 'neg'),
+    kpiCard('Ort. Kalış', `${(k.avgDurDays || 0).toFixed(2)} gün`, `işlem başına`),
+    kpiCard('Maks. Düşüş', fmtUSD(k.maxDD || 0), `10$ kasa eğrisi`, 'neg'),
+    kpiCard('Kârlı / Zararlı Gün', `${fmtN(k.profitDays)} / ${fmtN(k.lossDays)}`, `kârlı gün %${ratio.toFixed(1)}`, ratio >= 50 ? 'pos' : 'neg'),
   ].join('');
 }
 
-function plot(id, traces, layout) {
-  const el = document.getElementById(id);
-  Plotly.react(el, traces, layout, CFG);
+function renderKpis26(k) {
+  const days = (k.profitDays || 0) + (k.lossDays || 0);
+  const ratio = days ? (k.profitDays / days) * 100 : 0;
+  document.getElementById('kpis26').innerHTML = [
+    kpiCard('2026 İşlem', fmtN(k.n), `toplam işlem`),
+    kpiCard('2026 Net Sonuç', fmtUSD(k.net || 0), `10$ pozisyon`, (k.net || 0) >= 0 ? 'pos' : 'neg'),
+    kpiCard('2026 Ort. Getiri', fmtPct(k.avg), `işlem başına`, k.avg >= 0 ? 'pos' : 'neg'),
+    kpiCard('2026 Kârlı / Zararlı Gün', `${fmtN(k.profitDays)} / ${fmtN(k.lossDays)}`, `kârlı gün %${ratio.toFixed(1)}`, ratio >= 50 ? 'pos' : 'neg'),
+    kpiCard('2026 Maks. Düşüş', fmtUSD(k.maxDD || 0), `10$ kasa eğrisi`, 'neg'),
+    kpiCard('2026 Kapsam', 'Oca–Eyl', `son veri 2026-09`),
+  ].join('');
 }
 
-function renderCharts(D) {
+function plot(id, traces, layout) { Plotly.react(id, traces, layout, CFG); }
+
+function drawCash(id, dates, cash, color) {
+  plot(id, [{ x: dates, y: cash, type: 'scatter', mode: 'lines', line: { color: color || '#d9b45b', width: 1.7 }, fill: 'tozeroy', fillcolor: 'rgba(217,180,91,.07)', hovertemplate: '%{x}<br><b>%{y:$,.2f}</b><extra></extra>' }],
+    baseLayout({ yaxis: Object.assign({}, AX, { tickprefix: '$', tickformat: ',.0f' }), xaxis: Object.assign({}, AX, { type: 'date' }) }));
+}
+function drawDD(id, dates, cash) {
+  let peak = -Infinity;
+  const dd = cash.map((v) => { if (v > peak) peak = v; return v - peak; });
+  plot(id, [{ x: dates, y: dd, type: 'scatter', mode: 'lines', line: { color: '#e8707e', width: 1.3 }, fill: 'tozeroy', fillcolor: 'rgba(232,112,126,.10)', hovertemplate: '%{x}<br><b>%{y:$,.0f}</b><extra></extra>' }],
+    baseLayout({ yaxis: Object.assign({}, AX, { tickprefix: '$', tickformat: ',.0f' }), xaxis: Object.assign({}, AX, { type: 'date' }) }));
+}
+function drawDaily(id, dates, pos, neg) {
+  plot(id, [
+    { x: dates, y: pos.map((p) => p * 10), type: 'bar', marker: { color: 'rgba(99,214,160,.72)' }, name: 'Kâr', hovertemplate: '%{x}<br>kâr <b>%{y:$,.2f}</b><extra></extra>' },
+    { x: dates, y: neg.map((p) => -p * 10), type: 'bar', marker: { color: 'rgba(232,112,126,.72)' }, name: 'Zarar', hovertemplate: '%{x}<br>zarar <b>%{y:$,.2f}</b><extra></extra>' },
+  ], baseLayout({ barmode: 'relative', bargap: 0.15, yaxis: Object.assign({}, AX, { tickprefix: '$', tickformat: ',.0f' }), xaxis: Object.assign({}, AX, { type: 'date' }), showlegend: true, legend: { orientation: 'h', x: 0, y: 1.15, font: { size: 10 }, bgcolor: 'rgba(0,0,0,0)' } }));
+}
+function drawPeriod(id, labels, pos, neg, rotate) {
+  plot(id, [
+    { x: labels, y: pos.map((p) => p * 10), type: 'bar', marker: { color: 'rgba(99,214,160,.78)' }, name: 'Kâr', hovertemplate: '%{x}<br>kâr <b>%{y:$,.0f}</b><extra></extra>' },
+    { x: labels, y: neg.map((p) => -p * 10), type: 'bar', marker: { color: 'rgba(232,112,126,.78)' }, name: 'Zarar', hovertemplate: '%{x}<br>zarar <b>%{y:$,.0f}</b><extra></extra>' },
+  ], baseLayout({ barmode: 'relative', yaxis: Object.assign({}, AX, { tickprefix: '$', tickformat: ',.0f' }), xaxis: Object.assign({}, AX, { type: 'category', tickangle: rotate || 0, tickfont: { size: 9.5 } }), showlegend: true, legend: { orientation: 'h', x: 0, y: 1.15, font: { size: 10 }, bgcolor: 'rgba(0,0,0,0)' } }));
+}
+function drawRolling(id, dates, roll) {
+  const cols = { 30: '#d9b45b', 90: '#63d6a0', 365: '#7fa6d9' };
+  plot(id, ['30', '90', '365'].map((w) => ({ x: dates, y: roll[w], type: 'scatter', mode: 'lines', name: w + 'g', line: { color: cols[w], width: 1.5 }, hovertemplate: '%{x}<br>' + w + 'g <b>%{y:$,.0f}</b><extra></extra>' })),
+    baseLayout({ yaxis: Object.assign({}, AX, { tickprefix: '$', tickformat: ',.0f' }), xaxis: Object.assign({}, AX, { type: 'date' }), showlegend: true, legend: { orientation: 'h', x: 0, y: 1.15, font: { size: 10 }, bgcolor: 'rgba(0,0,0,0)' } }));
+}
+function drawFilterBars(id, fe, selected, valueKey, title, isPct) {
+  plot(id, [{
+    x: fe.map((r) => isPct ? r[valueKey] * 100 : r[valueKey]), y: fe.map((r) => r.label), type: 'bar', orientation: 'h',
+    marker: { color: fe.map((r, i) => i === selected ? '#d9b45b' : ((r[valueKey] || 0) >= 0 ? 'rgba(99,214,160,.72)' : 'rgba(232,112,126,.72)')), line: { color: fe.map((r, i) => i === selected ? '#fff2c9' : 'rgba(0,0,0,0)'), width: 1.2 } },
+    text: fe.map((r) => isPct ? ((r[valueKey] * 100).toFixed(2) + '%') : fmtUSD(r[valueKey])), textposition: 'outside', textfont: { size: 9, color: '#aeb6c1' },
+    customdata: fe.map((r) => [fmtN(r.n), r.pf ? r.pf.toFixed(2) : '—']),
+    hovertemplate: '%{y}<br><b>%{x}</b><br>n %{customdata[0]} · PF %{customdata[1]}<extra></extra>',
+  }], baseLayout({ xaxis: Object.assign({}, AX, { ticksuffix: isPct ? '%' : undefined, tickprefix: isPct ? undefined : '$', tickformat: isPct ? undefined : ',.0f' }), yaxis: Object.assign({}, AX, { type: 'category', automargin: true, tickfont: { size: 9 } }), margin: { l: 220, r: 40, t: 6, b: 34 } }));
+}
+function drawFilterHeatmap(id, fy, labels) {
+  const years = fy.years.map(String);
+  const z = fy.rows.map((row) => row.slice());
+  const abs = Math.max(1, ...z.flat().map(Math.abs));
+  plot(id, [{ z, x: years, y: labels, type: 'heatmap', colorscale: [[0, '#e8707e'], [0.5, '#0e1216'], [1, '#63d6a0']], zmid: 0, zmin: -abs, zmax: abs,
+    hovertemplate: '%{y} · %{x}<br><b>%{z:$,.0f}</b><extra></extra>', colorbar: { thickness: 8, tickfont: { size: 9, color: '#8f97a3' }, outlinewidth: 0, tickprefix: '$' } }],
+    baseLayout({ yaxis: Object.assign({}, AX, { type: 'category', automargin: true, tickfont: { size: 9 } }), xaxis: Object.assign({}, AX, { type: 'category' }), margin: { l: 220, r: 20, t: 6, b: 30 } }));
+}
+
+function renderCharts(D, p) {
   const dates = dateArray(D.daily.start, D.daily.n.length);
-  const net = D.daily.pos.map((p, i) => p - D.daily.neg[i]);
-  const cash = D.cash.all;
-  const cash25 = D.cash.y25;
-  const d25 = (Date.parse('2025-01-01T00:00:00Z') - Date.parse('2022-08-01T00:00:00Z')) / 86400000;
-  const dates25 = dates.slice(d25);
-  const pos25 = D.daily.pos.slice(d25), neg25 = D.daily.neg.slice(d25);
+  drawCash(p + 'cash', dates, D.cash.all);
+  drawDD(p + 'dd', dates, D.cash.all);
+  drawDaily(p + 'daily', dates, D.daily.pos, D.daily.neg);
+  drawPeriod(p + 'week', D.weekly.map((r) => r.w), D.weekly.map((r) => r.pos), D.weekly.map((r) => r.neg), 45);
+  drawPeriod(p + 'month', D.months.map((r) => r.ym), D.months.map((r) => r.pos), D.months.map((r) => r.neg), 45);
+  drawPeriod(p + 'year', D.years.map((r) => String(r.year)), D.years.map((r) => r.pos), D.years.map((r) => r.neg));
+  drawPeriod(p + 'season', D.seasons.map((r) => r.s), D.seasons.map((r) => r.pos), D.seasons.map((r) => r.neg));
+  drawPeriod(p + 'quarter', D.quarters.map((r) => 'Q' + r.q), D.quarters.map((r) => r.pos), D.quarters.map((r) => r.neg));
+  plot(p + 'dur', [{ x: D.durations.map((r) => r.label), y: D.durations.map((r) => r.n), type: 'bar', marker: { color: D.durations.map((r) => (r.pos >= r.neg ? 'rgba(99,214,160,.78)' : 'rgba(232,112,126,.78)')) }, text: D.durations.map((r) => fmtShort(r.n)), textposition: 'outside', textfont: { size: 9.5, color: '#aeb6c1' }, hovertemplate: '%{x}<br>işlem <b>%{y}</b><extra></extra>' }], baseLayout({ yaxis: Object.assign({}, AX, { tickformat: '~s' }), xaxis: Object.assign({}, AX, { type: 'category', tickfont: { size: 9 } }) }));
+  drawPeriod(p + 'durpnl', D.durations.map((r) => r.label), D.durations.map((r) => r.pos), D.durations.map((r) => r.neg));
 
-  // 1) kasa eğrisi
-  plot('c_cash', [{ x: dates, y: cash, type: 'scatter', mode: 'lines', line: { color: '#d9b45b', width: 1.8 }, fill: 'tozeroy', fillcolor: 'rgba(217,180,91,.07)', hovertemplate: '%{x}<br><b>%{y:$,.2f}</b><extra></extra>' }],
-    baseLayout({ yaxis: Object.assign({}, AX, { tickprefix: '$', tickformat: ',.0f' }), xaxis: Object.assign({}, AX, { type: 'date' }) }));
-
-  // 2) kasa 2025-26
-  plot('c_cash25', [{ x: dates25, y: cash25, type: 'scatter', mode: 'lines', line: { color: '#63d6a0', width: 1.8 }, fill: 'tozeroy', fillcolor: 'rgba(99,214,160,.08)', hovertemplate: '%{x}<br><b>%{y:$,.2f}</b><extra></extra>' }],
-    baseLayout({ yaxis: Object.assign({}, AX, { tickprefix: '$', tickformat: ',.0f' }), xaxis: Object.assign({}, AX, { type: 'date' }) }));
-
-  // 3) günlük kâr/zarar (aynı grafikte)
-  plot('c_daily', [
-    { x: dates, y: D.daily.pos.map((p) => p * 10), type: 'bar', marker: { color: 'rgba(99,214,160,.75)' }, name: 'Kâr', hovertemplate: '%{x}<br>kâr <b>%{y:$,.2f}</b><extra></extra>' },
-    { x: dates, y: D.daily.neg.map((p) => -p * 10), type: 'bar', marker: { color: 'rgba(232,112,126,.75)' }, name: 'Zarar', hovertemplate: '%{x}<br>zarar <b>%{y:$,.2f}</b><extra></extra>' },
-  ], baseLayout({ barmode: 'relative', bargap: 0.15, yaxis: Object.assign({}, AX, { tickprefix: '$', tickformat: ',.0f', zeroline: true }), xaxis: Object.assign({}, AX, { type: 'date' }), showlegend: true, legend: { orientation: 'h', x: 0, y: 1.12, font: { size: 11 }, bgcolor: 'rgba(0,0,0,0)' } }));
-
-  // 4) günlük 2025-26
-  plot('c_daily25', [
-    { x: dates25, y: pos25.map((p) => p * 10), type: 'bar', marker: { color: 'rgba(99,214,160,.75)' }, name: 'Kâr', hovertemplate: '%{x}<br>kâr <b>%{y:$,.2f}</b><extra></extra>' },
-    { x: dates25, y: neg25.map((p) => -p * 10), type: 'bar', marker: { color: 'rgba(232,112,126,.75)' }, name: 'Zarar', hovertemplate: '%{x}<br>zarar <b>%{y:$,.2f}</b><extra></extra>' },
-  ], baseLayout({ barmode: 'relative', bargap: 0.15, yaxis: Object.assign({}, AX, { tickprefix: '$', tickformat: ',.0f' }), xaxis: Object.assign({}, AX, { type: 'date' }), showlegend: true, legend: { orientation: 'h', x: 0, y: 1.12, font: { size: 11 }, bgcolor: 'rgba(0,0,0,0)' } }));
-
-  // 5) yıllık
-  plot('c_year', [
-    { x: D.years.map((r) => r.year), y: D.years.map((r) => r.pos * 10), type: 'bar', marker: { color: 'rgba(99,214,160,.8)' }, name: 'Kâr', hovertemplate: '%{x}<br>kâr <b>%{y:$,.0f}</b><extra></extra>' },
-    { x: D.years.map((r) => r.year), y: D.years.map((r) => -r.neg * 10), type: 'bar', marker: { color: 'rgba(232,112,126,.8)' }, name: 'Zarar', hovertemplate: '%{x}<br>zarar <b>%{y:$,.0f}</b><extra></extra>' },
-  ], baseLayout({ barmode: 'relative', yaxis: Object.assign({}, AX, { tickprefix: '$', tickformat: ',.0f' }), xaxis: Object.assign({}, AX, { type: 'category' }), showlegend: true, legend: { orientation: 'h', x: 0, y: 1.14, font: { size: 11 }, bgcolor: 'rgba(0,0,0,0)' } }));
-
-  // 6) kalma süresi
-  plot('c_dur', [{
-    x: D.durations.map((r) => r.label), y: D.durations.map((r) => r.n), type: 'bar',
-    marker: { color: D.durations.map((r) => (r.pos >= r.neg ? 'rgba(99,214,160,.8)' : 'rgba(232,112,126,.8)')) },
-    text: D.durations.map((r) => fmtShort(r.n)), textposition: 'outside', textfont: { size: 10.5, color: '#aeb6c1' },
-    hovertemplate: '%{x}<br>işlem <b>%{y}</b><extra></extra>',
-  }], baseLayout({ yaxis: Object.assign({}, AX, { tickformat: '~s' }), xaxis: Object.assign({}, AX, { type: 'category' }) }));
-
-  // 7) mevsim
-  plot('c_season', [
-    { x: D.seasons.map((r) => r.s), y: D.seasons.map((r) => r.pos * 10), type: 'bar', marker: { color: 'rgba(99,214,160,.8)' }, name: 'Kâr', hovertemplate: '%{x}<br>kâr <b>%{y:$,.0f}</b><extra></extra>' },
-    { x: D.seasons.map((r) => r.s), y: D.seasons.map((r) => -r.neg * 10), type: 'bar', marker: { color: 'rgba(232,112,126,.8)' }, name: 'Zarar', hovertemplate: '%{x}<br>zarar <b>%{y:$,.0f}</b><extra></extra>' },
-  ], baseLayout({ barmode: 'relative', yaxis: Object.assign({}, AX, { tickprefix: '$', tickformat: ',.0f' }), xaxis: Object.assign({}, AX, { type: 'category' }), showlegend: true, legend: { orientation: 'h', x: 0, y: 1.14, font: { size: 11 }, bgcolor: 'rgba(0,0,0,0)' } }));
-
-  // 8) çeyrek
-  plot('c_quarter', [
-    { x: D.quarters.map((r) => 'Q' + r.q), y: D.quarters.map((r) => r.pos * 10), type: 'bar', marker: { color: 'rgba(99,214,160,.8)' }, name: 'Kâr', hovertemplate: '%{x}<br>kâr <b>%{y:$,.0f}</b><extra></extra>' },
-    { x: D.quarters.map((r) => 'Q' + r.q), y: D.quarters.map((r) => -r.neg * 10), type: 'bar', marker: { color: 'rgba(232,112,126,.8)' }, name: 'Zarar', hovertemplate: '%{x}<br>zarar <b>%{y:$,.0f}</b><extra></extra>' },
-  ], baseLayout({ barmode: 'relative', yaxis: Object.assign({}, AX, { tickprefix: '$', tickformat: ',.0f' }), xaxis: Object.assign({}, AX, { type: 'category' }), showlegend: true, legend: { orientation: 'h', x: 0, y: 1.14, font: { size: 11 }, bgcolor: 'rgba(0,0,0,0)' } }));
-
-  // 9) takvim ısı haritası
+  // takvim
   const years = [...new Set(D.months.map((m) => m.y))].sort();
-  const z = years.map((y) => Array.from({ length: 12 }, (_, mi) => {
-    const row = D.months.find((m) => m.y === y && m.m === mi + 1);
-    return row ? (row.pos - row.neg) * 10 : null;
-  }));
-  const txt = years.map((y) => Array.from({ length: 12 }, (_, mi) => {
-    const row = D.months.find((m) => m.y === y && m.m === mi + 1);
-    return row ? `${fmtUSD((row.pos - row.neg) * 10)}<br>${row.n} işlem` : '';
-  }));
+  const z = years.map((y) => Array.from({ length: 12 }, (_, mi) => { const row = D.months.find((m) => m.y === y && m.m === mi + 1); return row ? (row.pos - row.neg) * 10 : null; }));
+  const txt = years.map((y) => Array.from({ length: 12 }, (_, mi) => { const row = D.months.find((m) => m.y === y && m.m === mi + 1); return row ? `${fmtUSD((row.pos - row.neg) * 10)}<br>${row.n} işlem` : ''; }));
   const mabs = Math.max(1, ...z.flat().map((v) => Math.abs(v || 0)));
-  plot('c_cal', [{ z, x: ['Oca', 'Şub', 'Mar', 'Nis', 'May', 'Haz', 'Tem', 'Ağu', 'Eyl', 'Eki', 'Kas', 'Ara'], y: years.map(String), type: 'heatmap', text: txt, hovertemplate: '%{y} %{x}<br>%{text}<extra></extra>',
-    colorscale: [[0, '#e8707e'], [0.45, '#2a1a1e'], [0.5, '#0e1216'], [0.55, '#142a20'], [1, '#63d6a0']], zmid: 0, zmin: -mabs, zmax: mabs,
-    colorbar: { thickness: 8, tickfont: { size: 10, color: '#8f97a3' }, outlinewidth: 0 } }],
-    baseLayout({ yaxis: Object.assign({}, AX, { type: 'category' }), xaxis: Object.assign({}, AX, { type: 'category', side: 'bottom' }), margin: { l: 52, r: 16, t: 8, b: 34 } }));
+  plot(p + 'cal', [{ z, x: ['Oca', 'Şub', 'Mar', 'Nis', 'May', 'Haz', 'Tem', 'Ağu', 'Eyl', 'Eki', 'Kas', 'Ara'], y: years.map(String), type: 'heatmap', text: txt, hovertemplate: '%{y} %{x}<br>%{text}<extra></extra>', colorscale: [[0, '#e8707e'], [0.45, '#2a1a1e'], [0.5, '#0e1216'], [0.55, '#142a20'], [1, '#63d6a0']], zmid: 0, zmin: -mabs, zmax: mabs, colorbar: { thickness: 8, tickfont: { size: 9, color: '#8f97a3' }, outlinewidth: 0 } }],
+    baseLayout({ yaxis: Object.assign({}, AX, { type: 'category' }), xaxis: Object.assign({}, AX, { type: 'category' }) }));
 
-  // 10) gün × saat
-  const dh = D.dowhour;
-  const zz = Array.from({ length: 7 }, (_, d) => Array.from({ length: 24 }, (_, h) => {
-    const n = dh.n[d][h];
-    return n ? ((dh.pos[d][h] - dh.neg[d][h]) / n) * 100 : null;
-  }));
-  const tx = Array.from({ length: 7 }, (_, d) => Array.from({ length: 24 }, (_, h) => {
-    const n = dh.n[d][h];
-    return `${['Paz', 'Pzt', 'Sal', 'Çar', 'Per', 'Cum', 'Cmt'][d]} ${String(h).padStart(2, '0')}:00<br>ort ${n ? (((dh.pos[d][h] - dh.neg[d][h]) / n) * 100).toFixed(2) : '—'}% · ${n} işlem`;
-  }));
-  const zabs = Math.max(0.5, ...zz.flat().map((v) => Math.abs(v || 0)));
-  plot('c_dow', [{ z: zz, x: Array.from({ length: 24 }, (_, h) => String(h)), y: ['Paz', 'Pzt', 'Sal', 'Çar', 'Per', 'Cum', 'Cmt'], type: 'heatmap', text: tx, hovertemplate: '%{text}<extra></extra>',
-    colorscale: [[0, '#e8707e'], [0.5, '#0e1216'], [1, '#63d6a0']], zmid: 0, zmin: -zabs, zmax: zabs,
-    colorbar: { thickness: 8, tickfont: { size: 10, color: '#8f97a3' }, outlinewidth: 0, ticksuffix: '%' } }],
-    baseLayout({ yaxis: Object.assign({}, AX, { type: 'category' }), xaxis: Object.assign({}, AX, { type: 'category', title: { text: 'saat (UTC)', font: { size: 10.5 } } }), margin: { l: 52, r: 16, t: 8, b: 40 } }));
+  drawPeriod(p + 'dow', ['Paz', 'Pzt', 'Sal', 'Çar', 'Per', 'Cum', 'Cmt'], D.dow.pos, D.dow.neg);
+  drawRolling(p + 'roll', dates, D.rolling);
 
-  // 11) drawdown
-  let peak = -Infinity; const ddarr = cash.map((v) => { if (v > peak) peak = v; return v - peak; });
-  plot('c_dd', [{ x: dates, y: ddarr, type: 'scatter', mode: 'lines', line: { color: '#e8707e', width: 1.4 }, fill: 'tozeroy', fillcolor: 'rgba(232,112,126,.10)', hovertemplate: '%{x}<br><b>%{y:$,.0f}</b><extra></extra>' }],
-    baseLayout({ yaxis: Object.assign({}, AX, { tickprefix: '$', tickformat: ',.0f' }), xaxis: Object.assign({}, AX, { type: 'date' }) }));
+  const syms = D.symbols || [];
+  plot(p + 'sym', [{ x: syms.map((s) => s.sumR * 100), y: syms.map((s) => s.sym.replace('USDT', '')), type: 'bar', orientation: 'h', marker: { color: syms.map((s) => (s.sumR >= 0 ? 'rgba(99,214,160,.76)' : 'rgba(232,112,126,.76)')) }, text: syms.map((s) => `${s.sumR >= 0 ? '+' : ''}${(s.sumR * 100).toFixed(0)}%`), textposition: 'outside', textfont: { size: 8.5, color: '#aeb6c1' }, hovertemplate: '%{y}<br>toplam <b>%{x:.1f}%</b> · %{customdata} işlem<extra></extra>', customdata: syms.map((s) => fmtN(s.n)) }],
+    baseLayout({ xaxis: Object.assign({}, AX, { ticksuffix: '%' }), yaxis: Object.assign({}, AX, { type: 'category', automargin: true, tickfont: { size: 8.5 } }), margin: { l: 72, r: 40, t: 6, b: 34 } }));
 
-  // 12) filtre etkisi
-  const fe = D.filterEffects;
-  plot('c_filter', [{
-    x: fe.map((r) => r.avg * 100), y: fe.map((r) => r.label), type: 'bar', orientation: 'h',
-    marker: { color: fe.map((r, i) => i === STATE.filter ? '#d9b45b' : (r.avg >= 0 ? 'rgba(99,214,160,.75)' : 'rgba(232,112,126,.75)')),
-      line: { color: fe.map((r, i) => i === STATE.filter ? '#fff2c9' : 'rgba(0,0,0,0)'), width: 1.4 } },
-    text: fe.map((r) => `${r.avg >= 0 ? '+' : ''}${(r.avg * 100).toFixed(2)}%`), textposition: 'outside', textfont: { size: 10, color: '#aeb6c1' },
-    hovertemplate: '%{y}<br>ort <b>%{x:.2f}%</b><br>n %{customdata[0]} · PF %{customdata[1]} · $%{customdata[2]}<extra></extra>',
-    customdata: fe.map((r) => [fmtN(r.n), r.pf ? r.pf.toFixed(2) : '—', fmtUSD(r.totPnl || 0)]),
-  }], baseLayout({ xaxis: Object.assign({}, AX, { title: { text: 'işlem başına ortalama getiri (%)', font: { size: 10.5 } }, ticksuffix: '%' }), yaxis: Object.assign({}, AX, { type: 'category', automargin: true, tickfont: { size: 10.5 } }), margin: { l: 230, r: 40, t: 8, b: 40 } }));
+  drawFilterBars(p + 'filter', D.filterEffects, STATE.filter, 'avg', 'Ortalama işlem getirisi', true);
+  drawFilterHeatmap(p + 'fheat', D.filterYears, D.filterEffects.map((r) => r.label));
+}
 
-  // 12b) filtre toplam kârı
-  plot('c_filter2', [{
-    x: fe.map((r) => r.totPnl || 0), y: fe.map((r) => r.label), type: 'bar', orientation: 'h',
-    marker: {
-      color: fe.map((r, i) => i === STATE.filter ? '#d9b45b' : ((r.totPnl || 0) >= 0 ? 'rgba(99,214,160,.75)' : 'rgba(232,112,126,.75)')),
-      line: { color: fe.map((r, i) => i === STATE.filter ? '#fff2c9' : 'rgba(0,0,0,0)'), width: 1.4 },
-    },
-    text: fe.map((r) => fmtUSD(r.totPnl || 0)), textposition: 'outside', textfont: { size: 10, color: '#aeb6c1' },
-    customdata: fe.map((r) => [fmtN(r.n), (r.avg * 100).toFixed(2) + '%']),
-    hovertemplate: '%{y}<br><b>%{x:$,.0f}</b><br>n %{customdata[0]} · ort %{customdata[1]}<extra></extra>',
-  }], baseLayout({ xaxis: Object.assign({}, AX, { tickprefix: '$', tickformat: ',.0f' }), yaxis: Object.assign({}, AX, { type: 'category', automargin: true, tickfont: { size: 10.5 } }), margin: { l: 230, r: 46, t: 8, b: 40 } }));
+function render2026(Y, p) {
+  const dates = dateArray('2026-01-01', Y.daily.n.length);
+  drawCash(p + 'cash', dates, Y.cash, '#63d6a0');
+  drawDD(p + 'dd', dates, Y.cash);
+  drawDaily(p + 'daily', dates, Y.daily.pos, Y.daily.neg);
+  drawPeriod(p + 'week', Y.weekly.map((r) => r.w), Y.weekly.map((r) => r.pos), Y.weekly.map((r) => r.neg), 45);
+  drawPeriod(p + 'month', Y.monthly.map((r) => r.ym.slice(5)), Y.monthly.map((r) => r.pos), Y.monthly.map((r) => r.neg));
+  drawPeriod(p + 'season', Y.seasons.map((r) => r.s), Y.seasons.map((r) => r.pos), Y.seasons.map((r) => r.neg));
+  drawPeriod(p + 'quarter', Y.quarters.map((r) => 'Q' + r.q), Y.quarters.map((r) => r.pos), Y.quarters.map((r) => r.neg));
+  drawFilterBars(p + 'filter', Y.filterEffects, STATE.filter, 'avg', '2026 ortalama işlem getirisi', true);
+  drawFilterBars(p + 'filter2', Y.filterEffects, STATE.filter, 'net', '2026 toplam net $', false);
+}
 
-  // 13) sembol katkısı
-  const syms = D.symbols.filter((s) => !s.sep);
-  plot('c_sym', [{
-    x: syms.map((s) => s.sumR * 100), y: syms.map((s) => s.sym.replace('USDT', '')), type: 'bar', orientation: 'h',
-    marker: { color: syms.map((s) => (s.sumR >= 0 ? 'rgba(99,214,160,.78)' : 'rgba(232,112,126,.78)')) },
-    text: syms.map((s) => `${s.sumR >= 0 ? '+' : ''}${(s.sumR * 100).toFixed(0)}%`), textposition: 'outside', textfont: { size: 10, color: '#aeb6c1' },
-    hovertemplate: '%{y}<br>toplam <b>%{x:.1f}%</b> · %{customdata} işlem<extra></extra>', customdata: syms.map((s) => fmtN(s.n)),
-  }], baseLayout({ xaxis: Object.assign({}, AX, { ticksuffix: '%' }), yaxis: Object.assign({}, AX, { type: 'category', automargin: true, tickfont: { size: 10.5 } }), margin: { l: 78, r: 40, t: 8, b: 40 } }));
-
-  document.getElementById('foot').innerHTML = `<span><span class="sw" style="background:var(--green)"></span>kâr</span><span><span class="sw" style="background:var(--red)"></span>zarar</span><span>10$ sabit pozisyon · kaldıraçsız · maliyet ve funding dahil</span><span>Üretim: <b>${META.gen}</b></span><span>Yatırım tavsiyesi değildir.</span>`;
+function renderFilterTable(fe) {
+  const rows = fe.map((r, i) => `<tr class="${i === STATE.filter ? 'on' : ''}"><td>${r.label}</td><td>${fmtN(r.n)}</td><td>${r.wr == null ? '—' : (r.wr * 100).toFixed(1) + '%'}</td><td class="${r.avg >= 0 ? 'pos' : 'neg'}">${fmtPct(r.avg)}</td><td>${r.pf ? r.pf.toFixed(2) : '—'}</td><td class="${(r.totPnl || 0) >= 0 ? 'pos' : 'neg'}">${fmtUSD(r.totPnl || 0)}</td></tr>`).join('');
+  document.getElementById('a_ftable').innerHTML = `<table><thead><tr><th>Filtre</th><th>İşlem</th><th>Kazanma</th><th>Ort.</th><th>PF</th><th>Net $</th></tr></thead><tbody>${rows}</tbody></table>`;
 }
 
 document.getElementById('q').addEventListener('input', renderStrats);

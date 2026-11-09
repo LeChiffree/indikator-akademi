@@ -89,6 +89,8 @@ def summarize(d):
     active = cnt > 0
     profit_days = int(((days > 0) & active).sum())
     loss_days = int(((days < 0) & active).sum())
+    gross_w = float(d['grossW']) * 10.0
+    gross_l = float(d['grossL']) * 10.0
     return {
         'n': n,
         'wr': float(d['wins'] / n) if n else 0.0,
@@ -101,6 +103,10 @@ def summarize(d):
         'profitDays': profit_days,
         'lossDays': loss_days,
         'totPnl': float((d['dPos'].sum() - d['dNeg'].sum()) * 10.0),
+        'grossW': gross_w,
+        'grossL': gross_l,
+        'wins': int(d['wins']),
+        'losses': n - int(d['wins']),
     }
 
 
@@ -154,17 +160,126 @@ def dowhour(d):
     return {'pos': p.round(5).tolist(), 'neg': n.round(5).tolist(), 'n': c.tolist()}
 
 
-def symbols(d, top=12, bottom=8):
+def dow(d):
+    p = d['hPos'].reshape(7, 24).sum(axis=1); n = d['hNeg'].reshape(7, 24).sum(axis=1); c = d['hCnt'].reshape(7, 24).sum(axis=1)
+    return {'pos': p.round(5).tolist(), 'neg': n.round(5).tolist(), 'n': c.tolist()}
+
+
+def weekly(d, end):
+    pos, neg, cnt = d['dPos'], d['dNeg'], d['dCnt']
+    out = {}
+    for i in range(end):
+        dd = DAY0 + dt.timedelta(days=i)
+        iso = dd.isocalendar()
+        key = f'{iso[0]}-W{iso[1]:02d}'
+        row = out.setdefault(key, {'w': key, 'pos': 0.0, 'neg': 0.0, 'n': 0})
+        row['pos'] += float(pos[i]); row['neg'] += float(neg[i]); row['n'] += int(cnt[i])
+    return [out[k] for k in sorted(out)]
+
+
+def rolling(d, end):
+    net = (d['dPos'].astype(np.float64) - d['dNeg'].astype(np.float64)) * 10.0
+    cs = np.cumsum(net[:end])
+    out = {}
+    for w in (30, 90, 365):
+        r = cs.copy()
+        if end > w:
+            r[w:] = cs[w:] - cs[:-w]
+        r[:min(w, end)] = np.nan
+        out[str(w)] = [None if not np.isfinite(v) else round(float(v), 2) for v in r]
+    return out
+
+
+def filter_years(blocks, end):
+    years = [2022, 2023, 2024, 2025, 2026]
+    mat = []
+    for f, d in enumerate(blocks):
+        net = (d['dPos'].astype(np.float64) - d['dNeg'].astype(np.float64)) * 10.0
+        row = []
+        for y in years:
+            a = (dt.date(y, 1, 1) - DAY0).days
+            b = (dt.date(y + 1, 1, 1) - DAY0).days
+            row.append(round(float(net[max(0, a):min(end, b)].sum()), 2))
+        mat.append(row)
+    return {'years': years, 'rows': mat}
+
+
+def year2026(d, blocks, end):
+    """Secili filtrenin 2026 dilimi + 31 filtrenin 2026 ozeti."""
+    a = (dt.date(2026, 1, 1) - DAY0).days
+    if end <= a:
+        return None
+    pos = d['dPos'][a:end].astype(np.float64); neg = d['dNeg'][a:end].astype(np.float64)
+    cnt = d['dCnt'][a:end].astype(np.float64)
+    net = pos - neg
+    cash = np.cumsum(net * 10.0)
+    peak = np.maximum.accumulate(cash)
+    active = cnt > 0
+    kpi = {
+        'n': int(cnt.sum()), 'net': round(float(net.sum() * 10.0), 2),
+        'avg': float(net.sum() / cnt.sum()) if cnt.sum() else 0.0,
+        'profitDays': int(((net > 0) & active).sum()), 'lossDays': int(((net < 0) & active).sum()),
+        'maxDD': float((cash - peak).min()) if len(cash) else 0.0,
+    }
+    # haftalik / aylik / mevsim / ceyrek
+    wk = {}; mo = {}
+    seP = [0.0, 0.0, 0.0, 0.0]; seN = [0.0, 0.0, 0.0, 0.0]; seC = [0, 0, 0, 0]
+    qP = [0.0, 0.0, 0.0, 0.0]; qN = [0.0, 0.0, 0.0, 0.0]; qC = [0, 0, 0, 0]
+    for i in range(a, end):
+        dd = DAY0 + dt.timedelta(days=i)
+        v = float(net[i - a]); c = int(cnt[i - a])
+        iso = dd.isocalendar(); key = f'{iso[0]}-W{iso[1]:02d}'
+        r = wk.setdefault(key, {'w': key, 'pos': 0.0, 'neg': 0.0, 'n': 0})
+        if v >= 0: r['pos'] += v
+        else: r['neg'] += -v
+        r['n'] += c
+        mk = dd.strftime('%Y-%m')
+        m = mo.setdefault(mk, {'ym': mk, 'pos': 0.0, 'neg': 0.0, 'n': 0})
+        if v >= 0: m['pos'] += v
+        else: m['neg'] += -v
+        m['n'] += c
+        sk = SEASON_OF[dd.month]
+        if v >= 0: seP[sk] += v
+        else: seN[sk] += -v
+        seC[sk] += c
+        qk = (dd.month - 1) // 3
+        if v >= 0: qP[qk] += v
+        else: qN[qk] += -v
+        qC[qk] += c
+    effects = []
+    for k, dd in enumerate(blocks):
+        p = dd['dPos'][a:].astype(np.float64); n = dd['dNeg'][a:].astype(np.float64); c = dd['dCnt'][a:].astype(np.float64)
+        nn = float(c.sum())
+        effects.append({'i': k, 'label': META['filters'][k]['label'], 'group': META['filters'][k]['group'],
+                        'n': int(nn), 'net': round(float((p - n).sum() * 10.0), 2),
+                        'avg': float((p - n).sum() / nn) if nn else 0.0,
+                        'profitDays': int(((p - n) > 0).sum()), 'lossDays': int(((p - n) < 0).sum())})
+    # 2026 ay isi haritasi
+    months26 = []
+    for mk, m in mo.items():
+        months26.append({'ym': mk, 'pos': m['pos'], 'neg': m['neg'], 'n': m['n']})
+    return {
+        'kpi': kpi, 'daily': {'pos': pos.tolist(), 'neg': neg.tolist(), 'n': cnt.astype(int).tolist()},
+        'cash': [round(float(v), 2) for v in cash],
+        'weekly': [wk[k] for k in sorted(wk)],
+        'monthly': months26,
+        'seasons': [{'s': SEASONS[i], 'pos': seP[i], 'neg': seN[i], 'n': seC[i]} for i in range(4)],
+        'quarters': [{'q': i + 1, 'pos': qP[i], 'neg': qN[i], 'n': qC[i]} for i in range(4)],
+        'filterEffects': effects,
+    }
+
+
+def symbols(d, n=40):
     yN, yW, ySum, yEq = d['yN'], d['yW'], d['ySum'], d['yEq']
     rows = []
     for i, s in enumerate(META['symbols']):
         if yN[i] > 0:
             rows.append({'sym': s, 'n': int(yN[i]), 'wr': float(yW[i] / yN[i]), 'sumR': float(ySum[i]),
                          'avg': float(ySum[i] / yN[i]), 'eq': float(yEq[i])})
+    rows.sort(key=lambda r: r['n'], reverse=True)
+    rows = rows[:n]
     rows.sort(key=lambda r: r['sumR'], reverse=True)
-    if len(rows) <= top + bottom:
-        return rows
-    return rows[:top] + [{'sep': True}] + rows[-bottom:]
+    return rows
 
 
 APP_STATE = {}
@@ -213,6 +328,11 @@ def scenario_payload(si, fi):
         'durations': [{'label': DUR_LABELS[k], 'n': int(d['uCnt'][k]), 'pos': float(d['uPos'][k]), 'neg': float(d['uNeg'][k])} for k in range(NB)],
         'symbols': symbols(d),
         'filterEffects': effects,
+        'weekly': weekly(d, end),
+        'rolling': rolling(d, end),
+        'dow': dow(d),
+        'filterYears': filter_years(blocks, end),
+        'y2026': year2026(d, blocks, end),
     }
 
 
