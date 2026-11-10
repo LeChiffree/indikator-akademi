@@ -114,6 +114,9 @@ def summarize(d):
     if wins > 0 and wb > 0:
         win_h = wb / wins / 60.0
         win_exact = True
+    elif wins <= 0:
+        win_h = None
+        win_exact = True
     else:
         up = d['uPos'].astype(np.float64)
         tot = float(up.sum())
@@ -347,7 +350,9 @@ def ranking_rows():
             else:
                 av26 = 0.0
             wb = float(v[9]) if hdr > 9 else 0.0
-            if wins > 0 and wb > 0:
+            if wins <= 0:
+                wh = None
+            elif wb > 0:
                 wh = wb / wins / 60.0
             else:
                 ub = base + ND * 12 + NH * 12
