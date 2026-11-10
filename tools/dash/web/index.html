@@ -116,6 +116,7 @@
               <option value="full" selected>Ölçek: min–max</option>
               <option value="clip">Ölçek: %1–99 kırpık</option>
             </select>
+            <button id="rclear" class="pgbtn" type="button" title="Tüm sütun filtrelerini kaldır">Filtreleri temizle</button>
           </div>
         </div>
         <div class="rtable-wrap">
@@ -159,6 +160,7 @@
   </main>
 </div>
 
+<div id="fpop" class="fpop" hidden></div>
 <script src="/static/plotly.min.js"></script>
 <script>
 const CFG = { displayModeBar: false, responsive: true };
@@ -443,12 +445,13 @@ function renderFilterTable(fe) {
 }
 
 /* ------------------------------ Sıralama sekmesi ------------------------------ */
-const RV = { data: null, rows: null, sort: 'score', dir: -1, page: 1, pages: 1 };
+const RV = { data: null, rows: null, sort: 'score', dir: -1, page: 1, pages: 1, filters: {}, vals: null };
 
 function setView(v) {
   document.querySelectorAll('.tabs .tab').forEach((t) => t.classList.toggle('on', t.dataset.view === v));
   document.getElementById('view-overview').hidden = v !== 'overview';
   document.getElementById('view-rank').hidden = v !== 'rank';
+  document.body.classList.toggle('rankmode', v === 'rank');
   if (v === 'rank') loadRank();
   else setTimeout(() => document.querySelectorAll('#view-overview .js-plotly-plot').forEach((el) => Plotly.Plots.resize(el)), 40);
 }
@@ -538,6 +541,7 @@ function renderRank() {
   const base = rankRows().filter((r) => r.n >= minN);
   applyScores(base, scaleMode);
   let view = q ? base.filter((r) => (r.name + ' ' + r.filter + ' ' + r.tf).toLowerCase().includes(q)) : base;
+  view = view.filter(passFilters);
   const key = RV.sort, dir = RV.dir;
   view = view.slice().sort((x, y) => {
     let a = x[key], b = y[key];
@@ -568,12 +572,13 @@ function renderRank() {
       <td><span class="rank-badge ${cls}" title="Getiri ${r.s2.toFixed(1)} + süre ${r.s4.toFixed(1)} + K/Z ${r.s5.toFixed(1)}">${r.score.toFixed(1)}</span></td>
     </tr>`;
   }).join('');
-  document.getElementById('rankInfo').textContent = `${fmtN(view.length)} kombinasyon · min ${fmtN(minN)} işlem · kârlı süre ${RV.data.exact ? 'gerçek veriden' : 'süre dağılımından tahmini'} · ${size ? `${fmtN(start + 1)}–${fmtN(start + shown.length)} / ${fmtN(view.length)}` : 'tümü gösteriliyor'}`;
+  document.getElementById('rankInfo').textContent = `${fmtN(view.length)} kombinasyon · min ${fmtN(minN)} işlem · kârlı süre ${RV.data.exact ? 'gerçek veriden' : 'süre dağılımından tahmini'} · ${size ? `${fmtN(start + 1)}–${fmtN(start + shown.length)} / ${fmtN(view.length)}` : 'tümü gösteriliyor'}${activeFilterCount() ? ` · ${activeFilterCount()} sütun filtresi` : ''}`;
   document.getElementById('rpageinfo').textContent = `${RV.page} / ${pages}`;
   document.getElementById('rprev').disabled = RV.page <= 1;
   document.getElementById('rnext').disabled = RV.page >= pages;
   document.getElementById('rankFoot').innerHTML = `Puan = <b>net/işlem</b> (min→0, max→33,3) + <b>kârlı işlem süresi</b> (kısa→33,3, uzun→0) + <b>kârlı/zararlı oranı</b> (min→0, max→33,3). ${scaleMode === 'clip' ? 'Min–max aralığı %1–99 yüzdelik diliminden alınır (uç değerler kırpılır).' : 'Min–max aralığı tüm satırlardan alınır; tek bir aşırı sonuç ölçeği sıkıştırabilir.'} Aralık, seçili minimum işlem sayısını geçen satırlar üzerinden hesaplanır. Satıra tıklayınca kombinasyon Genel sekmesinde açılır.`;
   paintSortHeader();
+  paintFilterState();
 }
 
 document.querySelectorAll('.tabs .tab').forEach((t) => { t.onclick = () => setView(t.dataset.view); });
@@ -602,6 +607,211 @@ document.getElementById('rbody').onclick = (e) => {
   selectStrategy(sc.id, sc.tf, Number(tr.dataset.f));
   setView('overview');
 };
+
+/* -------------------- Excel tarzı sütun filtreleri (tablo başlıkları) -------------------- */
+const COLS = {
+  name: { label: 'Strateji', type: 'text' },
+  tf: { label: 'Zaman dilimi', type: 'text' },
+  filter: { label: 'Filtre', type: 'text' },
+  n: { label: 'İşlem sayısı', type: 'num', unit: 'adet' },
+  a: { label: 'Net / İşlem', type: 'num', unit: '%', mul: 100 },
+  a26: { label: '2026 Net / İşlem', type: 'num', unit: '%', mul: 100 },
+  wh: { label: 'Kârlı işlem süresi', type: 'num', unit: 'saat' },
+  ratio: { label: 'Kârlı / Zararlı', type: 'num', unit: 'kat' },
+  score: { label: 'Puan', type: 'num', unit: 'puan' },
+};
+const TF_ORDER = { '5m': 0, '15m': 1, '1h': 2, '4h': 3, '1d': 4, '1w': 5 };
+const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const parseNum = (s) => {
+  const t = String(s == null ? '' : s).trim().replace(/\s/g, '').replace(',', '.');
+  if (!t) return null;
+  const v = Number(t);
+  return Number.isFinite(v) ? v : null;
+};
+
+function activeFilterCount() {
+  return Object.keys(RV.filters).filter((k) => !!RV.filters[k]).length;
+}
+
+function uniqueValues(k) {
+  if (!RV.vals) RV.vals = {};
+  if (RV.vals[k]) return RV.vals[k];
+  const set = new Set();
+  for (const r of rankRows()) set.add(r[k]);
+  const arr = [...set];
+  arr.sort(k === 'tf'
+    ? (a, b) => (TF_ORDER[a] ?? 9) - (TF_ORDER[b] ?? 9)
+    : (a, b) => String(a).localeCompare(String(b), 'tr'));
+  RV.vals[k] = arr;
+  return arr;
+}
+
+function passFilters(r) {
+  for (const k in RV.filters) {
+    const f = RV.filters[k];
+    if (!f) continue;
+    if (Array.isArray(f)) {
+      const v = r[k];
+      if (v == null) return false;
+      if (f[0] != null && v < f[0]) return false;
+      if (f[1] != null && v > f[1]) return false;
+    } else if (!f.has(r[k])) return false;
+  }
+  return true;
+}
+
+function popFor(k) {
+  const c = COLS[k], cur = RV.filters[k];
+  let h = `<div class="fp-title">${esc(c.label)}</div>
+    <button class="fp-item" data-act="asc" type="button"><span>↑</span> Küçükten büyüğe sırala</button>
+    <button class="fp-item" data-act="desc" type="button"><span>↓</span> Büyükten küçüğe sırala</button>
+    <div class="fp-sep"></div>`;
+  if (c.type === 'num') {
+    const disp = (v) => (v == null ? '' : (c.mul ? +(v * c.mul).toFixed(4) : v));
+    h += `<div class="fp-lbl">Aralık${c.unit ? ` <span>(${c.unit})</span>` : ''}</div>
+      <div class="fp-range">
+        <input id="fpLo" class="fp-input" inputmode="decimal" placeholder="min" value="${Array.isArray(cur) ? disp(cur[0]) : ''}">
+        <span class="fp-dash">–</span>
+        <input id="fpHi" class="fp-input" inputmode="decimal" placeholder="max" value="${Array.isArray(cur) ? disp(cur[1]) : ''}">
+      </div>
+      <div class="fp-hint">Boş uç sınırsız. Ondalık için virgül de olur. “—” gösterilen satırlar aralıkta gizlenir.</div>`;
+  } else {
+    const vals = uniqueValues(k);
+    h += `<input id="fpSearch" class="fp-input fp-search" placeholder="Listede ara…" autocomplete="off">
+      <label class="fp-all"><input type="checkbox" id="fpAll" ${cur ? '' : 'checked'}> <b>Tümü</b><span class="fp-count" id="fpCount"></span></label>
+      <div class="fp-list" id="fpList">`;
+    for (const v of vals) {
+      h += `<label data-v="${esc(v)}"><input type="checkbox" value="${esc(v)}" ${!cur || cur.has(v) ? 'checked' : ''}> ${esc(v)}</label>`;
+    }
+    h += `</div>`;
+  }
+  h += `<div class="fp-sep"></div>
+    <div class="fp-actions">
+      <button class="fp-btn ghost" data-act="clear" type="button">Temizle</button>
+      <button class="fp-btn" data-act="apply" type="button">Uygula</button>
+    </div>`;
+  return h;
+}
+
+let popCol = null;
+function closePop() {
+  document.getElementById('fpop').hidden = true;
+  popCol = null;
+}
+
+function wirePop(k) {
+  const pop = document.getElementById('fpop');
+  const c = COLS[k];
+  pop.querySelectorAll('[data-act]').forEach((b) => {
+    b.onclick = () => {
+      const act = b.dataset.act;
+      if (act === 'asc' || act === 'desc') {
+        RV.sort = k; RV.dir = act === 'asc' ? 1 : -1; RV.page = 1;
+        renderRank(); closePop(); return;
+      }
+      if (act === 'clear') {
+        RV.filters[k] = null; RV.page = 1; renderRank(); closePop(); return;
+      }
+      if (act === 'apply') {
+        if (c.type === 'num') {
+          let lo = parseNum(document.getElementById('fpLo').value);
+          let hi = parseNum(document.getElementById('fpHi').value);
+          if (lo != null && hi != null && lo > hi) [lo, hi] = [hi, lo];
+          const raw = (v) => (v == null ? null : (c.mul ? v / c.mul : v));
+          RV.filters[k] = lo == null && hi == null ? null : [raw(lo), raw(hi)];
+        } else {
+          const boxes = [...pop.querySelectorAll('#fpList input')];
+          const on = boxes.filter((x) => x.checked).map((x) => x.value);
+          RV.filters[k] = on.length === boxes.length ? null : new Set(on);
+        }
+        RV.page = 1; renderRank(); closePop();
+      }
+    };
+  });
+  if (c.type !== 'text') return;
+  const all = pop.querySelector('#fpAll');
+  const boxes = () => [...pop.querySelectorAll('#fpList input')];
+  const refresh = () => {
+    const bs = boxes();
+    document.getElementById('fpCount').textContent = ` (${bs.filter((x) => x.checked).length}/${bs.length})`;
+  };
+  all.onchange = () => { boxes().forEach((x) => { x.checked = all.checked; }); refresh(); };
+  boxes().forEach((x) => { x.onchange = () => { all.checked = boxes().every((y) => y.checked); refresh(); }; });
+  document.getElementById('fpSearch').oninput = (e) => {
+    const qq = e.target.value.trim().toLowerCase();
+    pop.querySelectorAll('#fpList label').forEach((l) => {
+      l.style.display = l.dataset.v.toLowerCase().includes(qq) ? '' : 'none';
+    });
+  };
+  refresh();
+}
+
+function openPop(k, btn) {
+  const pop = document.getElementById('fpop');
+  if (popCol === k && !pop.hidden) { closePop(); return; }
+  popCol = k;
+  pop.innerHTML = popFor(k);
+  pop.hidden = false;
+  pop.style.left = '0px'; pop.style.top = '0px';
+  const r = btn.getBoundingClientRect();
+  const w = pop.offsetWidth, h = pop.offsetHeight;
+  let x = r.left + r.width / 2 - w / 2;
+  x = Math.max(8, Math.min(window.innerWidth - w - 8, x));
+  let y = r.bottom + 6;
+  if (y + h > window.innerHeight - 8) y = Math.max(8, r.top - h - 6);
+  pop.style.left = Math.round(x) + 'px';
+  pop.style.top = Math.round(y) + 'px';
+  wirePop(k);
+  const s = pop.querySelector('#fpSearch');
+  if (s) s.focus();
+}
+
+function paintFilterState() {
+  let n = 0;
+  document.querySelectorAll('#rtable th[data-k]').forEach((th) => {
+    const k = th.dataset.k;
+    if (!COLS[k]) return;
+    const on = !!RV.filters[k];
+    if (on) n++;
+    const b = th.querySelector('.cfbtn');
+    if (b) { b.classList.toggle('on', on); b.title = on ? 'Filtre aktif — değiştir' : 'Filtrele / sırala'; }
+  });
+  const cb = document.getElementById('rclear');
+  cb.textContent = n ? `Filtreleri temizle (${n})` : 'Filtreleri temizle';
+  cb.disabled = !n;
+}
+
+function initFilterBtns() {
+  document.querySelectorAll('#rtable th[data-k]').forEach((th) => {
+    const k = th.dataset.k;
+    if (!COLS[k] || th.querySelector('.cfbtn')) return;
+    th.classList.add('fth');
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'cfbtn';
+    b.dataset.k = k;
+    b.title = 'Filtrele / sırala';
+    b.textContent = '▾';
+    b.onclick = (e) => { e.stopPropagation(); openPop(k, b); };
+    th.appendChild(b);
+  });
+}
+
+document.addEventListener('mousedown', (e) => {
+  const pop = document.getElementById('fpop');
+  if (pop.hidden) return;
+  if (pop.contains(e.target) || (e.target.classList && e.target.classList.contains('cfbtn'))) return;
+  closePop();
+});
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closePop(); });
+document.getElementById('rclear').onclick = () => {
+  RV.filters = {};
+  RV.page = 1;
+  closePop();
+  renderRank();
+};
+initFilterBtns();
+paintFilterState();
 
 document.getElementById('q').addEventListener('input', renderStrats);
 boot().catch((e) => { document.getElementById('title').textContent = 'Veri yüklenemedi'; console.error(e); });

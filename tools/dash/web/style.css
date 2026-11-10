@@ -1,4 +1,4 @@
-/* İndikatör Akademi — Analiz Dashboard
+﻿/* İndikatör Akademi — Analiz Dashboard
    Görsel referans: V4 Three Methods Offline raporu (lacivert / çelik mavi / Inter) */
 
 @font-face{font-family:Inter;font-style:normal;font-weight:400;font-display:swap;src:url(/static/fonts/inter-latin-ext-400-normal.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF}
@@ -128,3 +128,38 @@ table.rtable{width:100%;border-collapse:separate;border-spacing:0;font-size:12px
   .top h1{font-size:21px}
   .chart{height:250px}
 }
+
+/* --- Excel tarzi sutun filtreleri --- */
+.rtable th.fth{padding-right:24px}
+.cfbtn{position:absolute;right:2px;top:50%;transform:translateY(-50%);width:17px;height:17px;display:flex;align-items:center;justify-content:center;padding:0;border:1px solid transparent;border-radius:4px;background:transparent;color:#7f97a8;font:inherit;font-size:9px;line-height:1;cursor:pointer}
+.cfbtn:hover{background:#26405a;border-color:#3a5570;color:#dceaf5}
+.cfbtn.on{background:var(--gold,#c9a227);border-color:var(--gold,#c9a227);color:#101d2b;font-weight:700}
+.fpop{position:fixed;z-index:90;width:268px;max-width:calc(100vw - 16px);background:#0f1f2e;border:1px solid #33495e;border-radius:10px;box-shadow:0 14px 36px rgba(0,0,0,.55);padding:8px;color:#c5d5df;font-size:12px}
+.fp-title{font-weight:700;color:#e6f0f7;font-size:12px;padding:2px 4px 7px}
+.fp-item{display:flex;gap:8px;align-items:center;width:100%;text-align:left;background:transparent;border:0;border-radius:6px;color:#c5d5df;font:inherit;font-size:12px;padding:6px 8px;cursor:pointer}
+.fp-item span{width:12px;color:#8fb6d6}
+.fp-item:hover{background:#1b3952;color:#fff}
+.fp-sep{height:1px;background:#24394c;margin:6px 2px}
+.fp-lbl{font-size:11px;color:#8fa6b6;padding:2px 4px 5px}
+.fp-lbl span{color:#6f8898}
+.fp-range{display:flex;align-items:center;gap:6px;padding:0 2px}
+.fp-dash{color:#6f8898}
+.fp-input{width:100%;background:#132738;border:1px solid #33495e;border-radius:6px;color:#e6f0f7;font:inherit;font-size:12px;padding:6px 8px;outline:none}
+.fp-input:focus{border-color:var(--blue,#6caaff)}
+.fp-hint{font-size:10.5px;color:#7b93a4;line-height:1.5;padding:6px 4px 0}
+.fp-search{width:calc(100% - 4px);margin:0 2px 6px}
+.fp-all{display:flex;align-items:center;gap:7px;padding:5px 4px;border-bottom:1px solid #24394c;margin-bottom:4px;cursor:pointer}
+.fp-count{color:#7b93a4;font-weight:400;font-size:11px}
+.fp-list{max-height:220px;overflow:auto;padding:2px 2px 4px}
+.fp-list label{display:flex;align-items:center;gap:7px;padding:4px 4px;border-radius:5px;cursor:pointer;font-size:11.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fp-list label:hover{background:#1b3952}
+.fp-list input,.fp-all input{accent-color:#6caaff;margin:0}
+.fp-actions{display:flex;justify-content:flex-end;gap:8px;padding:2px 2px 0}
+.fp-btn{background:#1d3f5e;border:1px solid #3a5c7d;color:#e6f0f7;border-radius:7px;padding:6px 12px;font:inherit;font-size:11.5px;font-weight:600;cursor:pointer}
+.fp-btn:hover{background:#25537c;border-color:var(--blue,#6caaff)}
+.fp-btn.ghost{background:transparent;border-color:#33495e;color:#9fb4c4}
+.fp-btn.ghost:hover{background:#1b3952;color:#e6f0f7}
+
+/* Siralama sekmesinde tabloya tam genislik */
+body.rankmode .side{display:none}
+body.rankmode .main{margin-left:0;max-width:none}
