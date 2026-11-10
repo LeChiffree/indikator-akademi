@@ -135,6 +135,22 @@
             <tbody id="rbody"></tbody>
           </table>
         </div>
+        <div class="rank-pager">
+          <div class="rp-side">
+            <span>Sayfa başına</span>
+            <select id="rpage" class="fsel">
+              <option value="100">100</option>
+              <option value="250" selected>250</option>
+              <option value="500">500</option>
+              <option value="0">Tümü</option>
+            </select>
+          </div>
+          <div class="rp-side">
+            <button id="rprev" class="pgbtn" type="button">‹ Önceki</button>
+            <span id="rpageinfo" class="rpageinfo">1 / 1</span>
+            <button id="rnext" class="pgbtn" type="button">Sonraki ›</button>
+          </div>
+        </div>
         <div class="rank-note" id="rankFoot"></div>
       </div>
     </div>
@@ -427,7 +443,7 @@ function renderFilterTable(fe) {
 }
 
 /* ------------------------------ Sıralama sekmesi ------------------------------ */
-const RV = { data: null, rows: null, sort: 'score', dir: -1 };
+const RV = { data: null, rows: null, sort: 'score', dir: -1, page: 1, pages: 1 };
 
 function setView(v) {
   document.querySelectorAll('.tabs .tab').forEach((t) => t.classList.toggle('on', t.dataset.view === v));
@@ -530,13 +546,17 @@ function renderRank() {
     if (b == null) b = key === 'wh' ? Infinity : -Infinity;
     return (a - b) * dir;
   });
-  const LIMIT = 800;
-  const shown = view.slice(0, LIMIT);
+  const size = Number(document.getElementById('rpage').value);
+  const pages = size ? Math.max(1, Math.ceil(view.length / size)) : 1;
+  if (RV.page > pages) RV.page = pages;
+  RV.pages = pages;
+  const start = size ? (RV.page - 1) * size : 0;
+  const shown = size ? view.slice(start, start + size) : view;
   document.getElementById('rbody').innerHTML = shown.map((r, i) => {
     const cls = r.score >= 70 ? 'rb-hi' : r.score >= 40 ? 'rb-mid' : 'rb-lo';
     const ratio = r.l > 0 ? (r.w / r.l).toFixed(2).replace('.', ',') : '—';
     return `<tr data-s="${r.s}" data-f="${r.f}">
-      <td class="l" style="color:var(--muted)">${i + 1}</td>
+      <td class="l" style="color:var(--muted)">${start + i + 1}</td>
       <td class="l sym" title="${r.name}">${r.name}</td>
       <td><span class="tfmini">${r.tf}</span></td>
       <td class="l flt" title="${r.filter}">${r.filter}</td>
@@ -548,7 +568,10 @@ function renderRank() {
       <td><span class="rank-badge ${cls}" title="Getiri ${r.s2.toFixed(1)} + süre ${r.s4.toFixed(1)} + K/Z ${r.s5.toFixed(1)}">${r.score.toFixed(1)}</span></td>
     </tr>`;
   }).join('');
-  document.getElementById('rankInfo').textContent = `${fmtN(view.length)} kombinasyon · min ${fmtN(minN)} işlem · kârlı süre ${RV.data.exact ? 'gerçek veriden' : 'süre dağılımından tahmini'} · ilk ${fmtN(shown.length)} satır`;
+  document.getElementById('rankInfo').textContent = `${fmtN(view.length)} kombinasyon · min ${fmtN(minN)} işlem · kârlı süre ${RV.data.exact ? 'gerçek veriden' : 'süre dağılımından tahmini'} · ${size ? `${fmtN(start + 1)}–${fmtN(start + shown.length)} / ${fmtN(view.length)}` : 'tümü gösteriliyor'}`;
+  document.getElementById('rpageinfo').textContent = `${RV.page} / ${pages}`;
+  document.getElementById('rprev').disabled = RV.page <= 1;
+  document.getElementById('rnext').disabled = RV.page >= pages;
   document.getElementById('rankFoot').innerHTML = `Puan = <b>net/işlem</b> (min→0, max→33,3) + <b>kârlı işlem süresi</b> (kısa→33,3, uzun→0) + <b>kârlı/zararlı oranı</b> (min→0, max→33,3). ${scaleMode === 'clip' ? 'Min–max aralığı %1–99 yüzdelik diliminden alınır (uç değerler kırpılır).' : 'Min–max aralığı tüm satırlardan alınır; tek bir aşırı sonuç ölçeği sıkıştırabilir.'} Aralık, seçili minimum işlem sayısını geçen satırlar üzerinden hesaplanır. Satıra tıklayınca kombinasyon Genel sekmesinde açılır.`;
   paintSortHeader();
 }
@@ -560,13 +583,17 @@ document.querySelectorAll('#rtable th').forEach((th) => {
     const k = th.dataset.k;
     if (RV.sort === k) RV.dir = -RV.dir;
     else RV.sort = k, RV.dir = (k === 'name' || k === 'filter' || k === 'tf' || k === 'wh') ? 1 : -1;
+    RV.page = 1;
     renderRank();
   };
 });
 let rankTimer = null;
-document.getElementById('rq').addEventListener('input', () => { clearTimeout(rankTimer); rankTimer = setTimeout(renderRank, 140); });
-document.getElementById('rmin').onchange = renderRank;
-document.getElementById('rscale').onchange = renderRank;
+document.getElementById('rq').addEventListener('input', () => { clearTimeout(rankTimer); RV.page = 1; rankTimer = setTimeout(renderRank, 140); });
+document.getElementById('rmin').onchange = () => { RV.page = 1; renderRank(); };
+document.getElementById('rscale').onchange = () => { RV.page = 1; renderRank(); };
+document.getElementById('rpage').onchange = () => { RV.page = 1; renderRank(); };
+document.getElementById('rprev').onclick = () => { if (RV.page > 1) { RV.page--; renderRank(); } };
+document.getElementById('rnext').onclick = () => { if (RV.page < RV.pages) { RV.page++; renderRank(); } };
 document.getElementById('rbody').onclick = (e) => {
   const tr = e.target.closest('tr');
   if (!tr) return;

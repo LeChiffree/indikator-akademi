@@ -112,6 +112,13 @@ table.rtable{width:100%;border-collapse:separate;border-spacing:0;font-size:12px
 .rb-mid{background:rgba(108,170,255,.12);color:var(--blue);border:1px solid rgba(108,170,255,.3)}
 .rb-lo{background:rgba(255,255,255,.04);color:var(--muted);border:1px solid var(--line)}
 .rank-note{color:var(--muted);font-size:11.5px;margin:9px 0 0;line-height:1.6}
+.rank-pager{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding:10px 2px 0}
+.rank-pager .rp-side{display:flex;align-items:center;gap:8px;color:var(--muted);font-size:11.5px}
+.rank-pager .fsel{min-width:86px;padding:6px 8px;font-size:11.5px}
+.pgbtn{background:#172738;border:1px solid #34475a;color:#c5d5df;border-radius:7px;padding:6px 10px;font:inherit;font-size:11.5px;cursor:pointer}
+.pgbtn:hover:not(:disabled){background:#1b3952;border-color:var(--blue);color:var(--text)}
+.pgbtn:disabled{opacity:.4;cursor:default}
+.rpageinfo{min-width:64px;text-align:center;font-variant-numeric:tabular-nums;color:#b8cad5}
 .tfmini{display:inline-block;border:1px solid #34475a;background:#172738;color:#b8cad5;border-radius:6px;padding:1px 7px;font-size:10.5px;font-weight:650}
 @media (max-width:1500px){.pane .grid{grid-template-columns:1fr}}
 @media (max-width:1150px){.split{grid-template-columns:1fr}.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}}
