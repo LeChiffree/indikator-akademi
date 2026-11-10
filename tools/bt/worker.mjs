@@ -56,7 +56,7 @@ for (const symbol of symbols) {
           let mask = 0;
           rec = {
             open(i, d) { feat(i, featOut); mask = buildMask(featOut, d); },
-            trade(side, exitMs, r, durMin) { addTrade(agg, mask, symIdx, exitMs, r, durMin); },
+            trade(side, exitMs, r, durMin) { addTrade(agg, mask, symIdx, exitMs, r, durMin, side); },
           };
         }
         const { trades, errCount, firstErr, i0, i1 } = simulate(spec, ctx, rec);

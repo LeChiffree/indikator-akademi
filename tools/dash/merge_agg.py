@@ -16,18 +16,29 @@ DATA = os.path.join(HERE, 'data')
 RAW = os.path.join(DATA, 'raw')
 AGG = os.path.join(DATA, 'agg')
 ND, NH, NB, F = 1500, 168, 9, 31
+HDR = 14  # n, wins, sumR, sumR2, grossW, grossL, barsSum, best, worst, winBars, longN, longSumR, shortN, shortSumR
 
 
 def fbytes(nS):
+    raw = HDR * 8 + ND * 12 + NH * 12 + NB * 12 + nS * 16
+    return (raw + 7) // 8 * 8
+
+
+def fbytes_old(nS):
     raw = 9 * 8 + ND * 12 + NH * 12 + NB * 12 + nS * 16
     return (raw + 7) // 8 * 8
 
 
-def parse_block(buf, off):
+def parse_block(buf, off, hdr=HDR):
     d = {}
-    v = np.frombuffer(buf, dtype='<f8', count=9, offset=off)
-    d['n'], d['wins'], d['sumR'], d['sumR2'], d['grossW'], d['grossL'], d['barsSum'], d['best'], d['worst'] = v
-    off += 72
+    v = np.frombuffer(buf, dtype='<f8', count=hdr, offset=off)
+    keys = ['n', 'wins', 'sumR', 'sumR2', 'grossW', 'grossL', 'barsSum', 'best', 'worst',
+            'winBars', 'longN', 'longSumR', 'shortN', 'shortSumR'][:hdr]
+    for k, x in zip(keys, v):
+        d[k] = x
+    for k in ('winBars', 'longN', 'longSumR', 'shortN', 'shortSumR'):
+        d.setdefault(k, 0.0)
+    off += hdr * 8
     def take(dtype, n):
         nonlocal off
         a = np.frombuffer(buf, dtype=dtype, count=n, offset=off)
@@ -58,7 +69,8 @@ def put_block(out, off, d):
         view = np.frombuffer(out, dtype=dtype, count=len(arr), offset=off)
         view[:] = arr
         off += len(arr) * np.dtype(dtype).itemsize
-    give('<f8', np.array([d['n'], d['wins'], d['sumR'], d['sumR2'], d['grossW'], d['grossL'], d['barsSum'], d['best'], d['worst']]))
+    give('<f8', np.array([d['n'], d['wins'], d['sumR'], d['sumR2'], d['grossW'], d['grossL'], d['barsSum'], d['best'], d['worst'],
+                          d['winBars'], d['longN'], d['longSumR'], d['shortN'], d['shortSumR']]))
     give('<f4', d['dPos']); give('<f4', d['dNeg']); give('<u4', d['dCnt'])
     give('<f4', d['hPos']); give('<f4', d['hNeg']); give('<u4', d['hCnt'])
     give('<f4', d['uPos']); give('<f4', d['uNeg']); give('<u4', d['uCnt'])
@@ -78,6 +90,9 @@ def main():
     if not raws:
         sys.exit('raw/*.bin yok — once --records ile kosu yapin')
     print(f'[merge] {len(raws)} isci dosyasi | {nScen} senaryo | nS={nS} | FB={FB}')
+    size0 = os.path.getsize(os.path.join(RAW, raws[0]))
+    hdr = HDR if size0 == nScen * F * FB else 9
+    print(f'[merge] ham format: {hdr} alan x 8 bayt (dosya {size0} bayt)')
     maps = [np.memmap(os.path.join(RAW, f), dtype=np.uint8, mode='r') for f in raws]
     scen_bytes = F * FB
 
@@ -95,7 +110,7 @@ def main():
             best = -9.0; worst = 9.0
             for mm in maps:
                 base = si * scen_bytes + f * FB
-                d, off2 = parse_block(mm, base)
+                d, off2 = parse_block(mm, base, hdr)
                 s, _ = parse_symbols(mm, off2, nS)
                 if acc is None:
                     acc = {k: np.array(v, dtype=np.float64 if k not in ('dCnt', 'hCnt', 'uCnt') else np.uint64) for k, v in d.items()}

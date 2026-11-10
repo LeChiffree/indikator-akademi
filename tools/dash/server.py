@@ -19,7 +19,11 @@ DATA = os.environ.get('DASH_DATA') or os.path.join(HERE, 'data')
 AGG = os.path.join(DATA, 'agg')
 WEB = os.environ.get('DASH_WEB') or os.path.join(HERE, 'web')
 ND, NH, NB, F = 1500, 168, 9, 31
+HDR = 14
+HDR_KEYS = ['n', 'wins', 'sumR', 'sumR2', 'grossW', 'grossL', 'barsSum', 'best', 'worst',
+            'winBars', 'longN', 'longSumR', 'shortN', 'shortSumR']
 DAY0 = dt.date(2022, 8, 1)
+DUR_MID_H = [0.5, 3.5, 15, 48, 120, 252, 588, 1200, 1920]
 DUR_LABELS = ['<1sa', '1-6sa', '6-24sa', '1-3g', '3-7g', '7-14g', '14-35g', '35-65g', '>65g']
 SEASONS = ['Kış', 'İlkbahar', 'Yaz', 'Sonbahar']
 SEASON_OF = {12: 0, 1: 0, 2: 0, 3: 1, 4: 1, 5: 1, 6: 2, 7: 2, 8: 2, 9: 3, 10: 3, 11: 3}
@@ -27,8 +31,8 @@ SEASON_OF = {12: 0, 1: 0, 2: 0, 3: 1, 4: 1, 5: 1, 6: 2, 7: 2, 8: 2, 9: 3, 10: 3,
 APP = FastAPI(title='İndikatör Akademi — Analiz')
 
 
-def fbytes(nS):
-    raw = 9 * 8 + ND * 12 + NH * 12 + NB * 12 + nS * 16
+def fbytes(nS, hdr=HDR):
+    raw = hdr * 8 + ND * 12 + NH * 12 + NB * 12 + nS * 16
     return (raw + 7) // 8 * 8
 
 
@@ -40,22 +44,36 @@ def load_meta():
 META = load_meta()
 NS = len(META['symbols'])
 FB = fbytes(NS)
+FB_OLD = fbytes(NS, 9)
 SCEN_BYTES = F * FB
+
+
+def fmt_of(path):
+    """Dosya boyutundan kayit formatini sec (yeni 14 alan / eski 9 alan)."""
+    size = os.path.getsize(path)
+    if size == F * FB:
+        return HDR, FB
+    if size == F * FB_OLD:
+        return 9, FB_OLD
+    raise HTTPException(500, 'bozuk veri boyutu')
 
 
 def parse_scenario(si):
     if si < 0 or si >= len(META['scenarios']):
         raise HTTPException(404, 'senaryo yok')
-    buf = np.fromfile(os.path.join(AGG, f'{si}.bin'), dtype=np.uint8)
-    if len(buf) < SCEN_BYTES:
-        raise HTTPException(500, 'bozuk veri')
+    path = os.path.join(AGG, f'{si}.bin')
+    hdr, fb = fmt_of(path)
+    buf = np.fromfile(path, dtype=np.uint8)
     out = []
     for f in range(F):
-        off = f * FB
+        off = f * fb
         d = {}
-        v = np.frombuffer(buf, dtype='<f8', count=9, offset=off)
-        d['n'], d['wins'], d['sumR'], d['sumR2'], d['grossW'], d['grossL'], d['barsSum'], d['best'], d['worst'] = [float(x) for x in v]
-        off += 72
+        v = np.frombuffer(buf, dtype='<f8', count=hdr, offset=off)
+        for k, x in zip(HDR_KEYS[:hdr], v):
+            d[k] = float(x)
+        for k in HDR_KEYS[hdr:]:
+            d[k] = 0.0
+        off += hdr * 8
         def take(dtype, n):
             nonlocal off
             a = np.frombuffer(buf, dtype=dtype, count=n, offset=off)
@@ -91,6 +109,16 @@ def summarize(d):
     loss_days = int(((days < 0) & active).sum())
     gross_w = float(d['grossW']) * 10.0
     gross_l = float(d['grossL']) * 10.0
+    wins = int(d['wins'])
+    wb = float(d['winBars'])
+    if wins > 0 and wb > 0:
+        win_h = wb / wins / 60.0
+        win_exact = True
+    else:
+        up = d['uPos'].astype(np.float64)
+        tot = float(up.sum())
+        win_h = float((up * np.array(DUR_MID_H)).sum() / tot) if tot > 0 else 0.0
+        win_exact = False
     return {
         'n': n,
         'wr': float(d['wins'] / n) if n else 0.0,
@@ -107,6 +135,8 @@ def summarize(d):
         'grossL': gross_l,
         'wins': int(d['wins']),
         'losses': n - int(d['wins']),
+        'winHours': win_h,
+        'winHoursExact': win_exact,
     }
 
 
@@ -282,6 +312,61 @@ def symbols(d, n=40):
     return rows
 
 
+RANK = {'data': None}
+
+
+def ranking_rows():
+    """Tum senaryo x filtre satirlari (kompakt sutun dizileri)."""
+    if RANK['data'] is not None:
+        return RANK['data']
+    a26 = (dt.date(2026, 1, 1) - DAY0).days
+    mids = np.array(DUR_MID_H)
+    cols = {'s': [], 'f': [], 'n': [], 'a': [], 'a26': [], 'wh': [], 'w': [], 'l': []}
+    exact = True
+    for si in range(len(META['scenarios'])):
+        path = os.path.join(AGG, f'{si}.bin')
+        hdr, fb = fmt_of(path)
+        if hdr < HDR:
+            exact = False
+        buf = np.fromfile(path, dtype=np.uint8)
+        for f in range(F):
+            off = f * fb
+            v = np.frombuffer(buf, dtype='<f8', count=hdr, offset=off)
+            n = float(v[0])
+            if n <= 0:
+                continue
+            wins = float(v[1])
+            base = off + hdr * 8
+            dcnt = np.frombuffer(buf, dtype='<u4', count=ND, offset=base + ND * 8)
+            n26 = int(dcnt[a26:].sum())
+            if n26:
+                dpos = np.frombuffer(buf, dtype='<f4', count=ND, offset=base)
+                dneg = np.frombuffer(buf, dtype='<f4', count=ND, offset=base + ND * 4)
+                r26 = float(dpos[a26:].astype(np.float64).sum() - dneg[a26:].astype(np.float64).sum())
+                av26 = r26 / n26
+            else:
+                av26 = 0.0
+            wb = float(v[9]) if hdr > 9 else 0.0
+            if wins > 0 and wb > 0:
+                wh = wb / wins / 60.0
+            else:
+                ub = base + ND * 12 + NH * 12
+                upos = np.frombuffer(buf, dtype='<f4', count=NB, offset=ub).astype(np.float64)
+                tot = float(upos.sum())
+                wh = float((upos * mids).sum() / tot) if tot > 0 else None
+                exact = False
+            cols['s'].append(si)
+            cols['f'].append(f)
+            cols['n'].append(int(n))
+            cols['a'].append(round(float(v[2]) / n, 6))
+            cols['a26'].append(round(av26, 6))
+            cols['wh'].append(None if wh is None else round(wh, 3))
+            cols['w'].append(int(wins))
+            cols['l'].append(int(n - wins))
+    RANK['data'] = {'exact': exact, 'rows': cols}
+    return RANK['data']
+
+
 APP_STATE = {}
 
 
@@ -344,6 +429,13 @@ def api_meta():
 @APP.get('/api/scenario/{si}')
 def api_scenario(si: int, filter: int = Query(0, ge=0, le=30)):
     return scenario_payload(si, filter)
+
+
+@APP.get('/api/ranking')
+def api_ranking(refresh: int = 0):
+    if refresh:
+        RANK['data'] = None
+    return ranking_rows()
 
 
 @APP.get('/')

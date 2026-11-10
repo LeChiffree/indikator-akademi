@@ -20,6 +20,12 @@
   </aside>
 
   <main class="main">
+    <div class="tabs">
+      <button class="tab on" data-view="overview">Genel</button>
+      <button class="tab" data-view="rank">Sıralama</button>
+    </div>
+
+    <div id="view-overview">
     <div class="top">
       <div>
         <div class="eyebrow">2022–2026 · Binance USD-M Futures · 525 coin</div><h1 id="title">Bir strateji seçin</h1>
@@ -78,6 +84,55 @@
         </div>
         <div class="legendline" style="margin-top:10px"><span>2026 kazanma/işlem sayısı için periyot bazlı kazanç sayacı yeniden koşuda eklenecek.</span></div>
       </section>
+    </div>
+
+    </div><!-- /view-overview -->
+
+    <div id="view-rank" hidden>
+      <div class="top" style="margin-bottom:12px">
+        <div>
+          <div class="eyebrow">Karşılaştırma · 100 indikatör × 31 filtre × 6 dilim</div>
+          <h1>Strateji Sıralaması</h1>
+          <div class="sub" id="rankSub">Her satır bir strateji × filtre × zaman dilimi kombinasyonudur. Puan, üç metriğin 0–33,3 aralığında ölçeklenmesinin toplamıdır (en fazla 99,9). Sütun başlıklarına tıklayarak sıralayın.</div>
+        </div>
+      </div>
+
+      <div class="card" style="padding-bottom:12px">
+        <div class="rank-head">
+          <div>
+            <h3 style="font-size:15px">Tüm Kombinasyonlar</h3>
+            <div class="h" id="rankInfo">Yükleniyor…</div>
+          </div>
+          <div class="rank-controls">
+            <input id="rq" class="search" placeholder="Strateji veya filtre ara…" autocomplete="off">
+            <select id="rmin" class="fsel">
+              <option value="0">Tüm işlemler</option>
+              <option value="30" selected>Min. 30 işlem</option>
+              <option value="100">Min. 100 işlem</option>
+              <option value="300">Min. 300 işlem</option>
+              <option value="1000">Min. 1.000 işlem</option>
+            </select>
+          </div>
+        </div>
+        <div class="rtable-wrap">
+          <table class="rtable" id="rtable">
+            <thead><tr>
+              <th class="l" data-k="idx">#</th>
+              <th class="l" data-k="name">Strateji<span class="ar"></span></th>
+              <th data-k="tf">TF<span class="ar"></span></th>
+              <th class="l" data-k="filter">Filtre<span class="ar"></span></th>
+              <th data-k="n">İşlem<span class="ar"></span></th>
+              <th data-k="a">Net / İşlem<span class="ar"></span></th>
+              <th data-k="a26">2026 Net / İşlem<span class="ar"></span></th>
+              <th data-k="wh">Kârlı Süre (sa)<span class="ar"></span></th>
+              <th data-k="ratio">Kârlı / Zararlı<span class="ar"></span></th>
+              <th data-k="score">Puan<span class="ar"></span></th>
+            </tr></thead>
+            <tbody id="rbody"></tbody>
+          </table>
+        </div>
+        <div class="rank-note" id="rankFoot"></div>
+      </div>
     </div>
 
     <div class="legendline" id="foot"></div>
@@ -365,6 +420,142 @@ function renderFilterTable(fe) {
   const rows = fe.map((r, i) => `<tr class="${i === STATE.filter ? 'on' : ''}"><td>${r.label}</td><td>${fmtN(r.n)}</td><td>${r.wr == null ? '—' : (r.wr * 100).toFixed(1) + '%'}</td><td class="${r.avg >= 0 ? 'pos' : 'neg'}">${fmtPct(r.avg)}</td><td>${r.pf ? r.pf.toFixed(2) : '—'}</td><td class="${(r.totPnl || 0) >= 0 ? 'pos' : 'neg'}">${fmtUSD(r.totPnl || 0)}</td></tr>`).join('');
   document.getElementById('a_ftable').innerHTML = `<table><thead><tr><th>Filtre</th><th>İşlem</th><th>Kazanma</th><th>Ort.</th><th>PF</th><th>Net $</th></tr></thead><tbody>${rows}</tbody></table>`;
 }
+
+/* ------------------------------ Sıralama sekmesi ------------------------------ */
+const RV = { data: null, rows: null, sort: 'score', dir: -1 };
+
+function setView(v) {
+  document.querySelectorAll('.tabs .tab').forEach((t) => t.classList.toggle('on', t.dataset.view === v));
+  document.getElementById('view-overview').hidden = v !== 'overview';
+  document.getElementById('view-rank').hidden = v !== 'rank';
+  if (v === 'rank') loadRank();
+  else setTimeout(() => document.querySelectorAll('#view-overview .js-plotly-plot').forEach((el) => Plotly.Plots.resize(el)), 40);
+}
+
+async function loadRank() {
+  if (!META) return;
+  const info = document.getElementById('rankInfo');
+  if (RV.data) { renderRank(); return; }
+  info.textContent = 'Hesaplanıyor… (600 senaryo × 31 filtre)';
+  try {
+    const d = await (await fetch('/api/ranking')).json();
+    RV.data = d;
+    renderRank();
+  } catch (e) {
+    info.textContent = 'Sıralama verisi yüklenemedi.';
+    console.error(e);
+  }
+}
+
+function rankRows() {
+  if (RV.rows) return RV.rows;
+  const D = RV.data.rows;
+  const out = [];
+  for (let i = 0; i < D.s.length; i++) {
+    const sc = META.scenarios[D.s[i]];
+    const fl = META.filters[D.f[i]];
+    const w = D.w[i], l = D.l[i];
+    out.push({
+      s: D.s[i], f: D.f[i], n: D.n[i], a: D.a[i], a26: D.a26[i], wh: D.wh[i], w, l,
+      name: sc.name, cat: sc.cat, tf: sc.tf, filter: fl.label, group: fl.group,
+      ratio: l > 0 ? w / l : (w > 0 ? 999 : 0),
+    });
+  }
+  RV.rows = out;
+  return out;
+}
+
+function applyScores(rows) {
+  let a0 = Infinity, a1 = -Infinity, w0 = Infinity, w1 = -Infinity, r0 = Infinity, r1 = -Infinity;
+  for (const r of rows) {
+    if (r.a < a0) a0 = r.a;
+    if (r.a > a1) a1 = r.a;
+    if (r.wh != null) { if (r.wh < w0) w0 = r.wh; if (r.wh > w1) w1 = r.wh; }
+    if (r.ratio < r0) r0 = r.ratio;
+    if (r.ratio > r1) r1 = r.ratio;
+  }
+  const SA = a1 - a0, SW = w1 - w0, SR = r1 - r0;
+  for (const r of rows) {
+    r.s2 = SA > 1e-12 ? ((r.a - a0) / SA) * 33.3 : 16.65;
+    r.s4 = r.wh == null ? 0 : (SW > 1e-12 ? ((w1 - r.wh) / SW) * 33.3 : 16.65);
+    r.s5 = SR > 1e-12 ? ((r.ratio - r0) / SR) * 33.3 : 16.65;
+    r.score = r.s2 + r.s4 + r.s5;
+  }
+}
+
+function fmtH(h) {
+  if (h == null) return '—';
+  return (h < 10 ? h.toFixed(1) : Math.round(h).toLocaleString('tr-TR')) + ' sa';
+}
+
+function paintSortHeader() {
+  document.querySelectorAll('#rtable th').forEach((th) => {
+    const on = th.dataset.k === RV.sort;
+    th.classList.toggle('on', on);
+    const ar = th.querySelector('.ar');
+    if (ar) ar.textContent = on ? (RV.dir > 0 ? '▲' : '▼') : '';
+  });
+}
+
+function renderRank() {
+  if (!RV.data) return;
+  const minN = Number(document.getElementById('rmin').value);
+  const q = (document.getElementById('rq').value || '').trim().toLowerCase();
+  const base = rankRows().filter((r) => r.n >= minN);
+  applyScores(base);
+  let view = q ? base.filter((r) => (r.name + ' ' + r.filter + ' ' + r.tf).toLowerCase().includes(q)) : base;
+  const key = RV.sort, dir = RV.dir;
+  view = view.slice().sort((x, y) => {
+    let a = x[key], b = y[key];
+    if (key === 'name' || key === 'filter' || key === 'tf') return String(a).localeCompare(String(b), 'tr') * dir;
+    if (a == null) a = key === 'wh' ? Infinity : -Infinity;
+    if (b == null) b = key === 'wh' ? Infinity : -Infinity;
+    return (a - b) * dir;
+  });
+  const LIMIT = 800;
+  const shown = view.slice(0, LIMIT);
+  document.getElementById('rbody').innerHTML = shown.map((r, i) => {
+    const cls = r.score >= 70 ? 'rb-hi' : r.score >= 40 ? 'rb-mid' : 'rb-lo';
+    const ratio = r.l > 0 ? (r.w / r.l).toFixed(2).replace('.', ',') : '—';
+    return `<tr data-s="${r.s}" data-f="${r.f}">
+      <td class="l" style="color:var(--muted)">${i + 1}</td>
+      <td class="l sym" title="${r.name}">${r.name}</td>
+      <td><span class="tfmini">${r.tf}</span></td>
+      <td class="l flt" title="${r.filter}">${r.filter}</td>
+      <td>${fmtN(r.n)}</td>
+      <td class="${r.a >= 0 ? 'pos' : 'neg'}">${fmtPct(r.a)}</td>
+      <td class="${r.a26 >= 0 ? 'pos' : 'neg'}">${fmtPct(r.a26)}</td>
+      <td>${fmtH(r.wh)}</td>
+      <td>${fmtN(r.w)} / ${fmtN(r.l)} <span style="color:var(--muted)">· ${ratio}</span></td>
+      <td><span class="rank-badge ${cls}" title="Getiri ${r.s2.toFixed(1)} + süre ${r.s4.toFixed(1)} + K/Z ${r.s5.toFixed(1)}">${r.score.toFixed(1)}</span></td>
+    </tr>`;
+  }).join('');
+  document.getElementById('rankInfo').textContent = `${fmtN(view.length)} kombinasyon · min ${fmtN(minN)} işlem · kârlı süre ${RV.data.exact ? 'gerçek veriden' : 'süre dağılımından tahmini'} · ilk ${fmtN(shown.length)} satır`;
+  document.getElementById('rankFoot').innerHTML = `Puan = <b>net/işlem</b> (min→0, max→33,3) + <b>kârlı işlem süresi</b> (kısa→33,3, uzun→0) + <b>kârlı/zararlı oranı</b> (min→0, max→33,3). Min–max aralığı, seçili minimum işlem sayısını geçen tüm satırlar üzerinden hesaplanır. Satıra tıklayınca kombinasyon Genel sekmesinde açılır.`;
+  paintSortHeader();
+}
+
+document.querySelectorAll('.tabs .tab').forEach((t) => { t.onclick = () => setView(t.dataset.view); });
+document.querySelectorAll('#rtable th').forEach((th) => {
+  if (!th.dataset.k || th.dataset.k === 'idx') return;
+  th.onclick = () => {
+    const k = th.dataset.k;
+    if (RV.sort === k) RV.dir = -RV.dir;
+    else RV.sort = k, RV.dir = (k === 'name' || k === 'filter' || k === 'tf' || k === 'wh') ? 1 : -1;
+    renderRank();
+  };
+});
+let rankTimer = null;
+document.getElementById('rq').addEventListener('input', () => { clearTimeout(rankTimer); rankTimer = setTimeout(renderRank, 140); });
+document.getElementById('rmin').onchange = renderRank;
+document.getElementById('rbody').onclick = (e) => {
+  const tr = e.target.closest('tr');
+  if (!tr) return;
+  const sc = META.scenarios[Number(tr.dataset.s)];
+  if (!sc) return;
+  selectStrategy(sc.id, sc.tf, Number(tr.dataset.f));
+  setView('overview');
+};
 
 document.getElementById('q').addEventListener('input', renderStrats);
 boot().catch((e) => { document.getElementById('title').textContent = 'Veri yüklenemedi'; console.error(e); });

@@ -94,7 +94,7 @@ export function buildMask(o, side) {
 }
 
 /* --------------------------- toplayıcı --------------------------- */
-const RAW_FILTER_BYTES = (nSyms) => 9 * 8 + ND * 12 + NH * 12 + NB * 12 + nSyms * 16;
+const RAW_FILTER_BYTES = (nSyms) => 14 * 8 + ND * 12 + NH * 12 + NB * 12 + nSyms * 16;
 export const filterBytes = (nSyms) => Math.ceil(RAW_FILTER_BYTES(nSyms) / 8) * 8;
 export const scenBytes = (nSyms) => F * filterBytes(nSyms);
 
@@ -110,6 +110,11 @@ export function newAgg(nSyms) {
     barsSum: new Float64Array(F),
     best: new Float64Array(F).fill(-9),
     worst: new Float64Array(F).fill(9),
+    winBars: new Float64Array(F),
+    longN: new Float64Array(F),
+    longSumR: new Float64Array(F),
+    shortN: new Float64Array(F),
+    shortSumR: new Float64Array(F),
     dPos: new Float32Array(F * ND),
     dNeg: new Float32Array(F * ND),
     dCnt: new Uint32Array(F * ND),
@@ -126,7 +131,7 @@ export function newAgg(nSyms) {
   };
 }
 
-export function addTrade(a, mask, symIdx, exitMs, r, durMin) {
+export function addTrade(a, mask, symIdx, exitMs, r, durMin, side) {
   const day = Math.floor((exitMs - DAY0) / 86400000);
   if (day < 0 || day >= ND) return;
   const dt = new Date(exitMs);
@@ -147,6 +152,9 @@ export function addTrade(a, mask, symIdx, exitMs, r, durMin) {
     a.sumR2[f] += r * r;
     if (r > 0) a.grossW[f] += r; else a.grossL[f] -= r;
     a.barsSum[f] += durMin;
+    if (win) a.winBars[f] += durMin;
+    if (side === 1) { a.longN[f]++; a.longSumR[f] += r; }
+    else if (side === -1) { a.shortN[f]++; a.shortSumR[f] += r; }
     if (r > a.best[f]) a.best[f] = r;
     if (r < a.worst[f]) a.worst[f] = r;
     const di = f * ND + day;
@@ -176,6 +184,7 @@ export function finalizeInto(a, buf) {
   for (let f = 0; f < F; f++) {
     f64(a.n[f]); f64(a.wins[f]); f64(a.sumR[f]); f64(a.sumR2[f]);
     f64(a.grossW[f]); f64(a.grossL[f]); f64(a.barsSum[f]); f64(a.best[f]); f64(a.worst[f]);
+    f64(a.winBars[f]); f64(a.longN[f]); f64(a.longSumR[f]); f64(a.shortN[f]); f64(a.shortSumR[f]);
     f32arr(a.dPos, f * ND, ND); f32arr(a.dNeg, f * ND, ND); u32arr(a.dCnt, f * ND, ND);
     f32arr(a.hPos, f * NH, NH); f32arr(a.hNeg, f * NH, NH); u32arr(a.hCnt, f * NH, NH);
     f32arr(a.uPos, f * NB, NB); f32arr(a.uNeg, f * NB, NB); u32arr(a.uCnt, f * NB, NB);
