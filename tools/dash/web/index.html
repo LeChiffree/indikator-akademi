@@ -177,6 +177,7 @@ async function boot() {
   renderFilters();
   renderStrats();
   renderMap();
+  if (!document.getElementById('view-rank').hidden) loadRank();
   const params = new URLSearchParams(location.hash.slice(1));
   if (params.get('s')) {
     const si = Number(params.get('s'));
