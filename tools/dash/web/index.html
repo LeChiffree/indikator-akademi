@@ -112,6 +112,10 @@
               <option value="300">Min. 300 işlem</option>
               <option value="1000">Min. 1.000 işlem</option>
             </select>
+            <select id="rscale" class="fsel">
+              <option value="full" selected>Ölçek: min–max</option>
+              <option value="clip">Ölçek: %1–99 kırpık</option>
+            </select>
           </div>
         </div>
         <div class="rtable-wrap">
@@ -465,20 +469,32 @@ function rankRows() {
   return out;
 }
 
-function applyScores(rows) {
-  let a0 = Infinity, a1 = -Infinity, w0 = Infinity, w1 = -Infinity, r0 = Infinity, r1 = -Infinity;
+function applyScores(rows, mode) {
+  const av = [], wv = [], rv = [];
   for (const r of rows) {
-    if (r.a < a0) a0 = r.a;
-    if (r.a > a1) a1 = r.a;
-    if (r.wh != null) { if (r.wh < w0) w0 = r.wh; if (r.wh > w1) w1 = r.wh; }
-    if (r.ratio < r0) r0 = r.ratio;
-    if (r.ratio > r1) r1 = r.ratio;
+    av.push(r.a);
+    if (r.wh != null) wv.push(r.wh);
+    rv.push(r.ratio);
   }
+  const q = (arr, p) => {
+    if (!arr.length) return 0;
+    const s = arr.slice().sort((x, y) => x - y);
+    return s[Math.min(s.length - 1, Math.max(0, Math.floor(s.length * p)))];
+  };
+  let a0 = Math.min(...av), a1 = Math.max(...av);
+  let w0 = wv.length ? Math.min(...wv) : 0, w1 = wv.length ? Math.max(...wv) : 0;
+  let r0 = Math.min(...rv), r1 = Math.max(...rv);
+  if (mode === 'clip') {
+    a0 = q(av, 0.01); a1 = q(av, 0.99);
+    if (wv.length) { w0 = q(wv, 0.01); w1 = q(wv, 0.99); }
+    r0 = q(rv, 0.01); r1 = q(rv, 0.99);
+  }
+  const clamp = (v, lo, hi) => Math.min(hi, Math.max(lo, v));
   const SA = a1 - a0, SW = w1 - w0, SR = r1 - r0;
   for (const r of rows) {
-    r.s2 = SA > 1e-12 ? ((r.a - a0) / SA) * 33.3 : 16.65;
-    r.s4 = r.wh == null ? 0 : (SW > 1e-12 ? ((w1 - r.wh) / SW) * 33.3 : 16.65);
-    r.s5 = SR > 1e-12 ? ((r.ratio - r0) / SR) * 33.3 : 16.65;
+    r.s2 = SA > 1e-12 ? ((clamp(r.a, a0, a1) - a0) / SA) * 33.3 : 16.65;
+    r.s4 = r.wh == null ? 0 : (SW > 1e-12 ? ((w1 - clamp(r.wh, w0, w1)) / SW) * 33.3 : 16.65);
+    r.s5 = SR > 1e-12 ? ((clamp(r.ratio, r0, r1) - r0) / SR) * 33.3 : 16.65;
     r.score = r.s2 + r.s4 + r.s5;
   }
 }
@@ -500,9 +516,10 @@ function paintSortHeader() {
 function renderRank() {
   if (!RV.data) return;
   const minN = Number(document.getElementById('rmin').value);
+  const scaleMode = document.getElementById('rscale').value;
   const q = (document.getElementById('rq').value || '').trim().toLowerCase();
   const base = rankRows().filter((r) => r.n >= minN);
-  applyScores(base);
+  applyScores(base, scaleMode);
   let view = q ? base.filter((r) => (r.name + ' ' + r.filter + ' ' + r.tf).toLowerCase().includes(q)) : base;
   const key = RV.sort, dir = RV.dir;
   view = view.slice().sort((x, y) => {
@@ -531,7 +548,7 @@ function renderRank() {
     </tr>`;
   }).join('');
   document.getElementById('rankInfo').textContent = `${fmtN(view.length)} kombinasyon · min ${fmtN(minN)} işlem · kârlı süre ${RV.data.exact ? 'gerçek veriden' : 'süre dağılımından tahmini'} · ilk ${fmtN(shown.length)} satır`;
-  document.getElementById('rankFoot').innerHTML = `Puan = <b>net/işlem</b> (min→0, max→33,3) + <b>kârlı işlem süresi</b> (kısa→33,3, uzun→0) + <b>kârlı/zararlı oranı</b> (min→0, max→33,3). Min–max aralığı, seçili minimum işlem sayısını geçen tüm satırlar üzerinden hesaplanır. Satıra tıklayınca kombinasyon Genel sekmesinde açılır.`;
+  document.getElementById('rankFoot').innerHTML = `Puan = <b>net/işlem</b> (min→0, max→33,3) + <b>kârlı işlem süresi</b> (kısa→33,3, uzun→0) + <b>kârlı/zararlı oranı</b> (min→0, max→33,3). ${scaleMode === 'clip' ? 'Min–max aralığı %1–99 yüzdelik diliminden alınır (uç değerler kırpılır).' : 'Min–max aralığı tüm satırlardan alınır; tek bir aşırı sonuç ölçeği sıkıştırabilir.'} Aralık, seçili minimum işlem sayısını geçen satırlar üzerinden hesaplanır. Satıra tıklayınca kombinasyon Genel sekmesinde açılır.`;
   paintSortHeader();
 }
 
@@ -548,6 +565,7 @@ document.querySelectorAll('#rtable th').forEach((th) => {
 let rankTimer = null;
 document.getElementById('rq').addEventListener('input', () => { clearTimeout(rankTimer); rankTimer = setTimeout(renderRank, 140); });
 document.getElementById('rmin').onchange = renderRank;
+document.getElementById('rscale').onchange = renderRank;
 document.getElementById('rbody').onclick = (e) => {
   const tr = e.target.closest('tr');
   if (!tr) return;
