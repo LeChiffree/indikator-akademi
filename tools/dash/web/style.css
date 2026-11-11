@@ -163,3 +163,14 @@ table.rtable{width:100%;border-collapse:separate;border-spacing:0;font-size:12px
 /* Siralama sekmesinde tabloya tam genislik */
 body.rankmode .side{display:none}
 body.rankmode .main{margin-left:0;max-width:none}
+
+/* --- Chosen Ones / secim sutunu --- */
+.pickcol{width:34px}
+.rtable th.pickcol{cursor:default;text-align:center;padding-left:6px;padding-right:6px}
+.rtable td.pick{text-align:center;padding:6px 6px}
+.rtable input[type=checkbox]{accent-color:var(--blue,#6caaff);width:14px;height:14px;cursor:pointer;vertical-align:middle;margin:0}
+.rtable tr.chosen td{background:rgba(108,170,255,.055)}
+.tabcount{display:inline-block;min-width:17px;padding:0 5px;margin-left:5px;border-radius:9px;background:#20364b;color:#9db8cc;font-size:10px;line-height:16px;font-weight:700;text-align:center;vertical-align:1px}
+.tabcount.on{background:var(--blue,#6caaff);color:#0b1622}
+.cempty{text-align:center!important;color:var(--muted);padding:30px 10px!important;font-size:12.5px;line-height:1.9}
+.cempty b{color:#cfe0ee}

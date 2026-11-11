@@ -23,6 +23,7 @@
     <div class="tabs">
       <button class="tab on" data-view="overview">Genel</button>
       <button class="tab" data-view="rank">Sıralama</button>
+      <button class="tab" data-view="chosen">Chosen Ones <span class="tabcount" id="chosenTabCount">0</span></button>
     </div>
 
     <div id="view-overview">
@@ -122,6 +123,7 @@
         <div class="rtable-wrap">
           <table class="rtable" id="rtable">
             <thead><tr>
+              <th class="l pickcol" data-k="pick"><input type="checkbox" id="pickAll" title="Şu an listelenen tüm satırları seç / bırak"></th>
               <th class="l" data-k="idx">#</th>
               <th class="l" data-k="name">Strateji<span class="ar"></span></th>
               <th data-k="tf">TF<span class="ar"></span></th>
@@ -153,6 +155,48 @@
           </div>
         </div>
         <div class="rank-note" id="rankFoot"></div>
+      </div>
+    </div>
+
+    <div id="view-chosen" hidden>
+      <div class="top" style="margin-bottom:12px">
+        <div>
+          <div class="eyebrow">Seçki · işaretlediğin kombinasyonlar</div>
+          <h1>Chosen Ones</h1>
+          <div class="sub">Sıralama sekmesinde satırların solundaki kutuyu işaretle; seçtiğin strateji × filtre × zaman dilimi kombinasyonları burada toplanır. Seçim tarayıcıda saklanır, sayfayı kapatsan da durur. Satıra tıklayınca Genel sekmesinde açılır.</div>
+        </div>
+      </div>
+
+      <div class="card" style="padding-bottom:12px">
+        <div class="rank-head">
+          <div>
+            <h3 style="font-size:15px">Seçilen Kombinasyonlar</h3>
+            <div class="h" id="chosenInfo">Yükleniyor…</div>
+          </div>
+          <div class="rank-controls">
+            <button id="chosenCsv" class="pgbtn" type="button">CSV indir</button>
+            <button id="chosenClear" class="pgbtn" type="button">Tümünü temizle</button>
+          </div>
+        </div>
+        <div class="rtable-wrap">
+          <table class="rtable" id="ctable">
+            <thead><tr>
+              <th class="pickcol">✓</th>
+              <th class="l">#</th>
+              <th class="l">Strateji</th>
+              <th>TF</th>
+              <th class="l">Filtre</th>
+              <th>İşlem</th>
+              <th>Net / İşlem</th>
+              <th>2026 Net / İşlem</th>
+              <th>Kârlı Süre (sa)</th>
+              <th>Kârlı / Zararlı</th>
+              <th>Puan</th>
+            </tr></thead>
+            <tbody id="cbody"></tbody>
+          </table>
+        </div>
+        <div class="rank-note" id="chosenFoot"></div>
       </div>
     </div>
 
@@ -445,26 +489,66 @@ function renderFilterTable(fe) {
 }
 
 /* ------------------------------ Sıralama sekmesi ------------------------------ */
-const RV = { data: null, rows: null, sort: 'score', dir: -1, page: 1, pages: 1, filters: {}, vals: null };
+const RV = { data: null, rows: null, sort: 'score', dir: -1, page: 1, pages: 1, filters: {}, vals: null, view: [] };
+
+/* --- Chosen Ones: işaretlenen kombinasyonlar (tarayıcıda kalıcı) --- */
+const CHOSEN_KEY = 'ia.chosen.v1';
+const CHOSEN = new Set();
+try {
+  const raw = localStorage.getItem(CHOSEN_KEY);
+  if (raw) JSON.parse(raw).forEach((k) => CHOSEN.add(k));
+} catch (e) { /* yoksay */ }
+const chKey = (s, f) => s + ':' + f;
+function persistChosen() {
+  try { localStorage.setItem(CHOSEN_KEY, JSON.stringify([...CHOSEN])); } catch (e) { /* yoksay */ }
+  updateChosenBadge();
+}
+function updateChosenBadge() {
+  const el = document.getElementById('chosenTabCount');
+  if (el) { el.textContent = CHOSEN.size; el.classList.toggle('on', CHOSEN.size > 0); }
+  const cl = document.getElementById('chosenClear');
+  if (cl) cl.disabled = !CHOSEN.size;
+  const csv = document.getElementById('chosenCsv');
+  if (csv) csv.disabled = !CHOSEN.size;
+}
+function syncPickBoxes() {
+  document.querySelectorAll('#rbody input[data-pick]').forEach((cb) => { cb.checked = CHOSEN.has(cb.dataset.pick); });
+  document.querySelectorAll('#rbody tr[data-s]').forEach((tr) => {
+    tr.classList.toggle('chosen', CHOSEN.has(chKey(Number(tr.dataset.s), Number(tr.dataset.f))));
+  });
+  const all = document.getElementById('pickAll');
+  if (!all) return;
+  const boxes = [...document.querySelectorAll('#rbody input[data-pick]')];
+  all.checked = boxes.length > 0 && boxes.every((b) => b.checked);
+  all.indeterminate = !all.checked && boxes.some((b) => b.checked);
+}
+function toggleChosen(k, on) {
+  if (on) CHOSEN.add(k); else CHOSEN.delete(k);
+  persistChosen();
+  syncPickBoxes();
+  renderChosen();
+}
 
 function setView(v) {
   document.querySelectorAll('.tabs .tab').forEach((t) => t.classList.toggle('on', t.dataset.view === v));
   document.getElementById('view-overview').hidden = v !== 'overview';
   document.getElementById('view-rank').hidden = v !== 'rank';
-  document.body.classList.toggle('rankmode', v === 'rank');
-  if (v === 'rank') loadRank();
+  document.getElementById('view-chosen').hidden = v !== 'chosen';
+  document.body.classList.toggle('rankmode', v === 'rank' || v === 'chosen');
+  if (v === 'rank' || v === 'chosen') loadRank();
   else setTimeout(() => document.querySelectorAll('#view-overview .js-plotly-plot').forEach((el) => Plotly.Plots.resize(el)), 40);
 }
 
 async function loadRank() {
   if (!META) return;
   const info = document.getElementById('rankInfo');
-  if (RV.data) { renderRank(); return; }
+  if (RV.data) { renderRank(); renderChosen(); return; }
   info.textContent = 'Hesaplanıyor… (600 senaryo × 31 filtre)';
   try {
     const d = await (await fetch('/api/ranking')).json();
     RV.data = d;
     renderRank();
+    renderChosen();
   } catch (e) {
     info.textContent = 'Sıralama verisi yüklenemedi.';
     console.error(e);
@@ -551,6 +635,7 @@ function renderRank() {
     return (a - b) * dir;
   });
   const size = Number(document.getElementById('rpage').value);
+  RV.view = view;
   const pages = size ? Math.max(1, Math.ceil(view.length / size)) : 1;
   if (RV.page > pages) RV.page = pages;
   RV.pages = pages;
@@ -559,7 +644,9 @@ function renderRank() {
   document.getElementById('rbody').innerHTML = shown.map((r, i) => {
     const cls = r.score >= 70 ? 'rb-hi' : r.score >= 40 ? 'rb-mid' : 'rb-lo';
     const ratio = r.l > 0 ? (r.w / r.l).toFixed(2).replace('.', ',') : '—';
-    return `<tr data-s="${r.s}" data-f="${r.f}">
+    const key = chKey(r.s, r.f);
+    return `<tr data-s="${r.s}" data-f="${r.f}" class="${CHOSEN.has(key) ? 'chosen' : ''}">
+      <td class="pick"><input type="checkbox" data-pick="${key}"${CHOSEN.has(key) ? ' checked' : ''} title="Chosen Ones'a ekle / çıkar"></td>
       <td class="l" style="color:var(--muted)">${start + i + 1}</td>
       <td class="l sym" title="${r.name}">${r.name}</td>
       <td><span class="tfmini">${r.tf}</span></td>
@@ -579,11 +666,12 @@ function renderRank() {
   document.getElementById('rankFoot').innerHTML = `Puan = <b>net/işlem</b> (min→0, max→33,3) + <b>kârlı işlem süresi</b> (kısa→33,3, uzun→0) + <b>kârlı/zararlı oranı</b> (min→0, max→33,3). ${scaleMode === 'clip' ? 'Min–max aralığı %1–99 yüzdelik diliminden alınır (uç değerler kırpılır).' : 'Min–max aralığı tüm satırlardan alınır; tek bir aşırı sonuç ölçeği sıkıştırabilir.'} Aralık, seçili minimum işlem sayısını geçen satırlar üzerinden hesaplanır. Satıra tıklayınca kombinasyon Genel sekmesinde açılır.`;
   paintSortHeader();
   paintFilterState();
+  syncPickBoxes();
 }
 
 document.querySelectorAll('.tabs .tab').forEach((t) => { t.onclick = () => setView(t.dataset.view); });
 document.querySelectorAll('#rtable th').forEach((th) => {
-  if (!th.dataset.k || th.dataset.k === 'idx') return;
+  if (!th.dataset.k || th.dataset.k === 'idx' || th.dataset.k === 'pick') return;
   th.onclick = () => {
     const k = th.dataset.k;
     if (RV.sort === k) RV.dir = -RV.dir;
@@ -595,17 +683,117 @@ document.querySelectorAll('#rtable th').forEach((th) => {
 let rankTimer = null;
 document.getElementById('rq').addEventListener('input', () => { clearTimeout(rankTimer); RV.page = 1; rankTimer = setTimeout(renderRank, 140); });
 document.getElementById('rmin').onchange = () => { RV.page = 1; renderRank(); };
-document.getElementById('rscale').onchange = () => { RV.page = 1; renderRank(); };
+document.getElementById('rscale').onchange = () => { RV.page = 1; renderRank(); renderChosen(); };
 document.getElementById('rpage').onchange = () => { RV.page = 1; renderRank(); };
 document.getElementById('rprev').onclick = () => { if (RV.page > 1) { RV.page--; renderRank(); } };
 document.getElementById('rnext').onclick = () => { if (RV.page < RV.pages) { RV.page++; renderRank(); } };
 document.getElementById('rbody').onclick = (e) => {
+  if (e.target.closest('.pick')) return;
   const tr = e.target.closest('tr');
   if (!tr) return;
   const sc = META.scenarios[Number(tr.dataset.s)];
   if (!sc) return;
   selectStrategy(sc.id, sc.tf, Number(tr.dataset.f));
   setView('overview');
+};
+
+/* ------------------------------ Chosen Ones sekmesi ------------------------------ */
+function renderChosen() {
+  const body = document.getElementById('cbody');
+  if (!body) return;
+  const info = document.getElementById('chosenInfo');
+  if (!RV.data) { if (info) info.textContent = 'Sıralama verisi yükleniyor…'; return; }
+  const all = rankRows().map((r) => ({ ...r }));
+  applyScores(all, document.getElementById('rscale').value);
+  const byKey = new Map(all.map((r) => [chKey(r.s, r.f), r]));
+  const rows = [...CHOSEN].map((k) => byKey.get(k)).filter(Boolean).sort((a, b) => b.score - a.score);
+  if (!rows.length) {
+    body.innerHTML = `<tr><td></td><td colspan="10" class="cempty">Henüz seçim yok.<br><b>Sıralama</b> sekmesinde satırların solundaki kutuyu işaretle — seçtiğin kombinasyonlar burada toplanır. Başlıktaki kutu, o an listelenen tüm satırları seçer.</td></tr>`;
+  } else {
+    const CAP = 1000;
+    body.innerHTML = rows.slice(0, CAP).map((r, i) => {
+      const cls = r.score >= 70 ? 'rb-hi' : r.score >= 40 ? 'rb-mid' : 'rb-lo';
+      const ratio = r.l > 0 ? (r.w / r.l).toFixed(2).replace('.', ',') : '—';
+      const key = chKey(r.s, r.f);
+      return `<tr data-s="${r.s}" data-f="${r.f}">
+        <td class="pick"><input type="checkbox" data-pick="${key}" checked title="Seçimden çıkar"></td>
+        <td class="l" style="color:var(--muted)">${i + 1}</td>
+        <td class="l sym" title="${r.name}">${r.name}</td>
+        <td><span class="tfmini">${r.tf}</span></td>
+        <td class="l flt" title="${r.filter}">${r.filter}</td>
+        <td>${fmtN(r.n)}</td>
+        <td class="${r.a >= 0 ? 'pos' : 'neg'}">${fmtPct(r.a)}</td>
+        <td class="${r.a26 >= 0 ? 'pos' : 'neg'}">${fmtPct(r.a26)}</td>
+        <td>${fmtH(r.wh)}</td>
+        <td>${fmtN(r.w)} / ${fmtN(r.l)} <span style="color:var(--muted)">· ${ratio}</span></td>
+        <td><span class="rank-badge ${cls}" title="Getiri ${r.s2.toFixed(1)} + süre ${r.s4.toFixed(1)} + K/Z ${r.s5.toFixed(1)}">${r.score.toFixed(1)}</span></td>
+      </tr>`;
+    }).join('');
+  }
+  if (info) {
+    info.textContent = rows.length
+      ? `${fmtN(rows.length)} kombinasyon seçili · puana göre sıralı${rows.length > 1000 ? ' · tabloda ilk 1.000 satır (tamamı CSV dosyasında)' : ''} · puanlar tüm 17.870 kombinasyon üzerinden ölçeklenir · satıra tıklayınca Genel sekmesinde açılır`
+      : 'Henüz seçim yok.';
+  }
+  updateChosenBadge();
+}
+
+document.getElementById('rbody').addEventListener('change', (e) => {
+  const cb = e.target.closest && e.target.closest('input[data-pick]');
+  if (!cb) return;
+  e.stopPropagation();
+  toggleChosen(cb.dataset.pick, cb.checked);
+});
+document.getElementById('pickAll').addEventListener('change', (e) => {
+  const on = e.target.checked;
+  for (const r of RV.view) {
+    const k = chKey(r.s, r.f);
+    if (on) CHOSEN.add(k); else CHOSEN.delete(k);
+  }
+  persistChosen();
+  syncPickBoxes();
+  renderChosen();
+});
+document.getElementById('cbody').addEventListener('change', (e) => {
+  const cb = e.target.closest && e.target.closest('input[data-pick]');
+  if (!cb) return;
+  toggleChosen(cb.dataset.pick, cb.checked);
+});
+document.getElementById('cbody').onclick = (e) => {
+  if (e.target.closest('.pick')) return;
+  const tr = e.target.closest('tr');
+  if (!tr || !tr.dataset.s) return;
+  const sc = META.scenarios[Number(tr.dataset.s)];
+  if (!sc) return;
+  selectStrategy(sc.id, sc.tf, Number(tr.dataset.f));
+  setView('overview');
+};
+document.getElementById('chosenClear').onclick = () => {
+  if (!CHOSEN.size) return;
+  CHOSEN.clear();
+  persistChosen();
+  syncPickBoxes();
+  document.querySelectorAll('#rbody tr.chosen').forEach((tr) => tr.classList.remove('chosen'));
+  renderChosen();
+};
+document.getElementById('chosenCsv').onclick = () => {
+  if (!CHOSEN.size) return;
+  const all = rankRows().map((r) => ({ ...r }));
+  applyScores(all, document.getElementById('rscale').value);
+  const byKey = new Map(all.map((r) => [chKey(r.s, r.f), r]));
+  const rows = [...CHOSEN].map((k) => byKey.get(k)).filter(Boolean).sort((a, b) => b.score - a.score);
+  const num = (v, d = 2) => (v == null ? '' : v.toFixed(d).replace('.', ','));
+  const head = ['Sira', 'Strateji', 'TF', 'Filtre', 'Islem', 'Net/islem %', '2026 Net/islem %', 'Karli sure (sa)', 'Kazanc', 'Zarar', 'K/Z', 'Puan', 'Senaryo', 'Filtre no'];
+  const lines = rows.map((r, i) => [i + 1, r.name, r.tf, r.filter, r.n, num(r.a * 100, 3), num(r.a26 * 100, 3), num(r.wh, 2), r.w, r.l, num(r.l > 0 ? r.w / r.l : null), num(r.score, 1), r.s, r.f].join(';'));
+  const csv = '\uFEFF' + [head.join(';'), ...lines].join('\r\n');
+  const url = URL.createObjectURL(new Blob([csv], { type: 'text/csv;charset=utf-8' }));
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'chosen-ones.csv';
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 2000);
 };
 
 /* -------------------- Excel tarzı sütun filtreleri (tablo başlıkları) -------------------- */
@@ -812,6 +1000,7 @@ document.getElementById('rclear').onclick = () => {
 };
 initFilterBtns();
 paintFilterState();
+updateChosenBadge();
 
 document.getElementById('q').addEventListener('input', renderStrats);
 boot().catch((e) => { document.getElementById('title').textContent = 'Veri yüklenemedi'; console.error(e); });
