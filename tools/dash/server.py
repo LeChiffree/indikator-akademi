@@ -13,6 +13,7 @@ import numpy as np
 from fastapi import FastAPI, HTTPException, Query
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
+from pydantic import BaseModel
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 DATA = os.environ.get('DASH_DATA') or os.path.join(HERE, 'data')
@@ -424,6 +425,92 @@ def scenario_payload(si, fi):
         'filterYears': filter_years(blocks, end),
         'y2026': year2026(d, blocks, end),
     }
+
+
+SUM_ARR_KEYS = ['dPos', 'dNeg', 'dCnt', 'hPos', 'hNeg', 'hCnt', 'uPos', 'uNeg', 'uCnt', 'ySum', 'yEq', 'yN', 'yW']
+SUM_SCALAR_KEYS = ['n', 'wins', 'sumR', 'sumR2', 'grossW', 'grossL', 'barsSum', 'winBars',
+                   'longN', 'longSumR', 'shortN', 'shortSumR']
+
+
+def combine_blocks(pairs):
+    """Secili (senaryo, filtre) ciftlerinin gunluk/saatlik/sure/sembol kovalarini topla.
+
+    Gercek islem bazli bir defter birlestirmesi degil (boyle bir veri yok); her
+    stratejinin bagimsiz gunluk toplamlarinin elemanlı toplami — en iyi yaklasim bu veri modelinde.
+    """
+    agg = None
+    for si, fi in pairs:
+        if si < 0 or si >= len(META['scenarios']) or fi < 0 or fi >= F:
+            continue
+        d = scenario_cache(si)[fi]
+        if agg is None:
+            agg = {k: (v.copy() if isinstance(v, np.ndarray) else v) for k, v in d.items()}
+            continue
+        for k in SUM_ARR_KEYS:
+            agg[k] = agg[k] + d[k]
+        for k in SUM_SCALAR_KEYS:
+            agg[k] = agg[k] + d[k]
+        agg['best'] = max(agg['best'], d['best'])
+        agg['worst'] = min(agg['worst'], d['worst'])
+    return agg
+
+
+def combine_payload(pairs):
+    d = combine_blocks(pairs)
+    if d is None:
+        raise HTTPException(400, 'gecerli strateji yok')
+    end = last_active(d)
+    days = d['dPos'].astype(np.float64) - d['dNeg'].astype(np.float64)
+    cash = np.cumsum(days * 10.0)
+    d25 = (dt.date(2025, 1, 1) - DAY0).days
+    cash25 = np.cumsum(days[d25:] * 10.0)
+    kpi = summarize(d)
+    a26 = (dt.date(2026, 1, 1) - DAY0).days
+    k26 = d['dCnt'][a26:].sum()
+    s26 = (d['dPos'][a26:].sum() - d['dNeg'][a26:].sum())
+    kpi['n2026'] = int(k26)
+    kpi['avg2026'] = float(s26 / k26) if k26 > 0 else 0.0
+    return {
+        'scenario': {'id': 'combine', 'name': f'Kombine ({len(pairs)} strateji)'},
+        'filter': {'label': f'{len(pairs)} secili strateji', 'group': 'Kombine'},
+        'kpi': kpi,
+        'daily': {
+            'start': '2022-08-01',
+            'pos': np.round(d['dPos'][:end], 5).tolist(),
+            'neg': np.round(d['dNeg'][:end], 5).tolist(),
+            'n': d['dCnt'][:end].tolist(),
+        },
+        'cash': {'all': np.round(cash[:end], 2).tolist(), 'y25': np.round(cash25, 2).tolist()},
+        'years': yearly(d, end),
+        'quarters': quarters(d, end),
+        'seasons': seasons(d, end),
+        'months': months(d, end),
+        'dowhour': dowhour(d),
+        'durations': [{'label': DUR_LABELS[k], 'n': int(d['uCnt'][k]), 'pos': float(d['uPos'][k]), 'neg': float(d['uNeg'][k])} for k in range(NB)],
+        'symbols': symbols(d),
+        'filterEffects': [],
+        'weekly': weekly(d, end),
+        'rolling': rolling(d, end),
+        'dow': dow(d),
+        'filterYears': {'years': [2022, 2023, 2024, 2025, 2026], 'rows': []},
+        'y2026': _y2026_no_effects(d, end),
+    }
+
+
+def _y2026_no_effects(d, end):
+    y = year2026(d, [d], end)
+    if y is not None:
+        y['filterEffects'] = []
+    return y
+
+
+class CombineReq(BaseModel):
+    pairs: list[list[int]]
+
+
+@APP.post('/api/combine')
+def api_combine(body: CombineReq):
+    return combine_payload(body.pairs)
 
 
 @APP.get('/api/meta')

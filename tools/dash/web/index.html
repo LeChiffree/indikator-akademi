@@ -24,6 +24,7 @@
       <button class="tab on" data-view="overview">Genel</button>
       <button class="tab" data-view="rank">Sıralama</button>
       <button class="tab" data-view="chosen">Chosen Ones <span class="tabcount" id="chosenTabCount">0</span></button>
+      <button class="tab" data-view="combine">Kombine</button>
     </div>
 
     <div id="view-overview">
@@ -197,6 +198,60 @@
           </table>
         </div>
         <div class="rank-note" id="chosenFoot"></div>
+      </div>
+    </div>
+
+    <div id="view-combine" hidden>
+      <div class="top" style="margin-bottom:12px">
+        <div>
+          <div class="eyebrow">Chosen Ones'un birleşimi · günlük kovaların toplamı</div>
+          <h1 id="combineTitle">Kombine</h1>
+          <div class="sub">Chosen Ones sekmesinde işaretlediğin tüm strateji × filtre × zaman dilimi kombinasyonlarının günlük kâr/zarar serileri toplanarak tek bir portföy gibi gösterilir. Gerçek işlem defteri birleşimi değildir (çakışma/korelasyon düzeltmesi yok) — bu veri modelinde ulaşılabilen en iyi yaklaşımdır.</div>
+        </div>
+        <button id="combineRefresh" class="pgbtn" type="button">Yenile</button>
+      </div>
+      <div id="combineEmpty" class="card" hidden><div class="h">Henüz Chosen Ones'a eklenmiş bir strateji yok. Önce Sıralama sekmesinden satır işaretle.</div></div>
+      <div id="combineBody" hidden>
+        <div class="split">
+          <section class="pane">
+            <div class="pane-head"><h2>Tüm Yıllar</h2><span>2022-08 → son veri · kombine</span></div>
+            <div class="kpis" id="km_kpisAll"></div>
+            <div class="grid">
+              <div class="card"><h3>Kümülatif Net Özsermaye — 10$ / işlem</h3><div class="h">0$ başlangıç</div><div id="km_a_cash" class="chart"></div></div>
+              <div class="card"><h3>Drawdown</h3><div class="h">Zirveden uzaklık ($)</div><div id="km_a_dd" class="chart"></div></div>
+              <div class="card"><h3>Günlük Kâr / Zarar</h3><div class="h">Aynı günün kâr ve zarar barları</div><div id="km_a_daily" class="chart"></div></div>
+              <div class="card"><h3>Haftalık Kâr / Zarar</h3><div class="h">ISO haftası</div><div id="km_a_week" class="chart"></div></div>
+              <div class="card"><h3>Aylık Kâr / Zarar</h3><div class="h">Ay bazında</div><div id="km_a_month" class="chart"></div></div>
+              <div class="card"><h3>Yıllık Kâr / Zarar</h3><div class="h">Aynı barda kâr ve zarar</div><div id="km_a_year" class="chart"></div></div>
+              <div class="card"><h3>Mevsimlik Kâr / Zarar</h3><div class="h">Kış / İlkbahar / Yaz / Sonbahar</div><div id="km_a_season" class="chart"></div></div>
+              <div class="card"><h3>Çeyreklik Kâr / Zarar</h3><div class="h">Q1–Q4</div><div id="km_a_quarter" class="chart"></div></div>
+              <div class="card"><h3>Kalma Süresi Dağılımı</h3><div class="h">İşlem sayısı</div><div id="km_a_dur" class="chart"></div></div>
+              <div class="card"><h3>Kalma Süresine Göre Kâr / Zarar</h3><div class="h">Kova başına brüt kâr ve zarar</div><div id="km_a_durpnl" class="chart"></div></div>
+              <div class="card"><h3>Takvim Isı Haritası</h3><div class="h">Ay × yıl net</div><div id="km_a_cal" class="chart tall"></div></div>
+              <div class="card"><h3>Haftanın Günü</h3><div class="h">Net kâr / zarar</div><div id="km_a_dow" class="chart"></div></div>
+              <div class="card"><h3>Kayan Net Getiri</h3><div class="h">30 / 90 / 365 günlük pencere ($)</div><div id="km_a_roll" class="chart"></div></div>
+              <div class="card"><h3>Coin Bazında Kâr / Zarar</h3><div class="h">En aktif 40 coin</div><div id="km_a_sym" class="chart xtall"></div></div>
+            </div>
+          </section>
+
+          <section class="pane">
+            <div class="pane-head"><h2>2026</h2><span>1 Ocak – son veri · kombine</span></div>
+            <div class="kpis" id="km_kpis26"></div>
+            <div class="grid">
+              <div class="card"><h3>2026 Kümülatif Net Özsermaye</h3><div class="h">10$ / işlem · 0$ başlangıç</div><div id="km_b_cash" class="chart"></div></div>
+              <div class="card"><h3>2026 Drawdown</h3><div class="h">Zirveden uzaklık ($)</div><div id="km_b_dd" class="chart"></div></div>
+              <div class="card"><h3>2026 Günlük Kâr / Zarar</h3><div class="h">Aynı günün kâr ve zarar barları</div><div id="km_b_daily" class="chart"></div></div>
+              <div class="card"><h3>2026 Haftalık Kâr / Zarar</h3><div class="h">ISO haftası</div><div id="km_b_week" class="chart"></div></div>
+              <div class="card"><h3>2026 Aylık Kâr / Zarar</h3><div class="h">Ay bazında</div><div id="km_b_month" class="chart"></div></div>
+              <div class="card"><h3>2026 Mevsimlik Kâr / Zarar</h3><div class="h">Kış / İlkbahar / Yaz / Sonbahar</div><div id="km_b_season" class="chart"></div></div>
+              <div class="card"><h3>2026 Çeyreklik Kâr / Zarar</h3><div class="h">Q1–Q4</div><div id="km_b_quarter" class="chart"></div></div>
+            </div>
+          </section>
+        </div>
+        <div style="display:none">
+          <div id="km_a_filter"></div><div id="km_a_fheat"></div>
+          <div id="km_b_filter"></div><div id="km_b_filter2"></div>
+        </div>
       </div>
     </div>
 
@@ -378,10 +433,10 @@ function renderKpis(k, id) {
   ].join('');
 }
 
-function renderKpis26(k) {
+function renderKpis26(k, id = 'kpis26') {
   const days = (k.profitDays || 0) + (k.lossDays || 0);
   const ratio = days ? (k.profitDays / days) * 100 : 0;
-  document.getElementById('kpis26').innerHTML = [
+  document.getElementById(id).innerHTML = [
     kpiCard('2026 İşlem', fmtN(k.n), `toplam işlem`),
     kpiCard('2026 Net Sonuç', fmtUSD(k.net || 0), `10$ pozisyon`, (k.net || 0) >= 0 ? 'pos' : 'neg'),
     kpiCard('2026 Ort. Getiri', fmtPct(k.avg), `işlem başına`, k.avg >= 0 ? 'pos' : 'neg'),
@@ -498,6 +553,8 @@ try {
   const raw = localStorage.getItem(CHOSEN_KEY);
   if (raw) JSON.parse(raw).forEach((k) => CHOSEN.add(k));
 } catch (e) { /* yoksay */ }
+/* Sıralama tablosunda geçici gizleme: oturum boyunca kalır, F5'te sıfırlanır (kalıcı değil) */
+const HIDDEN = new Set();
 const chKey = (s, f) => s + ':' + f;
 function persistChosen() {
   try { localStorage.setItem(CHOSEN_KEY, JSON.stringify([...CHOSEN])); } catch (e) { /* yoksay */ }
@@ -523,9 +580,9 @@ function syncPickBoxes() {
   all.indeterminate = !all.checked && boxes.some((b) => b.checked);
 }
 function toggleChosen(k, on) {
-  if (on) CHOSEN.add(k); else CHOSEN.delete(k);
+  if (on) { CHOSEN.add(k); HIDDEN.add(k); } else { CHOSEN.delete(k); HIDDEN.delete(k); }
   persistChosen();
-  syncPickBoxes();
+  renderRank();
   renderChosen();
 }
 
@@ -534,9 +591,32 @@ function setView(v) {
   document.getElementById('view-overview').hidden = v !== 'overview';
   document.getElementById('view-rank').hidden = v !== 'rank';
   document.getElementById('view-chosen').hidden = v !== 'chosen';
+  document.getElementById('view-combine').hidden = v !== 'combine';
   document.body.classList.toggle('rankmode', v === 'rank' || v === 'chosen');
   if (v === 'rank' || v === 'chosen') loadRank();
+  else if (v === 'combine') loadCombine();
   else setTimeout(() => document.querySelectorAll('#view-overview .js-plotly-plot').forEach((el) => Plotly.Plots.resize(el)), 40);
+}
+
+async function loadCombine() {
+  const pairs = [...CHOSEN].map((k) => k.split(':').map(Number));
+  document.getElementById('combineTitle').textContent = `Kombine (${pairs.length} strateji)`;
+  if (!pairs.length) {
+    document.getElementById('combineEmpty').hidden = false;
+    document.getElementById('combineBody').hidden = true;
+    return;
+  }
+  document.getElementById('combineEmpty').hidden = true;
+  document.getElementById('combineBody').hidden = false;
+  const r = await fetch('/api/combine', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ pairs }) });
+  const D = await r.json();
+  renderKpis(D.kpi, 'km_kpisAll');
+  renderCharts(D, 'km_a_');
+  if (D.y2026) {
+    renderKpis26(D.y2026.kpi, 'km_kpis26');
+    render2026(D.y2026, 'km_b_');
+  }
+  setTimeout(() => document.querySelectorAll('#view-combine .js-plotly-plot').forEach((el) => Plotly.Plots.resize(el)), 40);
 }
 
 async function loadRank() {
@@ -626,6 +706,7 @@ function renderRank() {
   applyScores(base, scaleMode);
   let view = q ? base.filter((r) => (r.name + ' ' + r.filter + ' ' + r.tf).toLowerCase().includes(q)) : base;
   view = view.filter(passFilters);
+  view = view.filter((r) => !HIDDEN.has(chKey(r.s, r.f)));
   const key = RV.sort, dir = RV.dir;
   view = view.slice().sort((x, y) => {
     let a = x[key], b = y[key];
@@ -748,10 +829,10 @@ document.getElementById('pickAll').addEventListener('change', (e) => {
   const on = e.target.checked;
   for (const r of RV.view) {
     const k = chKey(r.s, r.f);
-    if (on) CHOSEN.add(k); else CHOSEN.delete(k);
+    if (on) { CHOSEN.add(k); HIDDEN.add(k); } else { CHOSEN.delete(k); HIDDEN.delete(k); }
   }
   persistChosen();
-  syncPickBoxes();
+  renderRank();
   renderChosen();
 });
 document.getElementById('cbody').addEventListener('change', (e) => {
@@ -771,9 +852,9 @@ document.getElementById('cbody').onclick = (e) => {
 document.getElementById('chosenClear').onclick = () => {
   if (!CHOSEN.size) return;
   CHOSEN.clear();
+  HIDDEN.clear();
   persistChosen();
-  syncPickBoxes();
-  document.querySelectorAll('#rbody tr.chosen').forEach((tr) => tr.classList.remove('chosen'));
+  renderRank();
   renderChosen();
 };
 document.getElementById('chosenCsv').onclick = () => {
@@ -1002,6 +1083,7 @@ initFilterBtns();
 paintFilterState();
 updateChosenBadge();
 
+document.getElementById('combineRefresh').addEventListener('click', loadCombine);
 document.getElementById('q').addEventListener('input', renderStrats);
 boot().catch((e) => { document.getElementById('title').textContent = 'Veri yüklenemedi'; console.error(e); });
 </script>
