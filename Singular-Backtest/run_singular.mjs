@@ -47,6 +47,26 @@ const I = NIND * F;
 const Y26 = Date.UTC(2026, 0, 1);
 const A26 = Math.floor((Y26 - DAY0) / 86400000);
 
+// Gun indekslerini Pazartesi baslangicli hafta ve takvim ayi indekslerine
+// cevir; metricsOf her satir icin bu indeksleri kullanir.
+const WEEK_OF = new Int32Array(ND);
+const MONTH_OF = new Int32Array(ND);
+let NWEEKS = 0, NMONTHS = 0;
+{
+  const base = new Date(DAY0);
+  const baseDay = Math.floor(DAY0 / 86400000);
+  const baseWeek = baseDay - ((base.getUTCDay() + 6) % 7);
+  const baseMonth = base.getUTCFullYear() * 12 + base.getUTCMonth();
+  for (let d = 0; d < ND; d++) {
+    const ms = DAY0 + d * 86400000;
+    const dt = new Date(ms);
+    WEEK_OF[d] = Math.floor(ms / 86400000) - ((dt.getUTCDay() + 6) % 7) - baseWeek;
+    MONTH_OF[d] = dt.getUTCFullYear() * 12 + dt.getUTCMonth() - baseMonth;
+    if (WEEK_OF[d] > NWEEKS) NWEEKS = WEEK_OF[d];
+    if (MONTH_OF[d] > NMONTHS) NMONTHS = MONTH_OF[d];
+  }
+}
+
 const SCOPE_LABEL = {
   indicator: 'İndikatör (id), 6 zaman dilimi ve tüm coinlerde tek pozisyon',
   state: 'Senaryo (id + TF) — motor zaten tek pozisyon tutar, normal ile aynı',
@@ -63,14 +83,25 @@ function metricsOf(o) {
   const { n, wins, sumR, sum26, n26, durWin, durSum, daily } = o;
   const losses = n - wins;
   let pd = 0, ld = 0, cash = 0, peak = 0, dd = 0;
+  const weekNet = new Float64Array(NWEEKS + 1);
+  const monthNet = new Float64Array(NMONTHS + 1);
   for (let d = 0; d < ND; d++) {
     const x = daily[d];
     if (x > 0) pd++;
     else if (x < 0) ld++;
+    weekNet[WEEK_OF[d]] += x;
+    monthNet[MONTH_OF[d]] += x;
     cash += x * STAKE;
     if (cash > peak) peak = cash;
     const q = cash - peak;
     if (q < dd) dd = q;
+  }
+  let pw = 0, lw = 0, pm = 0, lm = 0;
+  for (let w = 0; w <= NWEEKS; w++) {
+    if (weekNet[w] > 0) pw++; else if (weekNet[w] < 0) lw++;
+  }
+  for (let m = 0; m <= NMONTHS; m++) {
+    if (monthNet[m] > 0) pm++; else if (monthNet[m] < 0) lm++;
   }
   return {
     trades: n,
@@ -84,6 +115,10 @@ function metricsOf(o) {
     holdH: n ? durSum / n / 60 : 0,
     profitDays: pd,
     lossDays: ld,
+    profitWeeks: pw,
+    lossWeeks: lw,
+    profitMonths: pm,
+    lossMonths: lm,
     maxDD: dd,
     kasaAll: sumR * STAKE,
     sumR,
@@ -103,6 +138,10 @@ function putMetrics(row, m, p) {
   row[p + 'holdH'] = m.holdH;
   row[p + 'profitDays'] = m.profitDays;
   row[p + 'lossDays'] = m.lossDays;
+  row[p + 'profitWeeks'] = m.profitWeeks;
+  row[p + 'lossWeeks'] = m.lossWeeks;
+  row[p + 'profitMonths'] = m.profitMonths;
+  row[p + 'lossMonths'] = m.lossMonths;
   row[p + 'maxDD'] = m.maxDD;
   row[p + 'kasaAll'] = m.kasaAll;
   row[p + 'sumR'] = m.sumR;
@@ -471,8 +510,10 @@ function csv(path, list, cols) {
 const rowCols = ['sid', 'strategy', 'cat', 'timeframe', 'filter_id', 'filter_key', 'filter_label',
   'blocked', 'blocked_pct', 'n_trades', 's_trades', 'n_retAll', 's_retAll', 'delta_retAll',
   'n_ret2026', 's_ret2026', 'n_winRatio', 's_winRatio', 'n_winHoldH', 's_winHoldH',
-  'n_profitDays', 's_profitDays', 'n_lossDays', 's_lossDays', 'n_maxDD', 's_maxDD',
-  'n_kasaAll', 's_kasaAll', 'delta_kasa'];
+  'n_profitDays', 's_profitDays', 'n_lossDays', 's_lossDays',
+  'n_profitWeeks', 's_profitWeeks', 'n_lossWeeks', 's_lossWeeks',
+  'n_profitMonths', 's_profitMonths', 'n_lossMonths', 's_lossMonths',
+  'n_maxDD', 's_maxDD', 'n_kasaAll', 's_kasaAll', 'delta_kasa'];
 await csv(join(OUT, 'singular_rows.csv'), rows, rowCols);
 await csv(join(OUT, 'singular_coins.csv'), coins,
   ['id', 'title', 'symbol', 'n_trades', 's_trades', 'blocked', 'blocked_pct', 'n_retAll', 's_retAll', 'n_winRate', 's_winRate']);
