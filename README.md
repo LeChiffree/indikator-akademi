@@ -243,6 +243,20 @@ Her indikatör `assets/js/data/*.js` içinde bir nesnedir:
   grafikleri dar ekranda daha kompakt bir viewBox (400 birim) ile yeniden
   çizilir, böylece yazılar her ekranda aynı fiziksel boyutta okunur.
 
+## Singular-Backtest
+
+[`Singular-Backtest/`](./Singular-Backtest/README.md), "aynı coinde aynı anda en
+fazla bir açık işlem" kuralını 100 indikatör × 6 TF × 31 filtre laboratuvarına
+uygular. Varsayılan kapsam **indikatör** (6 TF birlikte); `--scope=state`
+senaryo düzeyinde normal sonuçla aynıdır. Normal metrikler
+`tools/dash/data/agg/*.bin` dosyalarından birebir okunur, tekil metrikler aynı
+motor yeniden koşularak üretilir.
+
+```bash
+node Singular-Backtest/run_singular.mjs --workers=8
+node Singular-Backtest/verify_singular.mjs
+```
+
 ## Yasal not
 
 Bu site yalnızca **eğitim** amaçlıdır. İçerikler **yatırım tavsiyesi
