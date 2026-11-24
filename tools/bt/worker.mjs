@@ -55,7 +55,7 @@ for (const symbol of symbols) {
           const symIdx = symIds[symbol];
           let mask = 0;
           rec = {
-            open(i, d) { feat(i, featOut); mask = buildMask(featOut, d); },
+            open(i, d) { feat(i > 0 ? i - 1 : i, featOut); mask = buildMask(featOut, d); },
             trade(side, exitMs, r, durMin) { addTrade(agg, mask, symIdx, exitMs, r, durMin, side); },
           };
         }

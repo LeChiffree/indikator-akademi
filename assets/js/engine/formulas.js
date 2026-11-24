@@ -113,6 +113,12 @@ function shiftFwd(a, n) { // ileri kaydır (son n değer null olur)
   for (let i = 0; i < a.length - n; i++) out[i] = a[i + n];
   return out;
 }
+// Backtest için güvenli kaydırma: bar i'de yalnızca i-n'inci (geçmiş) değer görünür.
+function shiftBack(a, n) {
+  const out = nul(a.length);
+  for (let i = n; i < a.length; i++) out[i] = a[i - n];
+  return out;
+}
 function diff(a) {
   const out = nul(a.length);
   for (let i = 1; i < a.length; i++) if (a[i] != null && a[i - 1] != null) out[i] = a[i] - a[i - 1];
@@ -458,19 +464,20 @@ CALCS.adx = {
 
 CALCS.ichimoku = {
   label: () => 'Ichimoku',
-  fn: (S) => {
+  fn: (S, p = {}) => {
+    const bt = !!p.bt; // backtest: gelecek barı görmeyen (gecikmeli) bulut
     const t = asc(S, 9), k = asc(S, 26), sb = asc(S, 52);
     const tenkan = t.mid, kijun = k.mid;
     const senA = tenkan.map((x, i) => (x == null || kijun[i] == null ? null : (x + kijun[i]) / 2));
     const senB = sb.mid;
     const chikou = nul(S.c.length);
-    for (let i = 26; i < S.c.length; i++) chikou[i - 26] = S.c[i];
+    if (!bt) for (let i = 26; i < S.c.length; i++) chikou[i - 26] = S.c[i];
     return {
       lines: {
         Tenkan: { v: shiftFwd(tenkan, 0), c: 'gold' },
         Kijun: { v: kijun, c: 'blue' },
-        'Senkou A': { v: shiftFwd(senA, 26), c: 'up', dash: true },
-        'Senkou B': { v: shiftFwd(senB, 26), c: 'down', dash: true },
+        'Senkou A': { v: bt ? shiftBack(senA, 26) : shiftFwd(senA, 26), c: 'up', dash: true },
+        'Senkou B': { v: bt ? shiftBack(senB, 26) : shiftFwd(senB, 26), c: 'down', dash: true },
         Chikou: { v: chikou, c: 'platinum', dash: true },
       },
       band: ['Senkou A', 'Senkou B'],
@@ -484,13 +491,15 @@ CALCS.ichimoku = {
 
 CALCS.alligator = {
   label: () => 'Alligator',
-  fn: (S) => {
+  fn: (S, p = {}) => {
+    const bt = !!p.bt;
     const med = (S.h.map((h, i) => (h + S.l[i]) / 2));
+    const sh = (a, n) => (bt ? shiftBack(a, n) : shiftFwd(a, n));
     return {
       lines: {
-        Çene: { v: shiftFwd(sma(med, 13), 8), c: 'blue' },
-        Diş: { v: shiftFwd(sma(med, 8), 5), c: 'down' },
-        Dudak: { v: shiftFwd(sma(med, 5), 3), c: 'up' },
+        Çene: { v: sh(sma(med, 13), 8), c: 'blue' },
+        Diş: { v: sh(sma(med, 8), 5), c: 'down' },
+        Dudak: { v: sh(sma(med, 5), 3), c: 'up' },
       },
     };
   },

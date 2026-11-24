@@ -24,7 +24,14 @@ const tfs = args.tfs ? String(args.tfs).split(',') : TFS;
 for (const tf of tfs) if (!TFS.includes(tf)) throw new Error('geçersiz tf: ' + tf);
 
 const symbolsAll = await listSymbols();
-const symbols = args.symbols ? symbolsAll.slice(0, Number(args.symbols)) : symbolsAll;
+let symbols = args.symbols ? symbolsAll.slice(0, Number(args.symbols)) : symbolsAll;
+// Karşılaştırılabilirlik için Evren sabitleme: eski bir scenarios.json'daki sembol listesi.
+if (args.universe) {
+  const { readFileSync } = await import('node:fs');
+  const u = JSON.parse(readFileSync(resolve(ROOT, String(args.universe)), 'utf8'));
+  const want = new Set(Array.isArray(u) ? u : u.symbols);
+  symbols = symbols.filter((s) => want.has(s));
+}
 const nWorkers = Math.min(Number(args.workers || 10), symbols.length);
 const OUT = resolve(ROOT, String(args.out || 'assets/bt'));
 const only = args.only ? String(args.only).split(',') : null;

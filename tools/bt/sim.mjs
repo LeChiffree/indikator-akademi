@@ -82,11 +82,14 @@ export function simulate(spec, ctx, rec) {
     const p = S.o[i];
     if (!(p > 0)) return;
     pos = d; entryI = i; entryP = p; entryT = S.t[i];
-    hh = S.h[i]; ll = S.l[i]; barsHeld = 0; stopP = NaN;
+    // Giriş anında bar i'nin high/low'u bilinmiyor → trailing çapa = giriş fiyatı.
+    hh = p; ll = p; barsHeld = 0; stopP = NaN;
     if (rec) rec.open(i, d);
     if (stopCfg) {
-      if (atrArr) { const a = atrArr[i]; stopP = d === 1 ? p - stopCfg.mult * a : p + stopCfg.mult * a; }
-      else if (natrArr) { const a = natrArr[i]; stopP = d === 1 ? p * (1 - stopCfg.mult * a / 100) : p * (1 + stopCfg.mult * a / 100); }
+      // Giriş anında yalnızca tamamlanmış barın (i-1) ATR/NATR'si bilinir.
+      const pi = i > 0 ? i - 1 : i;
+      if (atrArr) { const a = atrArr[pi]; stopP = d === 1 ? p - stopCfg.mult * a : p + stopCfg.mult * a; }
+      else if (natrArr) { const a = natrArr[pi]; stopP = d === 1 ? p * (1 - stopCfg.mult * a / 100) : p * (1 + stopCfg.mult * a / 100); }
       else if (lvlLong) { stopP = d === 1 ? lvlLong[i] : lvlShort[i]; }
       else if (stopCfg.kind === 'pct') stopP = d === 1 ? p * (1 - stopCfg.pct / 100) : p * (1 + stopCfg.pct / 100);
       if (Number.isNaN(stopP)) stopP = NaN;

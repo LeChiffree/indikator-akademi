@@ -86,7 +86,7 @@ for (let wi = 0; wi < symbols.length; wi++) {
       const feat = feats[tf];
       const rec = {
         open(i, d) {
-          feat(i, featOut);
+          feat(i > 0 ? i - 1 : i, featOut);
           cur = { i, d, mask: buildMask(featOut, d) };
         },
         trade(side, exitMs, r, durMin) {

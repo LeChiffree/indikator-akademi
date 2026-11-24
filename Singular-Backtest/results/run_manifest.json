@@ -1,16 +1,16 @@
 {
   "repo": "indikator-akademi",
-  "generated_at": "2026-11-18T18:45:22Z",
+  "generated_at": "2026-11-24T18:57:10Z",
   "scope": "indicator",
   "scope_label": "İndikatör (id), 6 zaman dilimi ve tüm coinlerde tek pozisyon",
   "symbols": 525,
   "indicators": 100,
   "scenarios": 600,
   "filters": 31,
-  "normal_trades": 1053489499,
-  "singular_trades": 652125244,
-  "blocked": 401364255,
-  "blocked_pct": 38.098553,
+  "normal_trades": 1040598265,
+  "singular_trades": 643221406,
+  "blocked": 397376859,
+  "blocked_pct": 38.187346,
   "normal_count_mismatches": 0,
-  "elapsed_sec": 1582.33
+  "elapsed_sec": 1334.22
 }

@@ -103,7 +103,7 @@ const TREND = [
   {
     id: 'ichimoku', title: 'Ichimoku Bulut Kırılımı', dir: 'ls',
     load: (C) => {
-      const r = C.calc('ichimoku');
+      const r = C.calc('ichimoku', { bt: 1 });
       const t = r.lines.Tenkan, k = r.lines.Kijun, a = r.lines['Senkou A'], b = r.lines['Senkou B'];
       const n = C.S.c.length, top = new Float64Array(n).fill(NaN), bot = new Float64Array(n).fill(NaN);
       for (let i = 0; i < n; i++) { if (!Number.isNaN(a[i]) && !Number.isNaN(b[i])) { top[i] = Math.max(a[i], b[i]); bot[i] = Math.min(a[i], b[i]); } }
@@ -186,7 +186,7 @@ const TREND = [
   {
     id: 'alligator', title: 'Alligator Hizalanması', dir: 'ls',
     load: (C) => {
-      const r = C.calc('alligator');
+      const r = C.calc('alligator', { bt: 1 });
       const jaw = r.lines['Çene'], teeth = r.lines['Diş'], lips = r.lines['Dudak'];
       const n = C.S.c.length, st = new Int8Array(n);
       for (let i = 0; i < n; i++) {
